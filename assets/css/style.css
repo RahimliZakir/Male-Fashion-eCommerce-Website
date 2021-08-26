@@ -6346,3 +6346,42 @@ body {
   line-height: 25px;
   margin: 0 0 15px 0;
 }
+
+.like-unlike-side {
+  display: flex;
+}
+
+.like-side,
+.unlike-side {
+  display: flex;
+  align-items: center;
+}
+
+.unlike-side {
+  margin-left: 5%;
+}
+
+.like-count,
+.unlike-count {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.like-btn,
+.unlike-btn {
+  display: inline-block !important;
+  font-size: 1.2rem !important;
+  transition: 0.3s;
+}
+
+.like-btn:hover,
+.unlike-btn:hover {
+  color: #e53637;
+}
+
+.like-btn::after,
+.unlike-btn::after {
+  content: "";
+  display: none;
+}
