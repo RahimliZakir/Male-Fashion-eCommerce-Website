@@ -16,6 +16,7 @@
     <base href="~/" />
     <link rel="stylesheet" href="assets/sources/css/aos.min.css" />
     <link rel="stylesheet" href="assets/sources/css/bootstrap.min.css" />
+    @RenderSection("css", required: false)
     <link rel="stylesheet" href="assets/css/style.css" />
     <link rel="shortcut icon"
           href="assets/icons/favicon.png"
@@ -101,19 +102,19 @@
                 <div class="col-lg-6 col-md-6">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li class="active"><a href="index.html">Home</a></li>
-                            <li><a href="shop.html">Shop</a></li>
+                            <li class="active"><a asp-action="Index" asp-controller="Home">Home</a></li>
+                            <li><a asp-action="Index" asp-controller="Shop">Shop</a></li>
                             <li>
                                 <a href="#">Pages</a>
                                 <ul class="dropdown">
-                                    <li><a href="about-us.html">About Us</a></li>
-                                    <li><a href="shop-details.html">Shop Details</a></li>
-                                    <li><a href="shopping-cart.html">Shopping Cart</a></li>
-                                    <li><a href="blog-details.html">Blog Details</a></li>
+                                    <li><a asp-action="Index" asp-controller="AboutUs">About Us</a></li>
+                                    <li><a asp-action="Index" asp-controller="ShopDetails">Shop Details</a></li>
+                                    <li><a asp-action="Index" asp-controller="ShoppingCart">Shopping Cart</a></li>
+                                    <li><a asp-action="Index" asp-controller="BlogDetails">Blog Details</a></li>
                                 </ul>
                             </li>
-                            <li><a href="blog.html">Blog</a></li>
-                            <li><a href="contacts.html">Contacts</a></li>
+                            <li><a asp-action="Index" asp-controller="Blog">Blog</a></li>
+                            <li><a asp-action="Index" asp-controller="Contacts">Contacts</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -249,6 +250,7 @@
     <script src="assets/sources/js/owl-carousel.min.js"></script>
     <script src="assets/sources/js/aos.min.js"></script>
     <script src="assets/sources/js/main.js"></script>
+    @RenderSection("scripts", required: false)
     <script async
             src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
     <script>
