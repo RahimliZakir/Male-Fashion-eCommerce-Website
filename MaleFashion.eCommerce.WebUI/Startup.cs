@@ -1,6 +1,8 @@
+using MaleFashion.eCommerce.WebUI.Models.DataContext;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -22,7 +24,17 @@ namespace MaleFashion.eCommerce.WebUI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddRouting(options =>
+            {
+                options.LowercaseUrls = true;
+            });
+
             services.AddControllersWithViews();
+
+            services.AddDbContext<FashionDbContext>(cfg =>
+            {
+                cfg.UseSqlServer(conf.GetConnectionString("cString"));
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -33,6 +45,8 @@ namespace MaleFashion.eCommerce.WebUI
             }
 
             app.UseStaticFiles();
+
+            //app.DataSeed();
 
             app.UseRouting();
 

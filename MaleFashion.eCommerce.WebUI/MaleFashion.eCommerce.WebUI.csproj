@@ -6,8 +6,6 @@
 
   <ItemGroup>
     <Folder Include="AppCode\Extensions\" />
-    <Folder Include="Models\DataContext\" />
-    <Folder Include="Models\Entity\" />
     <Folder Include="wwwroot\libs\" />
   </ItemGroup>
 
