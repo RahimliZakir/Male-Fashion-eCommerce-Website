@@ -1,3 +1,4 @@
+using MaleFashion.eCommerce.WebUI.AppCode.BinderProviders;
 using MaleFashion.eCommerce.WebUI.Models.DataContext;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,7 +30,15 @@ namespace MaleFashion.eCommerce.WebUI
                 options.LowercaseUrls = true;
             });
 
-            services.AddControllersWithViews();
+            services.AddSession(requirements =>
+            {
+                requirements.IdleTimeout = TimeSpan.FromMilliseconds(13);
+            });
+
+            services.AddControllersWithViews(cfg =>
+            {
+                cfg.ModelBinderProviders.Insert(0, new BooleanBinderProvider());
+            });
 
             services.AddDbContext<FashionDbContext>(cfg =>
             {
@@ -46,7 +55,9 @@ namespace MaleFashion.eCommerce.WebUI
 
             app.UseStaticFiles();
 
-            //app.DataSeed();
+            app.UseSession();
+
+            app.DataSeed();
 
             app.UseRouting();
 

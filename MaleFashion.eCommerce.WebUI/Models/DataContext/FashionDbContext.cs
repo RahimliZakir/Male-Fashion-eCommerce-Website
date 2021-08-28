@@ -15,7 +15,48 @@ namespace MaleFashion.eCommerce.WebUI.Models.DataContext
 
         }
 
+        public DbSet<AppInfo> AppInfos { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Aphorism> Aphorisms { get; set; }
+        public DbSet<Tag> Tags { get; set; }
+        public DbSet<BlogBanner> BlogBanners { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<BlogDetailsTagsCollection> BlogDetailsTagsCollections { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            base.OnModelCreating(builder);
+
+            builder.Entity<AppInfo>()
+                   .Property(ap => ap.CreatedDate)
+                   .HasDefaultValueSql("DATEADD(HOUR, 4, GETUTCDATE())");
+
+
+            builder.Entity<Category>()
+                   .Property(ap => ap.CreatedDate)
+                   .HasDefaultValueSql("DATEADD(HOUR, 4, GETUTCDATE())");
+
+
+            builder.Entity<Product>()
+                   .Property(ap => ap.CreatedDate)
+                   .HasDefaultValueSql("DATEADD(HOUR, 4, GETUTCDATE())");
+
+            builder.Entity<Aphorism>()
+                   .Property(ap => ap.CreatedDate)
+                   .HasDefaultValueSql("DATEADD(HOUR, 4, GETUTCDATE())");
+
+            builder.Entity<Tag>()
+                   .Property(ap => ap.CreatedDate)
+                   .HasDefaultValueSql("DATEADD(HOUR, 4, GETUTCDATE())");
+
+            builder.Entity<BlogBanner>()
+                 .Property(ap => ap.CreatedDate)
+                 .HasDefaultValueSql("DATEADD(HOUR, 4, GETUTCDATE())");
+
+            builder.Entity<Blog>()
+                   .Property(ap => ap.CreatedDate)
+                   .HasDefaultValueSql("DATEADD(HOUR, 4, GETUTCDATE())");
+        }
     }
 }

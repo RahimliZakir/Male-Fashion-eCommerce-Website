@@ -1,5 +1,9 @@
-﻿@{
+﻿@inject FashionDbContext db;
+
+@{
     ViewBag.Layout = "Male Fashion";
+
+    AppInfo appInfo = db.AppInfos.FirstOrDefault();
 }
 
 <!DOCTYPE html>
@@ -95,7 +99,7 @@
                 <div class="col-lg-3 col-md-3">
                     <div class="header__logo">
                         <a href="index.html">
-                            <img src="assets/images/index/download.webp" alt="" />
+                            <img src="assets/images/index/@appInfo.HeaderLogoPath" alt="" />
                         </a>
                     </div>
                 </div>
@@ -147,15 +151,14 @@
                     <div class="footer__about">
                         <div class="footer__logo">
                             <a href="#">
-                                <img src="assets/images/index/download (1).webp" alt="" />
+                                <img src="assets/images/index/@appInfo.FooterLogoPath" alt="" />
                             </a>
                         </div>
                         <p>
-                            The customer is at the heart of our unique business model, which
-                            includes design.
+                            @appInfo.Description
                         </p>
                         <a href="#">
-                            <img src="assets/images/index/xpayment.png.pagespeed.ic.baCZTAO1zx.webp"
+                            <img src="assets/images/index/@appInfo.CardsLogoPath"
                                  alt="" />
                         </a>
                     </div>
@@ -184,11 +187,10 @@
                 </div>
                 <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
                     <div class="footer__widget">
-                        <h6>NewLetter</h6>
+                        <h6>@appInfo.ContactTitle</h6>
                         <div class="footer__newslatter">
                             <p>
-                                Be the first to know about new arrivals, look books, sales &
-                                promos!
+                                @appInfo.ContactDescription
                             </p>
                             <form action="#">
                                 <input type="text" placeholder="Your email" />
@@ -203,15 +205,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="footer__copyright__text">
-                        <p>
-                            Copyright ©
-                            <script>
-                                document.write(new Date().getFullYear());
-                            </script>
-                            2020 All rights reserved | This template is made with
-                            <i class="fa fa-heart-o" aria-hidden="true"></i> by
-                            <a href="https://colorlib.com/" target="_blank">Colorlib</a>
-                        </p>
+                        @Html.Raw(appInfo.FooterSiteInfo)
                     </div>
                 </div>
             </div>
