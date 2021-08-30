@@ -767,6 +767,130 @@ namespace MaleFashion.eCommerce.WebUI.Models.DataContext
 
                     db.SaveChanges();
                 }
+
+                if (!db.AboutUsBanners.Any())
+                {
+                    db.AboutUsBanners.Add(new AboutUsBanner
+                    {
+                        ImagePath = "about-us.jpg"
+                    });
+
+                    db.SaveChanges();
+                }
+
+                if (db.TeamJobs.Any() == false)
+                {
+                    db.TeamJobs.Add(new TeamJob
+                    {
+                        JobName = "Fashion Design"
+                    });
+
+                    db.TeamJobs.Add(new TeamJob
+                    {
+                        JobName = "C.E.O"
+                    });
+
+                    db.TeamJobs.Add(new TeamJob
+                    {
+                        JobName = "Manager"
+                    });
+
+                    db.TeamJobs.Add(new TeamJob
+                    {
+                        JobName = "Delivery"
+                    });
+
+                    db.SaveChanges();
+                }
+
+                if (db.Teams.Any() != true)
+                {
+                    db.Teams.Add(new Team
+                    {
+                        ImagePath = "team-1.jpg",
+                        Name = "John",
+                        Surname = "Smith",
+                        TeamJobId = 1
+                    });
+
+                    db.Teams.Add(new Team
+                    {
+                        ImagePath = "team-2.jpg",
+                        Name = "Christine",
+                        Surname = "Wise",
+                        TeamJobId = 2
+                    });
+
+                    db.SaveChanges();
+                }
+
+                if (!db.HappyClients.Any())
+                {
+                    db.HappyClients.Add(new HappyClient
+                    {
+                        ImagePath = "client-1.png"
+                    });
+
+                    db.HappyClients.Add(new HappyClient
+                    {
+                        ImagePath = "client-2.png"
+                    });
+
+                    db.HappyClients.Add(new HappyClient
+                    {
+                        ImagePath = "client-3.png"
+                    });
+
+                    db.HappyClients.Add(new HappyClient
+                    {
+                        ImagePath = "client-4.png"
+                    });
+
+                    db.HappyClients.Add(new HappyClient
+                    {
+                        ImagePath = "client-5.png"
+                    });
+
+                    db.HappyClients.Add(new HappyClient
+                    {
+                        ImagePath = "client-6.png"
+                    });
+
+                    db.HappyClients.Add(new HappyClient
+                    {
+                        ImagePath = "client-7.png"
+                    });
+
+                    db.HappyClients.Add(new HappyClient
+                    {
+                        ImagePath = "client-8.png"
+                    });
+
+                    db.SaveChanges();
+                }
+
+                if (db.WhyWes.Any() == false)
+                {
+                    db.WhyWes.Add(new WhyWe
+                    {
+                        Title = "Who We Are?",
+                        Description = "Contextual advertising programs sometimes have strict policies that need to be adhered too.Let’s take Google as an example."
+                    });
+
+                    db.WhyWes.Add(new WhyWe
+                    {
+                        Title = "Who We Do?",
+                        Description = "In this digital generation where information can be easily obtained within seconds, business cards still have retained their importance."
+                    });
+
+                    db.WhyWes.Add(new WhyWe
+                    {
+                        Title = "Why Choose Us?",
+                        Description = " A two or three storey house is the ideal way to maximise the piece of earth on which our home sits, but for older or infirm people."
+                    });
+
+                    db.SaveChanges();
+                }
             }
 
             return app;

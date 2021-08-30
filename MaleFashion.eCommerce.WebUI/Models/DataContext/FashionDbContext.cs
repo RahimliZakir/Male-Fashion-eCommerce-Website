@@ -26,6 +26,11 @@ namespace MaleFashion.eCommerce.WebUI.Models.DataContext
         public DbSet<Department> Departments { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<ContactMessage> ContactMessages { get; set; }
+        public DbSet<AboutUsBanner> AboutUsBanners { get; set; }
+        public DbSet<TeamJob> TeamJobs { get; set; }
+        public DbSet<Team> Teams { get; set; }
+        public DbSet<HappyClient> HappyClients { get; set; }
+        public DbSet<WhyWe> WhyWes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -68,6 +73,26 @@ namespace MaleFashion.eCommerce.WebUI.Models.DataContext
             builder.Entity<Contact>()
                    .Property(ap => ap.CreatedDate)
                    .HasDefaultValueSql("DATEADD(HOUR, 4, GETUTCDATE())");
+
+            builder.Entity<AboutUsBanner>()
+              .Property(ap => ap.CreatedDate)
+              .HasDefaultValueSql("DATEADD(HOUR, 4, GETUTCDATE())");
+
+            builder.Entity<TeamJob>()
+              .Property(ap => ap.CreatedDate)
+              .HasDefaultValueSql("DATEADD(HOUR, 4, GETUTCDATE())");
+
+            builder.Entity<Team>()
+              .Property(ap => ap.CreatedDate)
+              .HasDefaultValueSql("DATEADD(HOUR, 4, GETUTCDATE())");
+
+            builder.Entity<HappyClient>()
+              .Property(ap => ap.CreatedDate)
+              .HasDefaultValueSql("DATEADD(HOUR, 4, GETUTCDATE())");
+
+            builder.Entity<WhyWe>()
+           .Property(ap => ap.CreatedDate)
+           .HasDefaultValueSql("DATEADD(HOUR, 4, GETUTCDATE())");
         }
     }
 }

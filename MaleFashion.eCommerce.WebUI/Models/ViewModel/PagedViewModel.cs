@@ -80,14 +80,14 @@ namespace MaleFashion.eCommerce.WebUI.Models.ViewModel
             else
             {
                 sb.Append(" <li class='prev disabled'>" +
-                    "<a href='#'><i class='fa fa-chevron-left'></i></a></li>");
+                    "<a><i class='fa fa-chevron-left'></i></a></li>");
             }
 
             for (int i = start; i <= end; i++)
             {
                 if (i == PageIndex)
                 {
-                    sb.Append($"<li class='active'><a href='#'>{i}</a></li>");
+                    sb.Append($"<li class='active'><a>{i}</a></li>");
                 }
                 else
                 {
@@ -115,7 +115,7 @@ namespace MaleFashion.eCommerce.WebUI.Models.ViewModel
             else
             {
                 sb.Append(" <li class='next disabled'>" +
-                    "<a href='#'><i class='fa fa-chevron-right'></i></a></li>");
+                    "<a><i class='fa fa-chevron-right'></i></a></li>");
             }
 
             sb.Append("</ul>");
