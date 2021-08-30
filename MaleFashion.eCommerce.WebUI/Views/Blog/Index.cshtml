@@ -69,3 +69,18 @@
         </div>
     </div>
 </section>
+
+@section scripts{
+    <script>
+        let disabled = $('.pagination-div li.disabled > a');
+        let active = $('.pagination-div li.active > a');
+
+        $(disabled).click((e) => {
+            e.preventDefault();
+        });
+
+        $(active).click((e) => {
+            e.preventDefault();
+        });
+    </script>
+}
