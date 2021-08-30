@@ -9,6 +9,11 @@
     {
       "library": "jquery-validation-unobtrusive@3.2.12",
       "destination": "wwwroot/libs/jquery-validation-unobtrusive/"
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "bootstrap@5.1.0",
+      "destination": "wwwroot/libs/bootstrap/"
     }
   ]
 }

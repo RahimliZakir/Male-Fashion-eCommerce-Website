@@ -1,4 +1,5 @@
 ﻿using MaleFashion.eCommerce.WebUI.Models.DataContext;
+using MaleFashion.eCommerce.WebUI.Models.Entity;
 using MaleFashion.eCommerce.WebUI.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -19,11 +20,11 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
 
         public IActionResult Index()
         {
-            var viewModel = new BlogViewModel();
+            var data = db.Blogs.OrderBy(b => b.Id);
 
-            viewModel.Blogs = db.Blogs.ToList();
+            var pagedViewModel = new PagedViewModel<Blog>(data);
 
-            return View(viewModel);
+            return View(pagedViewModel);
         }
     }
 }

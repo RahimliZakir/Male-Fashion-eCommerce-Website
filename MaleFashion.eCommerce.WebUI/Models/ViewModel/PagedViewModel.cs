@@ -11,39 +11,77 @@ namespace MaleFashion.eCommerce.WebUI.Models.ViewModel
     public class PagedViewModel<T>
         where T : class
     {
-        public PagedViewModel(IQueryable<T> query,
-            int pageIndex, int pageSize)
-        {
-            this.PageIndex = pageIndex;
-            this.PageSize = pageSize;
-            this.TotalCount = query.Count();
-
-            this.Items = query
-                .Skip((PageIndex - 1) * PageSize)
-                .Take(PageSize);
-        }
-
         public int PageIndex { get; private set; }
         public int PageSize { get; private set; }
         public int TotalCount { get; private set; }
-        public int MaxPageCount
+
+        public int MaxPageIndex
         {
             get
             {
+
                 return (int)Math.Ceiling(TotalCount * 1.0 / PageSize);
+
             }
         }
-
         public IEnumerable<T> Items { get; private set; }
 
+        public PagedViewModel(IOrderedQueryable<T> query, int pageIndex = 1, int pageSize = 9)
+        {
+
+            if (pageIndex < 1)
+            {
+                pageIndex = 1;
+            }
+
+            if (pageSize < 1)
+            {
+                pageSize = 9;
+            }
+
+            this.PageIndex = pageIndex;
+            this.PageSize = pageSize;
+            this.TotalCount = query.Count();
+            this.Items = query.Skip(this.PageSize * (this.PageIndex - 1))
+                .Take(this.PageSize)
+                .ToList();
+
+
+        }
 
         public IHtmlContent GetPagenation(IUrlHelper url, string action)
         {
             if (TotalCount <= PageSize)
                 return HtmlString.Empty;
 
+            // Neche dene nomre gorunmesini isteyirikse o qeder yazib gorunmeni
+            // bir nov limitleyirik...
+
+            int PageCount = 4;
+
+            int start = 1, end = MaxPageIndex;
+
+            if (end - start > 4)
+            {
+                if (PageIndex - PageCount / 2 > 1)
+                {
+                    start = PageIndex - PageCount / 2;
+                }
+
+                if (end > start + PageCount - 1)
+                {
+                    end = start + PageCount - 1;
+
+                    if (end > MaxPageIndex)
+                    {
+                        end = MaxPageIndex;
+                    }
+                }
+            }
+
             StringBuilder sb = new StringBuilder();
-            sb.Append("<ul>");
+
+            sb.Append("<ul class='pagination-ul'>");
 
             if (PageIndex > 1)
             {
@@ -59,14 +97,14 @@ namespace MaleFashion.eCommerce.WebUI.Models.ViewModel
             else
             {
                 sb.Append(" <li class='prev disabled'>" +
-                    "<a href='#'><i class='fa fa-chevron-left'></i></a></li>");
+                    "<a ><i class='fa fa-chevron-left'></i></a></li>");
             }
 
-            for (int i = 1; i <= MaxPageCount; i++)
+            for (int i = start; i <= end; i++)
             {
                 if (i == PageIndex)
                 {
-                    sb.Append($"<li class='active'><a href='#'>{i}</a></li>");
+                    sb.Append($"<li class='active'><a >{i}</a></li>");
                 }
                 else
                 {
@@ -80,7 +118,7 @@ namespace MaleFashion.eCommerce.WebUI.Models.ViewModel
                 }
             }
 
-            if (PageIndex < MaxPageCount)
+            if (PageIndex < MaxPageIndex)
             {
                 var link = url.Action(action, values: new
                 {
@@ -94,7 +132,7 @@ namespace MaleFashion.eCommerce.WebUI.Models.ViewModel
             else
             {
                 sb.Append(" <li class='next disabled'>" +
-                    "<a href='#'><i class='fa fa-chevron-right'></i></a></li>");
+                    "<a ><i class='fa fa-chevron-right'></i></a></li>");
             }
 
             sb.Append("</ul>");

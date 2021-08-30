@@ -1,7 +1,24 @@
-﻿@model BlogViewModel;
+﻿@model PagedViewModel<Blog>;
 
 @{
     ViewData["Title"] = "Blog";
+}
+
+@section css{
+    <style>
+        .pagination-div > ul {
+            display: flex;
+            list-style-type: none;
+        }
+
+        .pagination-div a {
+            display: inline-block;
+            border: 1px solid grey;
+            border-radius: 5px;
+            padding: 5px 15px;
+            color: cadetblue !important;
+        }
+    </style>
 }
 
 @await Component.InvokeAsync("BlogBanner")
@@ -9,7 +26,10 @@
 <section class="blog spad">
     <div class="container">
         <div class="row">
-            @foreach (Blog item in Model.Blogs)
+            <div class="pagination-div mb-5">
+                @Model.GetPagenation(Url, "Index")
+            </div>
+            @foreach (Blog item in Model.Items)
             {
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="blog__item">

@@ -175,6 +175,471 @@ namespace MaleFashion.eCommerce.WebUI.Models.DataContext
                         AuthorSurname = "Rəhimli"
                     });
 
+                    db.Blogs.Add(new Blog
+                    {
+                        Title = "What Curling Irons Are The Best Ones",
+                        Description = @"<p>
+                  Hydroderm is the highly desired anti - aging cream on the block.
+                  This serum restricts the occurrence of early aging sings on
+                  the skin and keeps the skin younger,
+                        tighter and healthier.It
+                  reduces the wrinkles and loosening of skin.This cream
+                  nourishes the skin and brings back the glow that had lost in
+                  the run of hectic years.
+                </p>
+                <p>
+                  The most essential ingredient that makes hydroderm so
+                  effective is Vyo - Serum,
+                        which is a product of natural selected
+                  proteins.This concentrate works actively in bringing about
+                  the natural youthful glow of the skin.It tightens the skin
+                  along with its moisturizing effect on the skin.The other
+                  important ingredient,
+                        making hydroderm so effective is “marine
+                  collagen” which along with Vyo - Serum helps revitalize the
+                  skin.
+                </p>",
+                        ImagePath = "blog-1.jpg",
+                        AphorismId = 1,
+                        AuthorImagePath = "author.jfif",
+                        AuthorName = "Zakir",
+                        AuthorSurname = "Rəhimli"
+                    });
+
+                    db.Blogs.Add(new Blog
+                    {
+                        Title = "Eternity Bands Do Last Forever",
+                        Description = @"<p>
+                  Hydroderm is the highly desired anti - aging cream on the block.
+                  This serum restricts the occurrence of early aging sings on
+                  the skin and keeps the skin younger,
+                        tighter and healthier.It
+                  reduces the wrinkles and loosening of skin.This cream
+                  nourishes the skin and brings back the glow that had lost in
+                  the run of hectic years.
+                </p>
+                <p>
+                  The most essential ingredient that makes hydroderm so
+                  effective is Vyo - Serum,
+                        which is a product of natural selected
+                  proteins.This concentrate works actively in bringing about
+                  the natural youthful glow of the skin.It tightens the skin
+                  along with its moisturizing effect on the skin.The other
+                  important ingredient,
+                        making hydroderm so effective is “marine
+                  collagen” which along with Vyo - Serum helps revitalize the
+                  skin.
+                </p>",
+                        ImagePath = "blog-2.jpg",
+                        AphorismId = 2,
+                        AuthorImagePath = "author.jfif",
+                        AuthorName = "Zakir",
+                        AuthorSurname = "Rəhimli"
+                    });
+
+                    db.Blogs.Add(new Blog
+                    {
+                        Title = "The Health Benefits Of Sunglasses",
+                        Description = @"<p>
+                  Hydroderm is the highly desired anti - aging cream on the block.
+                  This serum restricts the occurrence of early aging sings on
+                  the skin and keeps the skin younger,
+                        tighter and healthier.It
+                  reduces the wrinkles and loosening of skin.This cream
+                  nourishes the skin and brings back the glow that had lost in
+                  the run of hectic years.
+                </p>
+                <p>
+                  The most essential ingredient that makes hydroderm so
+                  effective is Vyo - Serum,
+                        which is a product of natural selected
+                  proteins.This concentrate works actively in bringing about
+                  the natural youthful glow of the skin.It tightens the skin
+                  along with its moisturizing effect on the skin.The other
+                  important ingredient,
+                        making hydroderm so effective is “marine
+                  collagen” which along with Vyo - Serum helps revitalize the
+                  skin.
+                </p>",
+                        ImagePath = "blog-3.jpg",
+                        AphorismId = 1,
+                        AuthorImagePath = "author.jfif",
+                        AuthorName = "Zakir",
+                        AuthorSurname = "Rəhimli"
+                    });
+
+                    db.Blogs.Add(new Blog
+                    {
+                        Title = "What Curling Irons Are The Best Ones",
+                        Description = @"<p>
+                  Hydroderm is the highly desired anti - aging cream on the block.
+                  This serum restricts the occurrence of early aging sings on
+                  the skin and keeps the skin younger,
+                        tighter and healthier.It
+                  reduces the wrinkles and loosening of skin.This cream
+                  nourishes the skin and brings back the glow that had lost in
+                  the run of hectic years.
+                </p>
+                <p>
+                  The most essential ingredient that makes hydroderm so
+                  effective is Vyo - Serum,
+                        which is a product of natural selected
+                  proteins.This concentrate works actively in bringing about
+                  the natural youthful glow of the skin.It tightens the skin
+                  along with its moisturizing effect on the skin.The other
+                  important ingredient,
+                        making hydroderm so effective is “marine
+                  collagen” which along with Vyo - Serum helps revitalize the
+                  skin.
+                </p>",
+                        ImagePath = "blog-1.jpg",
+                        AphorismId = 1,
+                        AuthorImagePath = "author.jfif",
+                        AuthorName = "Zakir",
+                        AuthorSurname = "Rəhimli"
+                    });
+
+                    db.Blogs.Add(new Blog
+                    {
+                        Title = "Eternity Bands Do Last Forever",
+                        Description = @"<p>
+                  Hydroderm is the highly desired anti - aging cream on the block.
+                  This serum restricts the occurrence of early aging sings on
+                  the skin and keeps the skin younger,
+                        tighter and healthier.It
+                  reduces the wrinkles and loosening of skin.This cream
+                  nourishes the skin and brings back the glow that had lost in
+                  the run of hectic years.
+                </p>
+                <p>
+                  The most essential ingredient that makes hydroderm so
+                  effective is Vyo - Serum,
+                        which is a product of natural selected
+                  proteins.This concentrate works actively in bringing about
+                  the natural youthful glow of the skin.It tightens the skin
+                  along with its moisturizing effect on the skin.The other
+                  important ingredient,
+                        making hydroderm so effective is “marine
+                  collagen” which along with Vyo - Serum helps revitalize the
+                  skin.
+                </p>",
+                        ImagePath = "blog-2.jpg",
+                        AphorismId = 2,
+                        AuthorImagePath = "author.jfif",
+                        AuthorName = "Zakir",
+                        AuthorSurname = "Rəhimli"
+                    });
+
+                    db.Blogs.Add(new Blog
+                    {
+                        Title = "The Health Benefits Of Sunglasses",
+                        Description = @"<p>
+                  Hydroderm is the highly desired anti - aging cream on the block.
+                  This serum restricts the occurrence of early aging sings on
+                  the skin and keeps the skin younger,
+                        tighter and healthier.It
+                  reduces the wrinkles and loosening of skin.This cream
+                  nourishes the skin and brings back the glow that had lost in
+                  the run of hectic years.
+                </p>
+                <p>
+                  The most essential ingredient that makes hydroderm so
+                  effective is Vyo - Serum,
+                        which is a product of natural selected
+                  proteins.This concentrate works actively in bringing about
+                  the natural youthful glow of the skin.It tightens the skin
+                  along with its moisturizing effect on the skin.The other
+                  important ingredient,
+                        making hydroderm so effective is “marine
+                  collagen” which along with Vyo - Serum helps revitalize the
+                  skin.
+                </p>",
+                        ImagePath = "blog-3.jpg",
+                        AphorismId = 1,
+                        AuthorImagePath = "author.jfif",
+                        AuthorName = "Zakir",
+                        AuthorSurname = "Rəhimli"
+                    });
+
+                    db.Blogs.Add(new Blog
+                    {
+                        Title = "What Curling Irons Are The Best Ones",
+                        Description = @"<p>
+                  Hydroderm is the highly desired anti - aging cream on the block.
+                  This serum restricts the occurrence of early aging sings on
+                  the skin and keeps the skin younger,
+                        tighter and healthier.It
+                  reduces the wrinkles and loosening of skin.This cream
+                  nourishes the skin and brings back the glow that had lost in
+                  the run of hectic years.
+                </p>
+                <p>
+                  The most essential ingredient that makes hydroderm so
+                  effective is Vyo - Serum,
+                        which is a product of natural selected
+                  proteins.This concentrate works actively in bringing about
+                  the natural youthful glow of the skin.It tightens the skin
+                  along with its moisturizing effect on the skin.The other
+                  important ingredient,
+                        making hydroderm so effective is “marine
+                  collagen” which along with Vyo - Serum helps revitalize the
+                  skin.
+                </p>",
+                        ImagePath = "blog-1.jpg",
+                        AphorismId = 1,
+                        AuthorImagePath = "author.jfif",
+                        AuthorName = "Zakir",
+                        AuthorSurname = "Rəhimli"
+                    });
+
+                    db.Blogs.Add(new Blog
+                    {
+                        Title = "Eternity Bands Do Last Forever",
+                        Description = @"<p>
+                  Hydroderm is the highly desired anti - aging cream on the block.
+                  This serum restricts the occurrence of early aging sings on
+                  the skin and keeps the skin younger,
+                        tighter and healthier.It
+                  reduces the wrinkles and loosening of skin.This cream
+                  nourishes the skin and brings back the glow that had lost in
+                  the run of hectic years.
+                </p>
+                <p>
+                  The most essential ingredient that makes hydroderm so
+                  effective is Vyo - Serum,
+                        which is a product of natural selected
+                  proteins.This concentrate works actively in bringing about
+                  the natural youthful glow of the skin.It tightens the skin
+                  along with its moisturizing effect on the skin.The other
+                  important ingredient,
+                        making hydroderm so effective is “marine
+                  collagen” which along with Vyo - Serum helps revitalize the
+                  skin.
+                </p>",
+                        ImagePath = "blog-2.jpg",
+                        AphorismId = 2,
+                        AuthorImagePath = "author.jfif",
+                        AuthorName = "Zakir",
+                        AuthorSurname = "Rəhimli"
+                    });
+
+                    db.Blogs.Add(new Blog
+                    {
+                        Title = "The Health Benefits Of Sunglasses",
+                        Description = @"<p>
+                  Hydroderm is the highly desired anti - aging cream on the block.
+                  This serum restricts the occurrence of early aging sings on
+                  the skin and keeps the skin younger,
+                        tighter and healthier.It
+                  reduces the wrinkles and loosening of skin.This cream
+                  nourishes the skin and brings back the glow that had lost in
+                  the run of hectic years.
+                </p>
+                <p>
+                  The most essential ingredient that makes hydroderm so
+                  effective is Vyo - Serum,
+                        which is a product of natural selected
+                  proteins.This concentrate works actively in bringing about
+                  the natural youthful glow of the skin.It tightens the skin
+                  along with its moisturizing effect on the skin.The other
+                  important ingredient,
+                        making hydroderm so effective is “marine
+                  collagen” which along with Vyo - Serum helps revitalize the
+                  skin.
+                </p>",
+                        ImagePath = "blog-3.jpg",
+                        AphorismId = 1,
+                        AuthorImagePath = "author.jfif",
+                        AuthorName = "Zakir",
+                        AuthorSurname = "Rəhimli"
+                    });
+
+                    db.Blogs.Add(new Blog
+                    {
+                        Title = "What Curling Irons Are The Best Ones",
+                        Description = @"<p>
+                  Hydroderm is the highly desired anti - aging cream on the block.
+                  This serum restricts the occurrence of early aging sings on
+                  the skin and keeps the skin younger,
+                        tighter and healthier.It
+                  reduces the wrinkles and loosening of skin.This cream
+                  nourishes the skin and brings back the glow that had lost in
+                  the run of hectic years.
+                </p>
+                <p>
+                  The most essential ingredient that makes hydroderm so
+                  effective is Vyo - Serum,
+                        which is a product of natural selected
+                  proteins.This concentrate works actively in bringing about
+                  the natural youthful glow of the skin.It tightens the skin
+                  along with its moisturizing effect on the skin.The other
+                  important ingredient,
+                        making hydroderm so effective is “marine
+                  collagen” which along with Vyo - Serum helps revitalize the
+                  skin.
+                </p>",
+                        ImagePath = "blog-1.jpg",
+                        AphorismId = 1,
+                        AuthorImagePath = "author.jfif",
+                        AuthorName = "Zakir",
+                        AuthorSurname = "Rəhimli"
+                    });
+
+                    db.Blogs.Add(new Blog
+                    {
+                        Title = "Eternity Bands Do Last Forever",
+                        Description = @"<p>
+                  Hydroderm is the highly desired anti - aging cream on the block.
+                  This serum restricts the occurrence of early aging sings on
+                  the skin and keeps the skin younger,
+                        tighter and healthier.It
+                  reduces the wrinkles and loosening of skin.This cream
+                  nourishes the skin and brings back the glow that had lost in
+                  the run of hectic years.
+                </p>
+                <p>
+                  The most essential ingredient that makes hydroderm so
+                  effective is Vyo - Serum,
+                        which is a product of natural selected
+                  proteins.This concentrate works actively in bringing about
+                  the natural youthful glow of the skin.It tightens the skin
+                  along with its moisturizing effect on the skin.The other
+                  important ingredient,
+                        making hydroderm so effective is “marine
+                  collagen” which along with Vyo - Serum helps revitalize the
+                  skin.
+                </p>",
+                        ImagePath = "blog-2.jpg",
+                        AphorismId = 2,
+                        AuthorImagePath = "author.jfif",
+                        AuthorName = "Zakir",
+                        AuthorSurname = "Rəhimli"
+                    });
+
+                    db.Blogs.Add(new Blog
+                    {
+                        Title = "The Health Benefits Of Sunglasses",
+                        Description = @"<p>
+                  Hydroderm is the highly desired anti - aging cream on the block.
+                  This serum restricts the occurrence of early aging sings on
+                  the skin and keeps the skin younger,
+                        tighter and healthier.It
+                  reduces the wrinkles and loosening of skin.This cream
+                  nourishes the skin and brings back the glow that had lost in
+                  the run of hectic years.
+                </p>
+                <p>
+                  The most essential ingredient that makes hydroderm so
+                  effective is Vyo - Serum,
+                        which is a product of natural selected
+                  proteins.This concentrate works actively in bringing about
+                  the natural youthful glow of the skin.It tightens the skin
+                  along with its moisturizing effect on the skin.The other
+                  important ingredient,
+                        making hydroderm so effective is “marine
+                  collagen” which along with Vyo - Serum helps revitalize the
+                  skin.
+                </p>",
+                        ImagePath = "blog-3.jpg",
+                        AphorismId = 1,
+                        AuthorImagePath = "author.jfif",
+                        AuthorName = "Zakir",
+                        AuthorSurname = "Rəhimli"
+                    });
+
+                    db.Blogs.Add(new Blog
+                    {
+                        Title = "What Curling Irons Are The Best Ones",
+                        Description = @"<p>
+                  Hydroderm is the highly desired anti - aging cream on the block.
+                  This serum restricts the occurrence of early aging sings on
+                  the skin and keeps the skin younger,
+                        tighter and healthier.It
+                  reduces the wrinkles and loosening of skin.This cream
+                  nourishes the skin and brings back the glow that had lost in
+                  the run of hectic years.
+                </p>
+                <p>
+                  The most essential ingredient that makes hydroderm so
+                  effective is Vyo - Serum,
+                        which is a product of natural selected
+                  proteins.This concentrate works actively in bringing about
+                  the natural youthful glow of the skin.It tightens the skin
+                  along with its moisturizing effect on the skin.The other
+                  important ingredient,
+                        making hydroderm so effective is “marine
+                  collagen” which along with Vyo - Serum helps revitalize the
+                  skin.
+                </p>",
+                        ImagePath = "blog-1.jpg",
+                        AphorismId = 1,
+                        AuthorImagePath = "author.jfif",
+                        AuthorName = "Zakir",
+                        AuthorSurname = "Rəhimli"
+                    });
+
+                    db.Blogs.Add(new Blog
+                    {
+                        Title = "Eternity Bands Do Last Forever",
+                        Description = @"<p>
+                  Hydroderm is the highly desired anti - aging cream on the block.
+                  This serum restricts the occurrence of early aging sings on
+                  the skin and keeps the skin younger,
+                        tighter and healthier.It
+                  reduces the wrinkles and loosening of skin.This cream
+                  nourishes the skin and brings back the glow that had lost in
+                  the run of hectic years.
+                </p>
+                <p>
+                  The most essential ingredient that makes hydroderm so
+                  effective is Vyo - Serum,
+                        which is a product of natural selected
+                  proteins.This concentrate works actively in bringing about
+                  the natural youthful glow of the skin.It tightens the skin
+                  along with its moisturizing effect on the skin.The other
+                  important ingredient,
+                        making hydroderm so effective is “marine
+                  collagen” which along with Vyo - Serum helps revitalize the
+                  skin.
+                </p>",
+                        ImagePath = "blog-2.jpg",
+                        AphorismId = 2,
+                        AuthorImagePath = "author.jfif",
+                        AuthorName = "Zakir",
+                        AuthorSurname = "Rəhimli"
+                    });
+
+                    db.Blogs.Add(new Blog
+                    {
+                        Title = "The Health Benefits Of Sunglasses",
+                        Description = @"<p>
+                  Hydroderm is the highly desired anti - aging cream on the block.
+                  This serum restricts the occurrence of early aging sings on
+                  the skin and keeps the skin younger,
+                        tighter and healthier.It
+                  reduces the wrinkles and loosening of skin.This cream
+                  nourishes the skin and brings back the glow that had lost in
+                  the run of hectic years.
+                </p>
+                <p>
+                  The most essential ingredient that makes hydroderm so
+                  effective is Vyo - Serum,
+                        which is a product of natural selected
+                  proteins.This concentrate works actively in bringing about
+                  the natural youthful glow of the skin.It tightens the skin
+                  along with its moisturizing effect on the skin.The other
+                  important ingredient,
+                        making hydroderm so effective is “marine
+                  collagen” which along with Vyo - Serum helps revitalize the
+                  skin.
+                </p>",
+                        ImagePath = "blog-3.jpg",
+                        AphorismId = 1,
+                        AuthorImagePath = "author.jfif",
+                        AuthorName = "Zakir",
+                        AuthorSurname = "Rəhimli"
+                    });
+
                     db.SaveChanges();
                 }
 
@@ -268,6 +733,38 @@ namespace MaleFashion.eCommerce.WebUI.Models.DataContext
                         BlogId = 3,
                         TagId = 6
                     });
+                    db.SaveChanges();
+                }
+
+                if (db.Contacts.Any() != true)
+                {
+                    db.Contacts.Add(new Contact
+                    {
+                        Title = "Contact Us",
+                        Description = "As you might expect of a company that began as a high-end  interiors contractor, we pay strict attention."
+                    });
+
+                    db.SaveChanges();
+                }
+
+                if (db.Departments.Any() != true)
+                {
+                    db.Departments.Add(new Department
+                    {
+                        City = "Bilasuvar City",
+                        Address = "PMK-19 Town",
+                        PhoneNumber = "+258911300",
+                        ContactId = 1
+                    });
+
+                    db.Departments.Add(new Department
+                    {
+                        City = "Ganja City",
+                        Address = "Baghbanlar Street",
+                        PhoneNumber = "+208911300",
+                        ContactId = 1
+                    });
+
                     db.SaveChanges();
                 }
             }

@@ -23,6 +23,9 @@ namespace MaleFashion.eCommerce.WebUI.Models.DataContext
         public DbSet<BlogBanner> BlogBanners { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<BlogDetailsTagsCollection> BlogDetailsTagsCollections { get; set; }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<ContactMessage> ContactMessages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -55,6 +58,14 @@ namespace MaleFashion.eCommerce.WebUI.Models.DataContext
                  .HasDefaultValueSql("DATEADD(HOUR, 4, GETUTCDATE())");
 
             builder.Entity<Blog>()
+                   .Property(ap => ap.CreatedDate)
+                   .HasDefaultValueSql("DATEADD(HOUR, 4, GETUTCDATE())");
+
+            builder.Entity<Department>()
+                   .Property(ap => ap.CreatedDate)
+                   .HasDefaultValueSql("DATEADD(HOUR, 4, GETUTCDATE())");
+
+            builder.Entity<Contact>()
                    .Property(ap => ap.CreatedDate)
                    .HasDefaultValueSql("DATEADD(HOUR, 4, GETUTCDATE())");
         }

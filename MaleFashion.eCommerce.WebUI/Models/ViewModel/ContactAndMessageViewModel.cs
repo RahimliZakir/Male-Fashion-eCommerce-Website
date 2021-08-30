@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace MaleFashion.eCommerce.WebUI.Models.ViewModel
 {
-    public class BlogViewModel
+    public class ContactAndMessageViewModel
     {
-        public IEnumerable<Blog> Blogs { get; set; }
+        public Contact Contact { get; set; }
 
-        public BlogBanner BlogBanner { get; set; }
+        public ContactMessage ContactMessage { get; set; }
     }
 }
