@@ -14,6 +14,14 @@
       "provider": "jsdelivr",
       "library": "bootstrap@5.1.0",
       "destination": "wwwroot/libs/bootstrap/"
+    },
+    {
+      "library": "jquery-cookie@1.4.1",
+      "destination": "wwwroot/libs/jquery-cookie/"
+    },
+    {
+      "library": "microsoft-signalr@5.0.9",
+      "destination": "wwwroot/libs/microsoft-signalr/"
     }
   ]
 }

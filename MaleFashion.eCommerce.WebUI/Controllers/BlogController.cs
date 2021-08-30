@@ -18,11 +18,11 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
             this.db = db;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int pageIndex = 1, int pageSize = 9)
         {
             var data = db.Blogs.OrderBy(b => b.Id);
 
-            var pagedViewModel = new PagedViewModel<Blog>(data);
+            var pagedViewModel = new PagedViewModel<Blog>(data, pageIndex, pageSize);
 
             return View(pagedViewModel);
         }

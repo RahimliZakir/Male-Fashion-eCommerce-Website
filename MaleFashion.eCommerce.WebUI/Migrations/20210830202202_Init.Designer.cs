@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MaleFashion.eCommerce.WebUI.Migrations
 {
     [DbContext(typeof(FashionDbContext))]
-    [Migration("20210830143757_Init")]
+    [Migration("20210830202202_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

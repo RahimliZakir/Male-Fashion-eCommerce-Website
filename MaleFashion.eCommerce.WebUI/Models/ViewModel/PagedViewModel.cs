@@ -11,77 +11,60 @@ namespace MaleFashion.eCommerce.WebUI.Models.ViewModel
     public class PagedViewModel<T>
         where T : class
     {
-        public int PageIndex { get; private set; }
-        public int PageSize { get; private set; }
-        public int TotalCount { get; private set; }
-
-        public int MaxPageIndex
+        public PagedViewModel(IQueryable<T> query,
+            int pageIndex, int pageSize)
         {
-            get
-            {
-
-                return (int)Math.Ceiling(TotalCount * 1.0 / PageSize);
-
-            }
-        }
-        public IEnumerable<T> Items { get; private set; }
-
-        public PagedViewModel(IOrderedQueryable<T> query, int pageIndex = 1, int pageSize = 9)
-        {
-
-            if (pageIndex < 1)
-            {
-                pageIndex = 1;
-            }
-
-            if (pageSize < 1)
-            {
-                pageSize = 9;
-            }
-
             this.PageIndex = pageIndex;
             this.PageSize = pageSize;
             this.TotalCount = query.Count();
-            this.Items = query.Skip(this.PageSize * (this.PageIndex - 1))
-                .Take(this.PageSize)
-                .ToList();
 
-
+            this.Items = query
+                .Skip((PageIndex - 1) * PageSize)
+                .Take(PageSize);
         }
+
+        public int PageIndex { get; private set; }
+        public int PageSize { get; private set; }
+        public int TotalCount { get; private set; }
+        public int MaxPageCount
+        {
+            get
+            {
+                return (int)Math.Ceiling(TotalCount * 1.0 / PageSize);
+            }
+        }
+
+        public IEnumerable<T> Items { get; private set; }
+
 
         public IHtmlContent GetPagenation(IUrlHelper url, string action)
         {
             if (TotalCount <= PageSize)
                 return HtmlString.Empty;
 
-            // Neche dene nomre gorunmesini isteyirikse o qeder yazib gorunmeni
-            // bir nov limitleyirik...
+            int pageCount = 5;
+            int start = 1, end = MaxPageCount;
 
-            int PageCount = 4;
-
-            int start = 1, end = MaxPageIndex;
-
-            if (end - start > 4)
+            if (end - start > 5)
             {
-                if (PageIndex - PageCount / 2 > 1)
+                if (PageIndex - pageCount / 2 > 1)
                 {
-                    start = PageIndex - PageCount / 2;
+                    start = PageIndex - pageCount / 2;
                 }
 
-                if (end > start + PageCount - 1)
+                if (end > start + pageCount - 1)
                 {
-                    end = start + PageCount - 1;
+                    end = start + pageCount - 1;
 
-                    if (end > MaxPageIndex)
+                    if (end > MaxPageCount)
                     {
-                        end = MaxPageIndex;
+                        end = MaxPageCount;
                     }
                 }
             }
 
             StringBuilder sb = new StringBuilder();
-
-            sb.Append("<ul class='pagination-ul'>");
+            sb.Append("<ul>");
 
             if (PageIndex > 1)
             {
@@ -97,14 +80,14 @@ namespace MaleFashion.eCommerce.WebUI.Models.ViewModel
             else
             {
                 sb.Append(" <li class='prev disabled'>" +
-                    "<a ><i class='fa fa-chevron-left'></i></a></li>");
+                    "<a href='#'><i class='fa fa-chevron-left'></i></a></li>");
             }
 
             for (int i = start; i <= end; i++)
             {
                 if (i == PageIndex)
                 {
-                    sb.Append($"<li class='active'><a >{i}</a></li>");
+                    sb.Append($"<li class='active'><a href='#'>{i}</a></li>");
                 }
                 else
                 {
@@ -118,7 +101,7 @@ namespace MaleFashion.eCommerce.WebUI.Models.ViewModel
                 }
             }
 
-            if (PageIndex < MaxPageIndex)
+            if (PageIndex < MaxPageCount)
             {
                 var link = url.Action(action, values: new
                 {
@@ -132,7 +115,7 @@ namespace MaleFashion.eCommerce.WebUI.Models.ViewModel
             else
             {
                 sb.Append(" <li class='next disabled'>" +
-                    "<a ><i class='fa fa-chevron-right'></i></a></li>");
+                    "<a href='#'><i class='fa fa-chevron-right'></i></a></li>");
             }
 
             sb.Append("</ul>");
