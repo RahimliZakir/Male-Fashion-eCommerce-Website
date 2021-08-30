@@ -212,6 +212,64 @@ namespace MaleFashion.eCommerce.WebUI.Models.DataContext
 
                     db.SaveChanges();
                 }
+
+                if (db.BlogDetailsTagsCollections.Any() == false)
+                {
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 1,
+                        TagId = 1
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 1,
+                        TagId = 2
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 1,
+                        TagId = 3
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 2,
+                        TagId = 4
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 2,
+                        TagId = 5
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 2,
+                        TagId = 6
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 3,
+                        TagId = 3
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 3,
+                        TagId = 4
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 3,
+                        TagId = 6
+                    });
+                    db.SaveChanges();
+                }
             }
 
             return app;

@@ -22,7 +22,5 @@ namespace MaleFashion.eCommerce.WebUI.Models.Entity
         public string AuthorSurname { get; set; }
 
         public virtual Aphorism Aphorism { get; set; }
-
-        public virtual ICollection<BlogDetailsTagsCollection> BlogDetailsTagsCollections { get; set; }
     }
 }

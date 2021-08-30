@@ -20,11 +20,11 @@
             <div class="col-lg-9 text-center">
                 <div class="blog__hero__text">
                     <h2>
-                        @Model.Title
+                        @Model.Blog.Title
                     </h2>
                     <ul>
-                        <li>By @Model.AuthorName @Model.AuthorSurname</li>
-                        <li>@Model.CreatedDate.ToString("MMMM dd, yyyy")</li>
+                        <li>By @Model.Blog.AuthorName @Model.Blog.AuthorSurname</li>
+                        <li>@Model.Blog.CreatedDate.ToString("MMMM dd, yyyy")</li>
                         <!-- ZR -->
                         <li>12 Likes</li>
                         <!-- ZR -->
@@ -41,7 +41,7 @@
         <div class="row d-flex justify-content-center">
             <div class="col-lg-12">
                 <div class="blog__details__pic">
-                    <img src="assets/images/blog/@Model.ImagePath" alt="" />
+                    <img src="assets/images/blog/@Model.Blog.ImagePath" alt="" />
                 </div>
             </div>
             <div class="col-lg-8">
@@ -70,33 +70,37 @@
                         </ul>
                     </div>
                     <div data-aos="fade-right" class="blog__details__text">
-                        @Html.Raw(Model.Description)
+                        @Html.Raw(Model.Blog.Description)
                     </div>
                     <div data-aos="fade-left" class="blog__details__quote">
                         <i class="fa fa-quote-left"></i>
                         <p>
-                            @Model.Content
+                            @Model.Blog.Aphorism.Content
                         </p>
-                        <h6>_ @Model.Author _</h6>
+                        <h6>_ @Model.Blog.Aphorism.Author _</h6>
                     </div>
                     <div data-aos="fade-up-left" class="blog__details__option">
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="blog__details__author">
                                     <div class="blog__details__author__pic">
-                                        <img src="assets/images/blog-details/@Model.AuthorImagePath"
+                                        <img src="assets/images/blog-details/@Model.Blog.AuthorImagePath"
                                              alt="" />
                                     </div>
                                     <div class="blog__details__author__text">
-                                        <h5>@Model.AuthorName @Model.AuthorSurname</h5>
+                                        <h5>@Model.Blog.AuthorName @Model.Blog.AuthorSurname</h5>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="blog__details__tags">
-                                    <a href="#">#Fashion</a>
-                                    <a href="#">#Trending</a>
-                                    <a href="#">#2020</a>
+                                    @foreach (var item in Model.BlogDetailsTagsCollections)
+                                    {
+                                        @foreach (var dynamic in item.Tags)
+                                        {
+                                            <a href="#">#@dynamic.TagName</a>
+                                        }
+                                    }
                                 </div>
                             </div>
                         </div>

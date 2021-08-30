@@ -22,36 +22,29 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
 
         public IActionResult Index(int? id)
         {
-            //viewModel.BlogDetailsTagsCollection = db.BlogDetailsTagsCollections
-            //                                      .Include(b => b.Blog)
-            //                                      .Include(t => t.Tag)
-            //                                      .FirstOrDefault(b => b.BlogId == id);
+            BlogDetailsViewModel viewModel = new BlogDetailsViewModel();
 
-            var collection = db.BlogDetailsTagsCollections.Include(bc => bc.Tag);
+            Blog blog = db.Blogs
+                       .Include(a => a.Aphorism)
+                       .FirstOrDefault(b => b.Id.Equals(id));
 
-            var query = (from b in db.Blogs.Include(b => b.Aphorism)
-                         join bc in collection on b.Id equals bc.BlogId
-                         select new BlogDetailsViewModel
-                         {
+            viewModel.Blog = blog;
 
-                             Id = b.Id,
-                             Title = b.Title,
-                             Description = b.Description,
-                             ImagePath = b.ImagePath,
-                             AphorismId = b.AphorismId,
-                             AuthorImagePath = b.AuthorImagePath,
-                             AuthorName = b.AuthorName,
-                             AuthorSurname = b.AuthorSurname,
-                             Content = b.Aphorism.Content,
-                             Author = b.Aphorism.Author,
-                             TagName = bc.Tag.TagName,
-                             CreatedDate = b.CreatedDate
-                         })
-                     .AsQueryable();
+            viewModel.BlogDetailsTagsCollections = db.BlogDetailsTagsCollections
+                                                   .Include(b => b.Blog)
+                                                   .Where(bc => bc.Blog.Id == id)
+                                                   .Include(t => t.Tags)
+                                                   .ToList();
 
-            var data = query.ToList();
+            foreach (var item in viewModel.BlogDetailsTagsCollections)
+            {
+                if (db.Tags.Any(t => t.Id == item.TagId))
+                {
+                    item.Tags = db.Tags.Where(t => t.Id == item.TagId).ToList();
+                }
+            }
 
-            return View(data);
+            return View(viewModel);
         }
     }
 }

@@ -79,22 +79,6 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tags",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "DATEADD(HOUR, 4, GETUTCDATE())"),
-                    UpdatedDate = table.Column<DateTime>(nullable: true),
-                    DeletedDate = table.Column<DateTime>(nullable: true),
-                    TagName = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tags", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Blogs",
                 columns: table => new
                 {
@@ -165,23 +149,35 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                         principalTable: "Blogs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tags",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "DATEADD(HOUR, 4, GETUTCDATE())"),
+                    UpdatedDate = table.Column<DateTime>(nullable: true),
+                    DeletedDate = table.Column<DateTime>(nullable: true),
+                    TagName = table.Column<string>(nullable: true),
+                    BlogDetailsTagsCollectionId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tags", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_BlogDetailsTagsCollections_Tags_TagId",
-                        column: x => x.TagId,
-                        principalTable: "Tags",
+                        name: "FK_Tags_BlogDetailsTagsCollections_BlogDetailsTagsCollectionId",
+                        column: x => x.BlogDetailsTagsCollectionId,
+                        principalTable: "BlogDetailsTagsCollections",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_BlogDetailsTagsCollections_BlogId",
                 table: "BlogDetailsTagsCollections",
                 column: "BlogId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_BlogDetailsTagsCollections_TagId",
-                table: "BlogDetailsTagsCollections",
-                column: "TagId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Blogs_AphorismId",
@@ -192,6 +188,11 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                 name: "IX_Products_CategoryId",
                 table: "Products",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tags_BlogDetailsTagsCollectionId",
+                table: "Tags",
+                column: "BlogDetailsTagsCollectionId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -203,19 +204,19 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                 name: "BlogBanners");
 
             migrationBuilder.DropTable(
-                name: "BlogDetailsTagsCollections");
-
-            migrationBuilder.DropTable(
                 name: "Products");
-
-            migrationBuilder.DropTable(
-                name: "Blogs");
 
             migrationBuilder.DropTable(
                 name: "Tags");
 
             migrationBuilder.DropTable(
                 name: "Categories");
+
+            migrationBuilder.DropTable(
+                name: "BlogDetailsTagsCollections");
+
+            migrationBuilder.DropTable(
+                name: "Blogs");
 
             migrationBuilder.DropTable(
                 name: "Aphorisms");

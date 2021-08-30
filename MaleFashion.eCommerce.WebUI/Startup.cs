@@ -32,6 +32,7 @@ namespace MaleFashion.eCommerce.WebUI
 
             services.AddSession(requirements =>
             {
+                // Enner Valencia - 13
                 requirements.IdleTimeout = TimeSpan.FromMilliseconds(13);
             });
 
