@@ -5,6 +5,8 @@ using MaleFashion.eCommerce.WebUI.Models.DataContext;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -73,8 +75,29 @@ namespace MaleFashion.eCommerce.WebUI
             {
                 endpoints.MapHub<ConversationHub>("/chat");
 
+                // Defaults, Liar Routes
+                endpoints.MapControllerRoute(name: "BlogRoute",
+                    pattern: "blog.html",
+                    defaults: new
+                    {
+                        action = "Index",
+                        controller = "Blog"
+                    });
+
+                // Route Constraints
+                endpoints.MapControllerRoute(name: "BlogRoute",
+                   pattern: "{controller=Home}/{action=Index}/{id?}",
+                   //pattern: "{controller=Home}/{action=Index}/{id:int:min(1)}",
+                   constraints: new
+                   {
+                       id = new IRouteConstraint[]
+                       {
+                          new MinLengthRouteConstraint(1)
+                       }
+                   });
+
                 endpoints.MapControllerRoute(name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

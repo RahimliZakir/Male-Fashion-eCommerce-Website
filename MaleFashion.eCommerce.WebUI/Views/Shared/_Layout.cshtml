@@ -22,6 +22,15 @@
     <link rel="stylesheet" href="assets/sources/css/bootstrap.min.css" />
     @RenderSection("css", required: false)
     <link rel="stylesheet" href="assets/css/style.css" />
+    <style>
+        .header__top__hover {
+            width: 10%;
+        }
+
+        .selected-lang-span {
+            display: flex !important;
+        }
+    </style>
     <link rel="shortcut icon"
           href="assets/icons/favicon.png"
           type="image/x-icon" />
@@ -36,14 +45,14 @@
         <div class="offcanvas__option">
             <div class="offcanvas__links">
                 <a href="#">Sign in</a>
-                <a href="#">FAQs</a>
+                <a href="#">Register</a>
             </div>
             <div class="offcanvas__top__hover">
-                <span>Usd <i class="arrow_carrot-down"></i></span>
-                <ul>
-                    <li>USD</li>
-                    <li>EUR</li>
-                    <li>USD</li>
+                <span class="selected-lang-span">Usd <i class="arrow_carrot-down"></i></span>
+                <ul class="multi-lang-ul">
+                    <li><a href="#"><img src="multi-lang-imgs/az-flag.png" /></a></li>
+                    <li><a href="#"><img src="multi-lang-imgs/ru-flag.png" /></a></li>
+                    <li class="selected"><a href="#"><img src="multi-lang-imgs/us-flag.png" /></a></li>
                 </ul>
             </div>
         </div>
@@ -79,14 +88,14 @@
                         <div class="header__top__right">
                             <div class="header__top__links">
                                 <a href="#">Sign in</a>
-                                <a href="#">FAQs</a>
+                                <a href="#">Register</a>
                             </div>
                             <div class="header__top__hover">
-                                <span>Usd <i class="arrow_carrot-down"></i></span>
-                                <ul>
-                                    <li>USD</li>
-                                    <li>EUR</li>
-                                    <li>USD</li>
+                                <span class="selected-lang-span"></span>
+                                <ul class="multi-lang-ul">
+                                    <li><a href="#"><img src="multi-lang-imgs/az-flag.png" /></a></li>
+                                    <li><a href="#"><img src="multi-lang-imgs/ru-flag.png" /></a></li>
+                                    <li class="selected"><a href="#"><img src="multi-lang-imgs/us-flag.png" /></a></li>
                                 </ul>
                             </div>
                         </div>
@@ -244,6 +253,21 @@
     <script src="assets/sources/js/owl-carousel.min.js"></script>
     <script src="assets/sources/js/aos.min.js"></script>
     <script src="assets/sources/js/main.js"></script>
+    <script>
+        let span = $(".selected-lang-span");
+        let ul = $(".multi-lang-ul");
+        let mUl = $(".multi-lang-ul>li");
+
+        $(span).html(
+            `${$(ul).find("li.selected").html()} <i class="arrow_carrot-down"></i>`
+        );
+
+        $(mUl).on("click", function () {
+            $(mUl).removeClass("selected");
+            $(this).addClass("selected");
+            $(span).html(`${$(this).html()} <i class="arrow_carrot-down"></i>`);
+        });
+    </script>
     @RenderSection("scripts", required: false)
     <script async
             src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
