@@ -1,4 +1,6 @@
 using MaleFashion.eCommerce.WebUI.AppCode.BinderProviders;
+using MaleFashion.eCommerce.WebUI.AppCode.Hubs;
+using MaleFashion.eCommerce.WebUI.AppCode.Middlewares;
 using MaleFashion.eCommerce.WebUI.Models.DataContext;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +32,8 @@ namespace MaleFashion.eCommerce.WebUI
                 options.LowercaseUrls = true;
             });
 
+            services.AddSignalR();
+
             services.AddSession(requirements =>
             {
                 // Enner Valencia - 13
@@ -56,6 +60,9 @@ namespace MaleFashion.eCommerce.WebUI
 
             app.UseStaticFiles();
 
+            // My IP Blocker Middleware
+            //app.UseIPBlockerMiddleware();
+
             app.UseSession();
 
             app.DataSeed();
@@ -64,6 +71,8 @@ namespace MaleFashion.eCommerce.WebUI
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapHub<ConversationHub>("/chat");
+
                 endpoints.MapControllerRoute(name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });

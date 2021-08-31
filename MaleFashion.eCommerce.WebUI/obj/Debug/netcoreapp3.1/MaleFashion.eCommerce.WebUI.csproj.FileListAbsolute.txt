@@ -156,3 +156,4 @@ C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCom
 C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\obj\Debug\netcoreapp3.1\MaleFashion.eCommerce.WebUI.csproj.AssemblyReference.cache
 C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\AboutUsBanner\Default.cshtml.g.cs
 C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Partials\_HappyClients.cshtml.g.cs
+C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\obj\Debug\netcoreapp3.1\Razor\Views\Chat\Index.cshtml.g.cs
