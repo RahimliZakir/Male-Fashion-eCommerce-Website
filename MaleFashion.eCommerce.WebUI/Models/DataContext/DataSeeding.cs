@@ -1230,6 +1230,159 @@ namespace MaleFashion.eCommerce.WebUI.Models.DataContext
 
                     db.SaveChanges();
                 }
+
+                if (db.Sizes.Any() != true)
+                {
+                    db.Sizes.Add(new Size
+                    {
+                        SizeName = "XS"
+                    });
+
+                    db.Sizes.Add(new Size
+                    {
+                        SizeName = "S"
+                    });
+
+                    db.Sizes.Add(new Size
+                    {
+                        SizeName = "M"
+                    });
+
+                    db.Sizes.Add(new Size
+                    {
+                        SizeName = "XL"
+                    });
+
+                    db.Sizes.Add(new Size
+                    {
+                        SizeName = "XXL"
+                    });
+
+                    db.Sizes.Add(new Size
+                    {
+                        SizeName = "3XL"
+                    });
+
+                    db.Sizes.Add(new Size
+                    {
+                        SizeName = "4XL"
+                    });
+
+                    db.SaveChanges();
+                }
+
+                if (!db.Colors.Any())
+                {
+                    db.Colors.Add(new Color
+                    {
+                        ColorName = "Black"
+                    });
+
+                    db.Colors.Add(new Color
+                    {
+                        ColorName = "Blue"
+                    });
+
+                    db.Colors.Add(new Color
+                    {
+                        ColorName = "Yellow"
+                    });
+
+                    db.Colors.Add(new Color
+                    {
+                        ColorName = "Grey"
+                    });
+
+                    db.Colors.Add(new Color
+                    {
+                        ColorName = "Green"
+                    });
+
+                    db.Colors.Add(new Color
+                    {
+                        ColorName = "Pink"
+                    });
+
+                    db.Colors.Add(new Color
+                    {
+                        ColorName = "Light Purple"
+                    });
+
+                    db.Colors.Add(new Color
+                    {
+                        ColorName = "Red"
+                    });
+
+                    db.Colors.Add(new Color
+                    {
+                        ColorName = "White"
+                    });
+
+                    db.SaveChanges();
+                }
+
+                if (db.ProductTags.Any() == false)
+                {
+                    db.ProductTags.Add(new ProductTag
+                    {
+                        ProductTagName = "Product"
+                    });
+
+                    db.ProductTags.Add(new ProductTag
+                    {
+                        ProductTagName = "Bags"
+                    });
+
+                    db.ProductTags.Add(new ProductTag
+                    {
+                        ProductTagName = "Shoes"
+                    });
+
+                    db.ProductTags.Add(new ProductTag
+                    {
+                        ProductTagName = "Fashion"
+                    });
+
+                    db.ProductTags.Add(new ProductTag
+                    {
+                        ProductTagName = "Clothing"
+                    });
+
+                    db.ProductTags.Add(new ProductTag
+                    {
+                        ProductTagName = "Hats"
+                    });
+
+                    db.ProductTags.Add(new ProductTag
+                    {
+                        ProductTagName = "Accessoires"
+                    });
+
+                    db.SaveChanges();
+                }
+
+                if (db.Campaigns.Any() != true)
+                {
+                    db.Campaigns.Add(new Campaign
+                    {
+                        Title = "Novruz Bayramı Endirimi",
+                        Description = "Bizdən alın, razı qalın! (Novruz)",
+                        Discount = 25.00M,
+                        ExpiredDate = DateTime.Now.AddDays(25),
+                        IsApproved = true
+                    });
+
+                    db.Campaigns.Add(new Campaign
+                    {
+                        Title = "Yeni İl Endirimi",
+                        Description = "Bizdən alın, razı qalın! (Yeni İl)",
+                        Discount = 50.00M,
+                        ExpiredDate = DateTime.Now.AddDays(35),
+                        IsApproved = false
+                    });
+
+                    db.SaveChanges();
+                }
             }
 
             return app;

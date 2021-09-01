@@ -8,6 +8,7 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="wwwroot\libs\" />
     <Folder Include="wwwroot\multi-lang-imgs\" />
+    <Folder Include="wwwroot\uploads\product\" />
   </ItemGroup>
 
   <ItemGroup>
