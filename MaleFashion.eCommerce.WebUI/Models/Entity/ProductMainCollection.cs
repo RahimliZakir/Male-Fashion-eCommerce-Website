@@ -26,5 +26,11 @@ namespace MaleFashion.eCommerce.WebUI.Models.Entity
         public int ProductTagId { get; set; }
 
         public virtual ProductTag ProductTag { get; set; }
+
+        public int CampaignId { get; set; }
+
+        public virtual Campaign Campaign { get; set; }
+
+        public decimal? PriceNew { get; set; }
     }
 }

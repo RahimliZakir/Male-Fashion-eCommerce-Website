@@ -95,6 +95,26 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Campaigns",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "DATEADD(HOUR, 4, GETUTCDATE())"),
+                    UpdatedDate = table.Column<DateTime>(nullable: true),
+                    DeletedDate = table.Column<DateTime>(nullable: true),
+                    Title = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Discount = table.Column<decimal>(nullable: false),
+                    ExpiredDate = table.Column<DateTime>(nullable: false),
+                    IsApproved = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Campaigns", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Categories",
                 columns: table => new
                 {
@@ -108,6 +128,22 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Colors",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "DATEADD(HOUR, 4, GETUTCDATE())"),
+                    UpdatedDate = table.Column<DateTime>(nullable: true),
+                    DeletedDate = table.Column<DateTime>(nullable: true),
+                    ColorName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Colors", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -157,6 +193,22 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_HappyClients", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductTags",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "DATEADD(HOUR, 4, GETUTCDATE())"),
+                    UpdatedDate = table.Column<DateTime>(nullable: true),
+                    DeletedDate = table.Column<DateTime>(nullable: true),
+                    ProductTagName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductTags", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -336,6 +388,97 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ProductImages",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IsMain = table.Column<bool>(nullable: false),
+                    ImagePath = table.Column<string>(nullable: true),
+                    ProductId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductImages", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProductImages_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ProductMainCollections",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CategoryId = table.Column<int>(nullable: false),
+                    ProductId = table.Column<int>(nullable: false),
+                    ColorId = table.Column<int>(nullable: false),
+                    ProductTagId = table.Column<int>(nullable: false),
+                    CampaignId = table.Column<int>(nullable: false),
+                    PriceNew = table.Column<decimal>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProductMainCollections", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ProductMainCollections_Campaigns_CampaignId",
+                        column: x => x.CampaignId,
+                        principalTable: "Campaigns",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductMainCollections_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductMainCollections_Colors_ColorId",
+                        column: x => x.ColorId,
+                        principalTable: "Colors",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductMainCollections_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductMainCollections_ProductTags_ProductTagId",
+                        column: x => x.ProductTagId,
+                        principalTable: "ProductTags",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "StarRatings",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "DATEADD(HOUR, 4, GETUTCDATE())"),
+                    UpdatedDate = table.Column<DateTime>(nullable: true),
+                    DeletedDate = table.Column<DateTime>(nullable: true),
+                    ProductId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StarRatings", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_StarRatings_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_BlogDetailsTagsCollections_BlogId",
                 table: "BlogDetailsTagsCollections",
@@ -357,9 +500,44 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                 column: "ContactId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ProductImages_ProductId",
+                table: "ProductImages",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductMainCollections_CampaignId",
+                table: "ProductMainCollections",
+                column: "CampaignId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductMainCollections_CategoryId",
+                table: "ProductMainCollections",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductMainCollections_ColorId",
+                table: "ProductMainCollections",
+                column: "ColorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductMainCollections_ProductId",
+                table: "ProductMainCollections",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ProductMainCollections_ProductTagId",
+                table: "ProductMainCollections",
+                column: "ProductTagId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Products_BrandId",
                 table: "Products",
                 column: "BrandId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_StarRatings_ProductId",
+                table: "StarRatings",
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Teams_TeamJobId",
@@ -382,9 +560,6 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                 name: "BlogDetailsTagsCollections");
 
             migrationBuilder.DropTable(
-                name: "Categories");
-
-            migrationBuilder.DropTable(
                 name: "ContactMessages");
 
             migrationBuilder.DropTable(
@@ -394,7 +569,13 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                 name: "HappyClients");
 
             migrationBuilder.DropTable(
-                name: "Products");
+                name: "ProductImages");
+
+            migrationBuilder.DropTable(
+                name: "ProductMainCollections");
+
+            migrationBuilder.DropTable(
+                name: "StarRatings");
 
             migrationBuilder.DropTable(
                 name: "Teams");
@@ -412,13 +593,28 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                 name: "Contacts");
 
             migrationBuilder.DropTable(
-                name: "Brand");
+                name: "Campaigns");
+
+            migrationBuilder.DropTable(
+                name: "Categories");
+
+            migrationBuilder.DropTable(
+                name: "Colors");
+
+            migrationBuilder.DropTable(
+                name: "ProductTags");
+
+            migrationBuilder.DropTable(
+                name: "Products");
 
             migrationBuilder.DropTable(
                 name: "TeamJobs");
 
             migrationBuilder.DropTable(
                 name: "Aphorisms");
+
+            migrationBuilder.DropTable(
+                name: "Brand");
         }
     }
 }

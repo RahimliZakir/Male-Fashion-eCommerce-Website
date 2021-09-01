@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MaleFashion.eCommerce.WebUI.Migrations
 {
     [DbContext(typeof(FashionDbContext))]
-    [Migration("20210901095209_Init")]
+    [Migration("20210901104321_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -239,6 +239,44 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                     b.ToTable("Brand");
                 });
 
+            modelBuilder.Entity("MaleFashion.eCommerce.WebUI.Models.Entity.Campaign", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("DATEADD(HOUR, 4, GETUTCDATE())");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Discount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<DateTime>("ExpiredDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsApproved")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Campaigns");
+                });
+
             modelBuilder.Entity("MaleFashion.eCommerce.WebUI.Models.Entity.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -263,6 +301,32 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("MaleFashion.eCommerce.WebUI.Models.Entity.Color", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ColorName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("DATEADD(HOUR, 4, GETUTCDATE())");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Colors");
                 });
 
             modelBuilder.Entity("MaleFashion.eCommerce.WebUI.Models.Entity.Contact", b =>
@@ -416,6 +480,123 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                     b.HasIndex("BrandId");
 
                     b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("MaleFashion.eCommerce.WebUI.Models.Entity.ProductImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsMain")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductImages");
+                });
+
+            modelBuilder.Entity("MaleFashion.eCommerce.WebUI.Models.Entity.ProductMainCollection", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CampaignId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ColorId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("PriceNew")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductTagId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CampaignId");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("ColorId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("ProductTagId");
+
+                    b.ToTable("ProductMainCollections");
+                });
+
+            modelBuilder.Entity("MaleFashion.eCommerce.WebUI.Models.Entity.ProductTag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("DATEADD(HOUR, 4, GETUTCDATE())");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ProductTagName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductTags");
+                });
+
+            modelBuilder.Entity("MaleFashion.eCommerce.WebUI.Models.Entity.StarRating", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("DATEADD(HOUR, 4, GETUTCDATE())");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("StarRatings");
                 });
 
             modelBuilder.Entity("MaleFashion.eCommerce.WebUI.Models.Entity.Tag", b =>
@@ -574,6 +755,57 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                     b.HasOne("MaleFashion.eCommerce.WebUI.Models.Entity.Brand", "Brand")
                         .WithMany("Products")
                         .HasForeignKey("BrandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MaleFashion.eCommerce.WebUI.Models.Entity.ProductImage", b =>
+                {
+                    b.HasOne("MaleFashion.eCommerce.WebUI.Models.Entity.Product", "Product")
+                        .WithMany("ProductImage")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MaleFashion.eCommerce.WebUI.Models.Entity.ProductMainCollection", b =>
+                {
+                    b.HasOne("MaleFashion.eCommerce.WebUI.Models.Entity.Campaign", "Campaign")
+                        .WithMany("ProductMainCollections")
+                        .HasForeignKey("CampaignId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MaleFashion.eCommerce.WebUI.Models.Entity.Category", "Category")
+                        .WithMany("ProductMainCollections")
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MaleFashion.eCommerce.WebUI.Models.Entity.Color", "Color")
+                        .WithMany("ProductMainCollections")
+                        .HasForeignKey("ColorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MaleFashion.eCommerce.WebUI.Models.Entity.Product", "Product")
+                        .WithMany("ProductMainCollections")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MaleFashion.eCommerce.WebUI.Models.Entity.ProductTag", "ProductTag")
+                        .WithMany("ProductMainCollections")
+                        .HasForeignKey("ProductTagId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MaleFashion.eCommerce.WebUI.Models.Entity.StarRating", b =>
+                {
+                    b.HasOne("MaleFashion.eCommerce.WebUI.Models.Entity.Product", "Product")
+                        .WithMany("StarRatings")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

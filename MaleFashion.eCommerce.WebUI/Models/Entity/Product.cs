@@ -19,6 +19,8 @@ namespace MaleFashion.eCommerce.WebUI.Models.Entity
 
         public virtual ICollection<ProductImage> ProductImage { get; set; }
 
+        public virtual ICollection<StarRating> StarRatings { get; set; }
+
         public virtual ICollection<ProductMainCollection> ProductMainCollections { get; set; }
 
         [NotMapped]
