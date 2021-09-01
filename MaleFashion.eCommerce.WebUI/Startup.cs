@@ -79,6 +79,10 @@ namespace MaleFashion.eCommerce.WebUI
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapAreaControllerRoute(name: "adminAra",
+                    areaName: "admin",
+                    pattern: "admin/{controller=Products}/{action=Index}/{id?}");
+
                 endpoints.MapHub<ConversationHub>("/chat");
 
                 // Defaults, Liar Routes

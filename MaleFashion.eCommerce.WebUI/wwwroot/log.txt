@@ -377,3 +377,328 @@ Method: GET
 QueryString: 
 Bitdi: 01:09:2021 13:15:30.480
 
+Başladı: 01:09:2021 13:55:57.103
+Host: localhost:44382
+Path: /
+Method: GET
+QueryString: 
+Controller: Home
+Action: Index
+Bitdi: 01:09:2021 13:55:57.792
+
+Başladı: 01:09:2021 13:55:58.486
+Host: localhost:44382
+Path: /assets/images/index/xheart.png.pagespeed.ic.eX6BmaqN_X.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 13:55:58.494
+
+Başladı: 01:09:2021 13:55:58.524
+Host: localhost:44382
+Path: /assets/images/index/xcompare.png.pagespeed.ic.UIWeUFOM61.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 13:55:58.526
+
+Başladı: 01:09:2021 13:55:58.551
+Host: localhost:44382
+Path: /assets/images/index/xsearch.png.pagespeed.ic.y-8fLDHdJm.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 13:55:58.553
+
+Başladı: 01:09:2021 13:55:58.609
+Host: localhost:44382
+Path: /assets/images/icon/xheart.png.pagespeed.ic.eX6BmaqN_X.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 13:55:58.616
+
+Başladı: 01:09:2021 13:55:58.646
+Host: localhost:44382
+Path: /assets/images/index/icon/xheart.png.pagespeed.ic.eX6BmaqN_X.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 13:55:58.648
+
+Başladı: 01:09:2021 13:55:58.673
+Host: localhost:44382
+Path: /assets/images/index/icon/xcompare.png.pagespeed.ic.UIWeUFOM61.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 13:55:58.674
+
+Başladı: 01:09:2021 13:55:58.699
+Host: localhost:44382
+Path: /assets/images/index/icon/xsearch.png.pagespeed.ic.y-8fLDHdJm.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 13:55:58.700
+
+Başladı: 01:09:2021 13:55:59.935
+Host: localhost:44382
+Path: /assets/images/index/xcompare.png.pagespeed.ic.UIWeUFOM61.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 13:55:59.951
+
+Başladı: 01:09:2021 13:55:59.944
+Host: localhost:44382
+Path: /assets/images/index/icon/xheart.png.pagespeed.ic.eX6BmaqN_X.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 13:55:59.957
+
+Başladı: 01:09:2021 15:11:38.957
+Host: localhost:44382
+Path: /
+Method: GET
+QueryString: 
+Controller: Home
+Action: Index
+Bitdi: 01:09:2021 15:11:39.034
+
+Başladı: 01:09:2021 15:11:39.265
+Host: localhost:44382
+Path: /assets/images/index/xheart.png.pagespeed.ic.eX6BmaqN_X.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 15:11:39.266
+
+Başladı: 01:09:2021 15:11:39.284
+Host: localhost:44382
+Path: /assets/images/index/xcompare.png.pagespeed.ic.UIWeUFOM61.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 15:11:39.286
+
+Başladı: 01:09:2021 15:11:39.294
+Host: localhost:44382
+Path: /assets/images/index/xsearch.png.pagespeed.ic.y-8fLDHdJm.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 15:11:39.299
+
+Başladı: 01:09:2021 15:11:39.325
+Host: localhost:44382
+Path: /assets/images/index/icon/xheart.png.pagespeed.ic.eX6BmaqN_X.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 15:11:39.326
+
+Başladı: 01:09:2021 15:11:39.327
+Host: localhost:44382
+Path: /assets/images/index/icon/xcompare.png.pagespeed.ic.UIWeUFOM61.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 15:11:39.328
+
+Başladı: 01:09:2021 15:11:39.328
+Host: localhost:44382
+Path: /assets/images/index/icon/xsearch.png.pagespeed.ic.y-8fLDHdJm.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 15:11:39.329
+
+Başladı: 01:09:2021 15:11:39.325
+Host: localhost:44382
+Path: /assets/images/icon/xheart.png.pagespeed.ic.eX6BmaqN_X.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 15:11:39.373
+
+Başladı: 01:09:2021 15:12:33.319
+Host: localhost:44382
+Path: /
+Method: GET
+QueryString: 
+Controller: Home
+Action: Index
+Bitdi: 01:09:2021 15:12:33.357
+
+Başladı: 01:09:2021 15:12:33.654
+Host: localhost:44382
+Path: /assets/images/index/xheart.png.pagespeed.ic.eX6BmaqN_X.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 15:12:33.657
+
+Başladı: 01:09:2021 15:12:33.658
+Host: localhost:44382
+Path: /assets/images/icon/xheart.png.pagespeed.ic.eX6BmaqN_X.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 15:12:33.662
+
+Başladı: 01:09:2021 15:12:33.662
+Host: localhost:44382
+Path: /assets/images/index/icon/xsearch.png.pagespeed.ic.y-8fLDHdJm.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 15:12:33.663
+
+Başladı: 01:09:2021 15:12:39.440
+Host: localhost:44382
+Path: /contacts
+Method: GET
+QueryString: 
+Controller: Contacts
+Action: Index
+Bitdi: 01:09:2021 15:12:39.968
+
+Başladı: 01:09:2021 15:12:49.178
+Host: localhost:44382
+Path: /
+Method: GET
+QueryString: 
+Controller: Home
+Action: Index
+Bitdi: 01:09:2021 15:12:49.213
+
+Başladı: 01:09:2021 15:12:49.353
+Host: localhost:44382
+Path: /assets/images/index/xheart.png.pagespeed.ic.eX6BmaqN_X.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 15:12:49.353
+
+Başladı: 01:09:2021 15:12:49.353
+Host: localhost:44382
+Path: /assets/images/index/xcompare.png.pagespeed.ic.UIWeUFOM61.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 15:12:49.354
+
+Başladı: 01:09:2021 15:12:49.357
+Host: localhost:44382
+Path: /assets/images/index/xsearch.png.pagespeed.ic.y-8fLDHdJm.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 15:12:49.360
+
+Başladı: 01:09:2021 15:12:49.359
+Host: localhost:44382
+Path: /assets/images/index/icon/xheart.png.pagespeed.ic.eX6BmaqN_X.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 15:12:49.361
+
+Başladı: 01:09:2021 15:12:49.361
+Host: localhost:44382
+Path: /assets/images/index/icon/xsearch.png.pagespeed.ic.y-8fLDHdJm.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 15:12:49.362
+
+Başladı: 01:09:2021 15:12:49.358
+Host: localhost:44382
+Path: /assets/images/icon/xheart.png.pagespeed.ic.eX6BmaqN_X.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 15:12:49.364
+
+Başladı: 01:09:2021 15:14:27.711
+Host: localhost:44382
+Path: /
+Method: GET
+QueryString: 
+Controller: Home
+Action: Index
+Bitdi: 01:09:2021 15:14:28.337
+
+Başladı: 01:09:2021 15:14:28.632
+Host: localhost:44382
+Path: /assets/images/index/xheart.png.pagespeed.ic.eX6BmaqN_X.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 15:14:28.644
+
+Başladı: 01:09:2021 15:14:28.699
+Host: localhost:44382
+Path: /assets/images/index/xcompare.png.pagespeed.ic.UIWeUFOM61.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 15:14:28.702
+
+Başladı: 01:09:2021 15:14:28.708
+Host: localhost:44382
+Path: /assets/images/icon/xheart.png.pagespeed.ic.eX6BmaqN_X.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 15:14:28.711
+
+Başladı: 01:09:2021 15:14:28.712
+Host: localhost:44382
+Path: /assets/images/index/icon/xheart.png.pagespeed.ic.eX6BmaqN_X.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 15:14:28.717
+
+Başladı: 01:09:2021 15:14:28.713
+Host: localhost:44382
+Path: /assets/images/index/icon/xcompare.png.pagespeed.ic.UIWeUFOM61.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 15:14:28.718
+
+Başladı: 01:09:2021 15:14:28.719
+Host: localhost:44382
+Path: /assets/images/index/icon/xsearch.png.pagespeed.ic.y-8fLDHdJm.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 15:14:28.721
+
+Başladı: 01:09:2021 15:14:28.699
+Host: localhost:44382
+Path: /assets/images/index/xsearch.png.pagespeed.ic.y-8fLDHdJm.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 15:14:28.795
+
+Başladı: 01:09:2021 15:14:41.720
+Host: localhost:44382
+Path: /admin//products/index
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 15:14:41.724
+
+Başladı: 01:09:2021 15:14:46.525
+Host: localhost:44382
+Path: /admin/products/index
+Method: GET
+QueryString: 
+Area: admin
+Controller: Products
+Action: Index
+Bitdi: 01:09:2021 15:14:46.820
+
+Başladı: 01:09:2021 15:15:15.281
+Host: localhost:44382
+Path: /admin/products/index
+Method: GET
+QueryString: 
+Area: admin
+Controller: Products
+Action: Index
+Bitdi: 01:09:2021 15:15:15.300
+
+Başladı: 01:09:2021 15:15:53.976
+Host: localhost:44382
+Path: /admin/products/index
+Method: GET
+QueryString: 
+Area: admin
+Controller: Products
+Action: Index
+Bitdi: 01:09:2021 15:15:54.616
+
+Başladı: 01:09:2021 15:16:12.746
+Host: localhost:44382
+Path: /admin/products/create
+Method: GET
+QueryString: 
+Area: admin
+Controller: Products
+Action: Create
+Bitdi: 01:09:2021 15:16:13.074
+
