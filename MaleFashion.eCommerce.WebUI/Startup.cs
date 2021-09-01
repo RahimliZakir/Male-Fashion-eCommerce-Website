@@ -32,6 +32,7 @@ namespace MaleFashion.eCommerce.WebUI
             services.AddRouting(options =>
             {
                 options.LowercaseUrls = true;
+                //options.LowercaseQueryStrings = true;
             });
 
             services.AddSignalR();

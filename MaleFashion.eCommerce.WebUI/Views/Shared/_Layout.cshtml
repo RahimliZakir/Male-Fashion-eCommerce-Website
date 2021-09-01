@@ -1,5 +1,4 @@
 ﻿@inject FashionDbContext db;
-@model SubsFormModel;
 
 @{
     ViewBag.Layout = "Male Fashion";
@@ -202,8 +201,7 @@
                                 @appInfo.ContactDescription
                             </p>
                             <form asp-action="Index" asp-controller="Subs" method="post" class="subs-form">
-                                <div asp-validation-summary="ModelOnly"></div>
-                                <input asp-for="Email" type="text" placeholder="Your email" class="subs-input" />
+                                <input name="subsMail" type="text" placeholder="Your email" class="subs-input" />
                                 <button type="submit" class="subs-btn">
                                     <span class="icon_mail_alt"></span>
                                 </button>

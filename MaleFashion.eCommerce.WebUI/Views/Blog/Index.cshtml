@@ -61,7 +61,7 @@
                                     <p class="unlike-count">0</p>
                                 </div>
                             </div>
-                            <a asp-action="Index" asp-controller="BlogDetails" asp-route-id="@item.Id">Ətraflı</a>
+                            <a asp-action="Index" asp-controller="BlogDetails" asp-route-id="@item.Id" asp-route-title="@Url.FriendlyUrlContext(item.Title)">Ətraflı</a>
                         </div>
                     </div>
                 </div>

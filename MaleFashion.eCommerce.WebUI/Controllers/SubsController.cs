@@ -1,5 +1,4 @@
-﻿using MaleFashion.eCommerce.WebUI.Models.FormModel;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -20,7 +19,7 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(SubsFormModel formModel)
+        public IActionResult Index(string subsMail)
         {
             SmtpClient client = new SmtpClient()
             {
@@ -31,7 +30,7 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
 
             client.Credentials = new NetworkCredential(conf["SubsSMTP:FromMail"], conf["SubsSMTP:Pwd"]);
 
-            MailMessage message = new MailMessage(conf["SubsSMTP:FromMail"], formModel.Email);
+            MailMessage message = new MailMessage(conf["SubsSMTP:FromMail"], subsMail);
             message.Subject = conf.GetValue<string>("SubsSMTP:Title");
             message.Body = conf.GetValue<string>("SubsSMTP:Description");
 

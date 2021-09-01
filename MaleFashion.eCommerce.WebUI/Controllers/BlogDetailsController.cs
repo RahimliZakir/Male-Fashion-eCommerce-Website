@@ -20,6 +20,7 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
             this.db = db;
         }
 
+        [Route("[Controller]/{id}/blogs/{title}")]
         public IActionResult Index(int? id)
         {
             BlogDetailsViewModel viewModel = new BlogDetailsViewModel();

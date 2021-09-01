@@ -35,20 +35,13 @@ using MaleFashion.eCommerce.WebUI.Models.ViewModel;
 #nullable disable
 #nullable restore
 #line 4 "C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\Views\_ViewImports.cshtml"
-using MaleFashion.eCommerce.WebUI.Models.FormModel;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 5 "C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\Views\_ViewImports.cshtml"
 using MaleFashion.eCommerce.WebUI.AppCode.Extensions;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"e8ef7e7f7504895593da18b955aaa0a9551054b1", @"/Views/Shared/Components/IndexBlog/Default.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"1a5cf0b0265bd9ac3d6484b28e9fd880f2f7aaaf", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a6ea8ac927f6a0424da2c4ae99f3a34c64e2e6fb", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_Components_IndexBlog_Default : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<Blog>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Index", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -124,7 +117,7 @@ using MaleFashion.eCommerce.WebUI.AppCode.Extensions;
 #line hidden
 #nullable disable
             WriteLiteral("</h5>\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8ef7e7f7504895593da18b955aaa0a9551054b17205", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e8ef7e7f7504895593da18b955aaa0a9551054b16923", async() => {
                 WriteLiteral("Ətraflı");
             }
             );
