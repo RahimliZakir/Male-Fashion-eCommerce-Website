@@ -40,8 +40,15 @@ using MaleFashion.eCommerce.WebUI.AppCode.Extensions;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\Views\_ViewImports.cshtml"
+using Resources;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"4be75c32a71b62788c5adc9533d063250a9e2d80", @"/Views/Shop/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a6ea8ac927f6a0424da2c4ae99f3a34c64e2e6fb", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7c1cb8b7b50af213634b35416d88f7f59c905000", @"/Views/_ViewImports.cshtml")]
     public class Views_Shop_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("action", new global::Microsoft.AspNetCore.Html.HtmlString("#"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -105,7 +112,7 @@ using MaleFashion.eCommerce.WebUI.AppCode.Extensions;
                 <div class=""shop__sidebar"">
                     <div class=""shop__sidebar__search"">
                         ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4be75c32a71b62788c5adc9533d063250a9e2d805859", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4be75c32a71b62788c5adc9533d063250a9e2d806106", async() => {
                 WriteLiteral(@"
                             <input type=""text"" placeholder=""Search..."" />
                             <button type=""submit"">
@@ -327,7 +334,7 @@ using MaleFashion.eCommerce.WebUI.AppCode.Extensions;
                                 <p>Sort by Price:</p>
                                 <select>
                                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4be75c32a71b62788c5adc9533d063250a9e2d8019824", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4be75c32a71b62788c5adc9533d063250a9e2d8020071", async() => {
                 WriteLiteral("Low To High");
             }
             );
@@ -343,7 +350,7 @@ using MaleFashion.eCommerce.WebUI.AppCode.Extensions;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4be75c32a71b62788c5adc9533d063250a9e2d8021025", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4be75c32a71b62788c5adc9533d063250a9e2d8021272", async() => {
                 WriteLiteral("$0 - $55");
             }
             );
@@ -359,7 +366,7 @@ using MaleFashion.eCommerce.WebUI.AppCode.Extensions;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4be75c32a71b62788c5adc9533d063250a9e2d8022223", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4be75c32a71b62788c5adc9533d063250a9e2d8022470", async() => {
                 WriteLiteral("$55 - $100");
             }
             );

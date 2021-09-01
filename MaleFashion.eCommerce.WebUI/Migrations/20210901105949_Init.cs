@@ -79,19 +79,19 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Brand",
+                name: "Brands",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "DATEADD(HOUR, 4, GETUTCDATE())"),
                     UpdatedDate = table.Column<DateTime>(nullable: true),
                     DeletedDate = table.Column<DateTime>(nullable: true),
                     BrandName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Brand", x => x.Id);
+                    table.PrimaryKey("PK_Brands", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -212,6 +212,22 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Sizes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "DATEADD(HOUR, 4, GETUTCDATE())"),
+                    UpdatedDate = table.Column<DateTime>(nullable: true),
+                    DeletedDate = table.Column<DateTime>(nullable: true),
+                    SizeName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sizes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Tags",
                 columns: table => new
                 {
@@ -305,9 +321,9 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Products_Brand_BrandId",
+                        name: "FK_Products_Brands_BrandId",
                         column: x => x.BrandId,
-                        principalTable: "Brand",
+                        principalTable: "Brands",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -419,6 +435,7 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                     ProductId = table.Column<int>(nullable: false),
                     ColorId = table.Column<int>(nullable: false),
                     ProductTagId = table.Column<int>(nullable: false),
+                    SizeId = table.Column<int>(nullable: false),
                     CampaignId = table.Column<int>(nullable: false),
                     PriceNew = table.Column<decimal>(nullable: true)
                 },
@@ -453,6 +470,12 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                         name: "FK_ProductMainCollections_ProductTags_ProductTagId",
                         column: x => x.ProductTagId,
                         principalTable: "ProductTags",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ProductMainCollections_Sizes_SizeId",
+                        column: x => x.SizeId,
+                        principalTable: "Sizes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -530,6 +553,11 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                 column: "ProductTagId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ProductMainCollections_SizeId",
+                table: "ProductMainCollections",
+                column: "SizeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Products_BrandId",
                 table: "Products",
                 column: "BrandId");
@@ -605,6 +633,9 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                 name: "ProductTags");
 
             migrationBuilder.DropTable(
+                name: "Sizes");
+
+            migrationBuilder.DropTable(
                 name: "Products");
 
             migrationBuilder.DropTable(
@@ -614,7 +645,7 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                 name: "Aphorisms");
 
             migrationBuilder.DropTable(
-                name: "Brand");
+                name: "Brands");
         }
     }
 }

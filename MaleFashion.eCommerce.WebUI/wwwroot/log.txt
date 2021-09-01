@@ -215,3 +215,107 @@ Method: GET
 QueryString: 
 Bitdi: 01:09:2021 10:10:26.051
 
+Başladı: 01:09:2021 10:48:52.823
+Host: localhost:44382
+Path: /
+Method: GET
+QueryString: 
+Controller: Home
+Action: Index
+Bitdi: 01:09:2021 10:48:53.007
+
+Başladı: 01:09:2021 10:48:53.172
+Host: localhost:44382
+Path: /assets/images/index/xsearch.png.pagespeed.ic.y-8fLDHdJm.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:48:53.174
+
+Başladı: 01:09:2021 10:48:53.175
+Host: localhost:44382
+Path: /assets/images/index/icon/xcompare.png.pagespeed.ic.UIWeUFOM61.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:48:53.176
+
+Başladı: 01:09:2021 10:48:53.175
+Host: localhost:44382
+Path: /assets/images/index/icon/xheart.png.pagespeed.ic.eX6BmaqN_X.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:48:53.176
+
+Başladı: 01:09:2021 10:48:55.702
+Host: localhost:44382
+Path: /shopdetails
+Method: GET
+QueryString: 
+Controller: ShopDetails
+Action: Index
+Bitdi: 01:09:2021 10:48:55.744
+
+Başladı: 01:09:2021 10:48:55.808
+Host: localhost:44382
+Path: /img/icon/xheart.png.pagespeed.ic.eX6BmaqN_X.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:48:55.809
+
+Başladı: 01:09:2021 10:48:55.812
+Host: localhost:44382
+Path: /img/icon/xcompare.png.pagespeed.ic.UIWeUFOM61.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:48:55.813
+
+Başladı: 01:09:2021 10:48:55.813
+Host: localhost:44382
+Path: /img/icon/xsearch.png.pagespeed.ic.y-8fLDHdJm.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:48:55.814
+
+Başladı: 01:09:2021 10:50:08.803
+Host: localhost:44382
+Path: /shopdetails
+Method: GET
+QueryString: 
+Controller: ShopDetails
+Action: Index
+Bitdi: 01:09:2021 10:50:09.014
+
+Başladı: 01:09:2021 10:50:09.052
+Host: localhost:44382
+Path: /img/icon/xheart.png.pagespeed.ic.eX6BmaqN_X.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:50:09.054
+
+Başladı: 01:09:2021 10:50:09.089
+Host: localhost:44382
+Path: /img/icon/xcompare.png.pagespeed.ic.UIWeUFOM61.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:50:09.090
+
+Başladı: 01:09:2021 10:50:09.096
+Host: localhost:44382
+Path: /img/icon/xsearch.png.pagespeed.ic.y-8fLDHdJm.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:50:09.096
+
+Başladı: 01:09:2021 10:50:09.178
+Host: localhost:44382
+Path: /img/icon/xheart.png.pagespeed.ic.eX6BmaqN_X.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:50:09.179
+
+Başladı: 01:09:2021 10:50:09.178
+Host: localhost:44382
+Path: /img/icon/xsearch.png.pagespeed.ic.y-8fLDHdJm.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:50:09.192
+

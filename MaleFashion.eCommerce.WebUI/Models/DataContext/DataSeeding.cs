@@ -1162,6 +1162,74 @@ namespace MaleFashion.eCommerce.WebUI.Models.DataContext
 
                     db.SaveChanges();
                 }
+
+                if (db.Brands.Any() == false)
+                {
+                    db.Brands.Add(new Brand
+                    {
+                        BrandName = "Louis Vuitton"
+                    });
+
+
+                    db.Brands.Add(new Brand
+                    {
+                        BrandName = "Chanel"
+                    });
+
+
+                    db.Brands.Add(new Brand
+                    {
+                        BrandName = "Hermes"
+                    });
+
+
+                    db.Brands.Add(new Brand
+                    {
+                        BrandName = "Gucci"
+                    });
+
+                    db.SaveChanges();
+                }
+
+                if (!db.Categories.Any())
+                {
+                    db.Categories.Add(new Category
+                    {
+                        Name = "Men"
+                    });
+
+                    db.Categories.Add(new Category
+                    {
+                        Name = "Women"
+                    });
+
+                    db.Categories.Add(new Category
+                    {
+                        Name = "Bags"
+                    });
+
+                    db.Categories.Add(new Category
+                    {
+                        Name = "Clothing"
+                    });
+
+                    db.Categories.Add(new Category
+                    {
+                        Name = "Shoes"
+                    });
+
+                    db.Categories.Add(new Category
+                    {
+                        Name = "Accessoires"
+                    });
+
+                    db.Categories.Add(new Category
+                    {
+                        Name = "Kids"
+                    });
+
+                    db.SaveChanges();
+                }
             }
 
             return app;

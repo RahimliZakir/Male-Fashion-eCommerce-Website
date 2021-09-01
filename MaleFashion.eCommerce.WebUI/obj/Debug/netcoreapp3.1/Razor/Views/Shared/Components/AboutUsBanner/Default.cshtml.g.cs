@@ -40,8 +40,15 @@ using MaleFashion.eCommerce.WebUI.AppCode.Extensions;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\Views\_ViewImports.cshtml"
+using Resources;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a67c27d273eec7c6ff229e2b535875c5b9049ffb", @"/Views/Shared/Components/AboutUsBanner/Default.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a6ea8ac927f6a0424da2c4ae99f3a34c64e2e6fb", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7c1cb8b7b50af213634b35416d88f7f59c905000", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_Components_AboutUsBanner_Default : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<AboutUsBanner>
     {
         #pragma warning disable 1998
