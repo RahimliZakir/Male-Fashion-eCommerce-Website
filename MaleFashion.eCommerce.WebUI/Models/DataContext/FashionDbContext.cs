@@ -36,6 +36,9 @@ namespace MaleFashion.eCommerce.WebUI.Models.DataContext
         {
             base.OnModelCreating(builder);
 
+            // If we want to add new schema to our database, so we can use this code...
+            //builder.HasDefaultSchema("FSHN");
+
             builder.Entity<AppInfo>()
                    .Property(ap => ap.CreatedDate)
                    .HasDefaultValueSql("DATEADD(HOUR, 4, GETUTCDATE())");

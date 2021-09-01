@@ -46,12 +46,15 @@ namespace MaleFashion.eCommerce.WebUI
             services.AddControllersWithViews(cfg =>
             {
                 cfg.ModelBinderProviders.Insert(0, new BooleanBinderProvider());
-            });
+            })
+            .AddNewtonsoftJson(options =>
+            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore); ;
+
 
             services.AddDbContext<FashionDbContext>(cfg =>
-            {
-                cfg.UseSqlServer(conf.GetConnectionString("cString"));
-            });
+        {
+            cfg.UseSqlServer(conf.GetConnectionString("cString"));
+        });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -65,6 +68,8 @@ namespace MaleFashion.eCommerce.WebUI
 
             // My IP Blocker Middleware
             //app.UseIPBlockerMiddleware();
+
+            app.UseMonitoringMiddleware();
 
             app.UseSession();
 

@@ -1,0 +1,217 @@
+Başladı: 01:09:2021 09:59:52.003
+Host: localhost:44382
+Path: /blogdetails/2/blogs/what-curling-irons-are-the-best-ones
+Method: GET
+QueryString: 
+Controller: BlogDetails
+Action: Index
+Bitdi: 01:09:2021 09:59:52.550
+
+Başladı: 01:09:2021 10:07:09.239
+Host: localhost:44382
+Path: /
+Method: GET
+QueryString: 
+Controller: Home
+Action: Index
+Bitdi: 01:09:2021 10:07:09.516
+
+Başladı: 01:09:2021 10:07:20.075
+Host: localhost:44382
+Path: /
+Method: GET
+QueryString: 
+Controller: Home
+Action: Index
+Bitdi: 01:09:2021 10:07:20.386
+
+Başladı: 01:09:2021 10:07:20.606
+Host: localhost:44382
+Path: /assets/images/index/xheart.png.pagespeed.ic.eX6BmaqN_X.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:07:20.608
+
+Başladı: 01:09:2021 10:07:20.615
+Host: localhost:44382
+Path: /assets/images/index/xcompare.png.pagespeed.ic.UIWeUFOM61.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:07:20.615
+
+Başladı: 01:09:2021 10:07:20.629
+Host: localhost:44382
+Path: /assets/images/index/xsearch.png.pagespeed.ic.y-8fLDHdJm.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:07:20.630
+
+Başladı: 01:09:2021 10:07:20.637
+Host: localhost:44382
+Path: /assets/images/icon/xheart.png.pagespeed.ic.eX6BmaqN_X.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:07:20.638
+
+Başladı: 01:09:2021 10:07:20.644
+Host: localhost:44382
+Path: /assets/images/index/icon/xheart.png.pagespeed.ic.eX6BmaqN_X.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:07:20.644
+
+Başladı: 01:09:2021 10:07:20.652
+Host: localhost:44382
+Path: /assets/images/index/icon/xcompare.png.pagespeed.ic.UIWeUFOM61.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:07:20.652
+
+Başladı: 01:09:2021 10:07:20.658
+Host: localhost:44382
+Path: /assets/images/index/icon/xsearch.png.pagespeed.ic.y-8fLDHdJm.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:07:20.658
+
+Başladı: 01:09:2021 10:07:20.837
+Host: localhost:44382
+Path: /assets/images/index/xcompare.png.pagespeed.ic.UIWeUFOM61.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:07:20.843
+
+Başladı: 01:09:2021 10:07:20.841
+Host: localhost:44382
+Path: /assets/images/index/icon/xsearch.png.pagespeed.ic.y-8fLDHdJm.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:07:20.845
+
+Başladı: 01:09:2021 10:07:20.841
+Host: localhost:44382
+Path: /assets/images/index/icon/xcompare.png.pagespeed.ic.UIWeUFOM61.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:07:20.846
+
+Başladı: 01:09:2021 10:07:20.841
+Host: localhost:44382
+Path: /assets/images/index/icon/xheart.png.pagespeed.ic.eX6BmaqN_X.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:07:20.846
+
+Başladı: 01:09:2021 10:07:24.147
+Host: localhost:44382
+Path: /blog.html
+Method: GET
+QueryString: 
+Controller: Blog
+Action: Index
+Bitdi: 01:09:2021 10:07:24.237
+
+Başladı: 01:09:2021 10:07:24.273
+Host: localhost:44382
+Path: /img/icon/xcalendar.png.pagespeed.ic.GXy2gYWDh7.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:07:24.273
+
+Başladı: 01:09:2021 10:07:27.409
+Host: localhost:44382
+Path: /shop
+Method: GET
+QueryString: 
+Controller: Shop
+Action: Index
+Bitdi: 01:09:2021 10:07:27.434
+
+Başladı: 01:09:2021 10:07:27.465
+Host: localhost:44382
+Path: /img/icon/xheart.png.pagespeed.ic.eX6BmaqN_X.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:07:27.466
+
+Başladı: 01:09:2021 10:07:27.485
+Host: localhost:44382
+Path: /img/icon/xsearch.png.pagespeed.ic.y-8fLDHdJm.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:07:27.485
+
+Başladı: 01:09:2021 10:09:14.941
+Host: localhost:44382
+Path: /shop
+Method: GET
+QueryString: 
+Controller: Shop
+Action: Index
+Bitdi: 01:09:2021 10:09:15.230
+
+Başladı: 01:09:2021 10:09:15.295
+Host: localhost:44382
+Path: /img/icon/xheart.png.pagespeed.ic.eX6BmaqN_X.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:09:15.298
+
+Başladı: 01:09:2021 10:09:15.350
+Host: localhost:44382
+Path: /img/icon/xcompare.png.pagespeed.ic.UIWeUFOM61.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:09:15.350
+
+Başladı: 01:09:2021 10:09:15.355
+Host: localhost:44382
+Path: /img/icon/xsearch.png.pagespeed.ic.y-8fLDHdJm.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:09:15.356
+
+Başladı: 01:09:2021 10:09:15.467
+Host: localhost:44382
+Path: /img/icon/xheart.png.pagespeed.ic.eX6BmaqN_X.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:09:15.467
+
+Başladı: 01:09:2021 10:10:25.690
+Host: localhost:44382
+Path: /shop
+Method: GET
+QueryString: 
+Controller: Shop
+Action: Index
+Bitdi: 01:09:2021 10:10:25.894
+
+Başladı: 01:09:2021 10:10:25.925
+Host: localhost:44382
+Path: /img/icon/xheart.png.pagespeed.ic.eX6BmaqN_X.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:10:25.927
+
+Başladı: 01:09:2021 10:10:25.964
+Host: localhost:44382
+Path: /img/icon/xcompare.png.pagespeed.ic.UIWeUFOM61.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:10:25.964
+
+Başladı: 01:09:2021 10:10:25.970
+Host: localhost:44382
+Path: /img/icon/xsearch.png.pagespeed.ic.y-8fLDHdJm.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:10:25.971
+
+Başladı: 01:09:2021 10:10:26.050
+Host: localhost:44382
+Path: /img/icon/xsearch.png.pagespeed.ic.y-8fLDHdJm.png
+Method: GET
+QueryString: 
+Bitdi: 01:09:2021 10:10:26.051
+

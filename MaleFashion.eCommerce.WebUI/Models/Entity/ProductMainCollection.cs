@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace MaleFashion.eCommerce.WebUI.Models.Entity
 {
-    public class Category : BaseEntity
+    public class ProductMainCollection
     {
-        public string Name { get; set; }
+        [Key]
+        public int Id { get; set; }
     }
 }

@@ -212,6 +212,31 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                     b.ToTable("BlogDetailsTagsCollections");
                 });
 
+            modelBuilder.Entity("MaleFashion.eCommerce.WebUI.Models.Entity.Brand", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("BrandName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Brand");
+                });
+
             modelBuilder.Entity("MaleFashion.eCommerce.WebUI.Models.Entity.Category", b =>
                 {
                     b.Property<int>("Id")
@@ -228,7 +253,6 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedDate")
@@ -365,7 +389,7 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int>("BrandId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedDate")
@@ -376,15 +400,10 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ImagePath")
-                        .IsRequired()
+                    b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<string>("Title")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedDate")
@@ -392,7 +411,7 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
+                    b.HasIndex("BrandId");
 
                     b.ToTable("Products");
                 });
@@ -550,9 +569,9 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
 
             modelBuilder.Entity("MaleFashion.eCommerce.WebUI.Models.Entity.Product", b =>
                 {
-                    b.HasOne("MaleFashion.eCommerce.WebUI.Models.Entity.Category", "Category")
+                    b.HasOne("MaleFashion.eCommerce.WebUI.Models.Entity.Brand", "Brand")
                         .WithMany("Products")
-                        .HasForeignKey("CategoryId")
+                        .HasForeignKey("BrandId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

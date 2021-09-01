@@ -79,6 +79,22 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Brand",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    UpdatedDate = table.Column<DateTime>(nullable: true),
+                    DeletedDate = table.Column<DateTime>(nullable: true),
+                    BrandName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Brand", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Categories",
                 columns: table => new
                 {
@@ -87,7 +103,7 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                     CreatedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "DATEADD(HOUR, 4, GETUTCDATE())"),
                     UpdatedDate = table.Column<DateTime>(nullable: true),
                     DeletedDate = table.Column<DateTime>(nullable: true),
-                    Name = table.Column<string>(nullable: false)
+                    Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -229,18 +245,17 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                     CreatedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "DATEADD(HOUR, 4, GETUTCDATE())"),
                     UpdatedDate = table.Column<DateTime>(nullable: true),
                     DeletedDate = table.Column<DateTime>(nullable: true),
-                    ImagePath = table.Column<string>(nullable: false),
-                    Title = table.Column<string>(nullable: false),
-                    Price = table.Column<decimal>(nullable: false),
-                    CategoryId = table.Column<int>(nullable: false)
+                    Title = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    BrandId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Products_Categories_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "Categories",
+                        name: "FK_Products_Brand_BrandId",
+                        column: x => x.BrandId,
+                        principalTable: "Brand",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -342,9 +357,9 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                 column: "ContactId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_CategoryId",
+                name: "IX_Products_BrandId",
                 table: "Products",
-                column: "CategoryId");
+                column: "BrandId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Teams_TeamJobId",
@@ -365,6 +380,9 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
 
             migrationBuilder.DropTable(
                 name: "BlogDetailsTagsCollections");
+
+            migrationBuilder.DropTable(
+                name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "ContactMessages");
@@ -394,7 +412,7 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                 name: "Contacts");
 
             migrationBuilder.DropTable(
-                name: "Categories");
+                name: "Brand");
 
             migrationBuilder.DropTable(
                 name: "TeamJobs");
