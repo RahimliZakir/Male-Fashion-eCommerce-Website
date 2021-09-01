@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MaleFashion.eCommerce.WebUI.Models.Entity
 {
-    public class ProductImages
+    public class ProductImage
     {
         public int Id { get; set; }
 

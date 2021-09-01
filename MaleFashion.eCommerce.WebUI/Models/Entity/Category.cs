@@ -9,5 +9,7 @@ namespace MaleFashion.eCommerce.WebUI.Models.Entity
     public class Category : BaseEntity
     {
         public string Name { get; set; }
+
+        public virtual  ICollection<ProductMainCollection> ProductMainCollections { get; set; }
     }
 }

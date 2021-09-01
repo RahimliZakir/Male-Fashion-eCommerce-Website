@@ -17,6 +17,10 @@ namespace MaleFashion.eCommerce.WebUI.Models.Entity
 
         public virtual Brand Brand { get; set; }
 
+        public virtual ICollection<ProductImage> ProductImage { get; set; }
+
+        public virtual ICollection<ProductMainCollection> ProductMainCollections { get; set; }
+
         [NotMapped]
         public ImageItemFormModel[] Files { get; set; }
     }

@@ -10,5 +10,21 @@ namespace MaleFashion.eCommerce.WebUI.Models.Entity
     {
         [Key]
         public int Id { get; set; }
+
+        public int CategoryId { get; set; }
+
+        public virtual Category Category { get; set; }
+
+        public int ProductId { get; set; }
+
+        public virtual Product Product { get; set; }
+
+        public int ColorId { get; set; }
+
+        public virtual Color Color { get; set; }
+
+        public int ProductTagId { get; set; }
+
+        public virtual ProductTag ProductTag { get; set; }
     }
 }
