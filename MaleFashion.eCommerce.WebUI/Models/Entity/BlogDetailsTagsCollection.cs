@@ -17,6 +17,6 @@ namespace MaleFashion.eCommerce.WebUI.Models.Entity
 
         public int TagId { get; set; }
 
-        public virtual ICollection<Tag> Tags { get; set; }
+        public virtual Tag Tag { get; set; }
     }
 }

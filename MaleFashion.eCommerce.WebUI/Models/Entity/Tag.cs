@@ -8,5 +8,7 @@ namespace MaleFashion.eCommerce.WebUI.Models.Entity
     public class Tag : BaseEntity
     {
         public string TagName { get; set; }
+
+        public virtual ICollection<BlogDetailsTagsCollection> BlogDetailsTagsCollections { get; set; }
     }
 }

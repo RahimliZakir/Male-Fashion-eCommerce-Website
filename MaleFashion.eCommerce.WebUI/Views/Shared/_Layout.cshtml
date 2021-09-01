@@ -1,4 +1,5 @@
 ﻿@inject FashionDbContext db;
+@model SubsFormModel;
 
 @{
     ViewBag.Layout = "Male Fashion";
@@ -123,7 +124,6 @@
                                     <li><a asp-action="Index" asp-controller="AboutUs">About Us</a></li>
                                     <li><a asp-action="Index" asp-controller="ShopDetails">Shop Details</a></li>
                                     <li><a asp-action="Index" asp-controller="ShoppingCart">Shopping Cart</a></li>
-                                    <li><a asp-action="Index" asp-controller="BlogDetails">Blog Details</a></li>
                                 </ul>
                             </li>
                             <li><a asp-action="Index" asp-controller="Blog">Blog</a></li>
@@ -201,9 +201,10 @@
                             <p>
                                 @appInfo.ContactDescription
                             </p>
-                            <form action="#">
-                                <input type="text" placeholder="Your email" />
-                                <button type="submit">
+                            <form asp-action="Index" asp-controller="Subs" method="post" class="subs-form">
+                                <div asp-validation-summary="ModelOnly"></div>
+                                <input asp-for="Email" type="text" placeholder="Your email" class="subs-input" />
+                                <button type="submit" class="subs-btn">
                                     <span class="icon_mail_alt"></span>
                                 </button>
                             </form>
@@ -266,6 +267,21 @@
             $(mUl).removeClass("selected");
             $(this).addClass("selected");
             $(span).html(`${$(this).html()} <i class="arrow_carrot-down"></i>`);
+        });
+
+        let subsBtn = $('.subs-btn');
+        let subsInput = $('.subs-input');
+        let subsForm = $('.subs-form');
+
+        $(subsForm).submit((e) => {
+            if ($(subsInput).val().length <= 0) {
+                e.preventDefault();
+                alert("Xanaya mail-inizi daxil edin!");
+            }
+            else {
+                alert("Abunə olundunuz, mail hesabınıza təsdiq mesajı göndərildi!");
+
+            }
         });
     </script>
     @RenderSection("scripts", required: false)

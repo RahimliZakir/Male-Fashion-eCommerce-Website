@@ -20,11 +20,11 @@
             <div class="col-lg-9 text-center">
                 <div class="blog__hero__text">
                     <h2>
-                        @Model.Blog.Title
+                        @Model.BlogDetailsTagsCollections.FirstOrDefault().Blog.Title
                     </h2>
                     <ul>
-                        <li>By @Model.Blog.AuthorName @Model.Blog.AuthorSurname</li>
-                        <li>@Model.Blog.CreatedDate.ToString("MMMM dd, yyyy")</li>
+                        <li>By @Model.BlogDetailsTagsCollections.FirstOrDefault().Blog.AuthorName @Model.BlogDetailsTagsCollections.FirstOrDefault().Blog.AuthorSurname</li>
+                        <li>@Model.BlogDetailsTagsCollections.FirstOrDefault().Blog.CreatedDate.ToString("MMMM dd, yyyy")</li>
                         <!-- ZR -->
                         <li>12 Likes</li>
                         <!-- ZR -->
@@ -41,7 +41,7 @@
         <div class="row d-flex justify-content-center">
             <div class="col-lg-12">
                 <div class="blog__details__pic">
-                    <img src="assets/images/blog/@Model.Blog.ImagePath" alt="" />
+                    <img src="assets/images/blog/@Model.BlogDetailsTagsCollections.FirstOrDefault().Blog.ImagePath" alt="" />
                 </div>
             </div>
             <div class="col-lg-8">
@@ -70,25 +70,25 @@
                         </ul>
                     </div>
                     <div data-aos="fade-right" class="blog__details__text">
-                        @Html.Raw(Model.Blog.Description)
+                        @Html.Raw(Model.BlogDetailsTagsCollections.FirstOrDefault().Blog.Description)
                     </div>
                     <div data-aos="fade-left" class="blog__details__quote">
                         <i class="fa fa-quote-left"></i>
                         <p>
-                            @Model.Blog.Aphorism.Content
+                            @Model.BlogDetailsTagsCollections.FirstOrDefault().Blog.Aphorism.Content
                         </p>
-                        <h6>_ @Model.Blog.Aphorism.Author _</h6>
+                        <h6>_ @Model.BlogDetailsTagsCollections.FirstOrDefault().Blog.Aphorism.Author _</h6>
                     </div>
                     <div data-aos="fade-up-left" class="blog__details__option">
                         <div class="row">
                             <div class="col-lg-6 col-md-6 col-sm-6">
                                 <div class="blog__details__author">
                                     <div class="blog__details__author__pic">
-                                        <img src="assets/images/blog-details/@Model.Blog.AuthorImagePath"
+                                        <img src="assets/images/blog-details/@Model.BlogDetailsTagsCollections.FirstOrDefault().Blog.AuthorImagePath"
                                              alt="" />
                                     </div>
                                     <div class="blog__details__author__text">
-                                        <h5>@Model.Blog.AuthorName @Model.Blog.AuthorSurname</h5>
+                                        <h5>@Model.BlogDetailsTagsCollections.FirstOrDefault().Blog.AuthorName @Model.BlogDetailsTagsCollections.FirstOrDefault().Blog.AuthorSurname</h5>
                                     </div>
                                 </div>
                             </div>
@@ -96,10 +96,7 @@
                                 <div class="blog__details__tags">
                                     @foreach (var item in Model.BlogDetailsTagsCollections)
                                     {
-                                        @foreach (var dynamic in item.Tags)
-                                        {
-                                            <a href="#">#@dynamic.TagName</a>
-                                        }
+                                        <a href="#">#@item.Tag.TagName</a>
                                     }
                                 </div>
                             </div>
@@ -107,24 +104,30 @@
                     </div>
                     <div data-aos="flip-up" class="blog__details__btns">
                         <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <a href="#" class="blog__details__btns__item">
-                                    <p><span class="arrow_left"></span> Previous Pod</p>
-                                    <h5>
-                                        It S Classified How To Utilize Free Classified Ad Sites
-                                    </h5>
-                                </a>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-6">
-                                <a href="#"
-                                   class="
+                            @if (Model.PrevBlog != null)
+                            {
+                                <div class="col-lg-6 col-md-6 col-sm-6" style="min-height: 400px;">
+                                    <a asp-action="Index" asp-route-id="@Model.PrevBlog.Id" class="blog__details__btns__item">
+                                        <p><span class="arrow_left"></span> Previous Pod</p>
+                                        <h5>
+                                            @Model.PrevBlog.Title.EllipseText(25)...
+                                        </h5>
+                                    </a>
+                                </div>
+                            }
+                            @if (Model.NextBlog != null)
+                            {
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <a asp-action="Index" asp-route-id="@Model.NextBlog.Id"
+                                       class="
                         blog__details__btns__item
                         blog__details__btns__item--next
                       ">
-                                    <p>Next Pod <span class="arrow_right"></span></p>
-                                    <h5>Tips For Choosing The Perfect Gloss For Your Lips</h5>
-                                </a>
-                            </div>
+                                        <p>Next Pod <span class="arrow_right"></span></p>
+                                        <h5>@Model.NextBlog.Title.EllipseText(25)...</h5>
+                                    </a>
+                                </div>
+                            }
                         </div>
                     </div>
                     <div data-aos="fade-up" class="blog__details__comment mb-2">

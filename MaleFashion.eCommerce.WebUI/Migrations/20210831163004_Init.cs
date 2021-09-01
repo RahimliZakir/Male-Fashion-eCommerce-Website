@@ -144,6 +144,22 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Tags",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CreatedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "DATEADD(HOUR, 4, GETUTCDATE())"),
+                    UpdatedDate = table.Column<DateTime>(nullable: true),
+                    DeletedDate = table.Column<DateTime>(nullable: true),
+                    TagName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tags", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TeamJobs",
                 columns: table => new
                 {
@@ -297,35 +313,23 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                         principalTable: "Blogs",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Tags",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(nullable: false, defaultValueSql: "DATEADD(HOUR, 4, GETUTCDATE())"),
-                    UpdatedDate = table.Column<DateTime>(nullable: true),
-                    DeletedDate = table.Column<DateTime>(nullable: true),
-                    TagName = table.Column<string>(nullable: true),
-                    BlogDetailsTagsCollectionId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Tags", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Tags_BlogDetailsTagsCollections_BlogDetailsTagsCollectionId",
-                        column: x => x.BlogDetailsTagsCollectionId,
-                        principalTable: "BlogDetailsTagsCollections",
+                        name: "FK_BlogDetailsTagsCollections_Tags_TagId",
+                        column: x => x.TagId,
+                        principalTable: "Tags",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_BlogDetailsTagsCollections_BlogId",
                 table: "BlogDetailsTagsCollections",
                 column: "BlogId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BlogDetailsTagsCollections_TagId",
+                table: "BlogDetailsTagsCollections",
+                column: "TagId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Blogs_AphorismId",
@@ -341,11 +345,6 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                 name: "IX_Products_CategoryId",
                 table: "Products",
                 column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Tags_BlogDetailsTagsCollectionId",
-                table: "Tags",
-                column: "BlogDetailsTagsCollectionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Teams_TeamJobId",
@@ -365,6 +364,9 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                 name: "BlogBanners");
 
             migrationBuilder.DropTable(
+                name: "BlogDetailsTagsCollections");
+
+            migrationBuilder.DropTable(
                 name: "ContactMessages");
 
             migrationBuilder.DropTable(
@@ -377,13 +379,16 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                 name: "Products");
 
             migrationBuilder.DropTable(
-                name: "Tags");
-
-            migrationBuilder.DropTable(
                 name: "Teams");
 
             migrationBuilder.DropTable(
                 name: "WhyWes");
+
+            migrationBuilder.DropTable(
+                name: "Blogs");
+
+            migrationBuilder.DropTable(
+                name: "Tags");
 
             migrationBuilder.DropTable(
                 name: "Contacts");
@@ -392,13 +397,7 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                 name: "Categories");
 
             migrationBuilder.DropTable(
-                name: "BlogDetailsTagsCollections");
-
-            migrationBuilder.DropTable(
                 name: "TeamJobs");
-
-            migrationBuilder.DropTable(
-                name: "Blogs");
 
             migrationBuilder.DropTable(
                 name: "Aphorisms");

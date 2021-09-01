@@ -8,10 +8,10 @@ namespace MaleFashion.eCommerce.WebUI.Models.ViewModel
 {
     public class BlogDetailsViewModel
     {
-        public Blog Blog { get; set; }
-
-        //public IEnumerable<Tag> Tags { get; set; }
-
         public IEnumerable<BlogDetailsTagsCollection> BlogDetailsTagsCollections { get; set; }
+
+        public Blog PrevBlog { get; set; }
+
+        public Blog NextBlog { get; set; }
     }
 }

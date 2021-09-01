@@ -733,6 +733,277 @@ namespace MaleFashion.eCommerce.WebUI.Models.DataContext
                         BlogId = 3,
                         TagId = 6
                     });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 4,
+                        TagId = 1
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 4,
+                        TagId = 2
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 4,
+                        TagId = 3
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 5,
+                        TagId = 4
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 5,
+                        TagId = 5
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 5,
+                        TagId = 6
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 6,
+                        TagId = 3
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 6,
+                        TagId = 4
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 6,
+                        TagId = 6
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 7,
+                        TagId = 1
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 7,
+                        TagId = 2
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 7,
+                        TagId = 3
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 8,
+                        TagId = 4
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 8,
+                        TagId = 5
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 8,
+                        TagId = 6
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 9,
+                        TagId = 3
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 9,
+                        TagId = 4
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 9,
+                        TagId = 6
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 10,
+                        TagId = 1
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 10,
+                        TagId = 2
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 10,
+                        TagId = 3
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 11,
+                        TagId = 4
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 11,
+                        TagId = 5
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 11,
+                        TagId = 6
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 12,
+                        TagId = 3
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 12,
+                        TagId = 4
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 12,
+                        TagId = 6
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 13,
+                        TagId = 1
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 13,
+                        TagId = 2
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 13,
+                        TagId = 3
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 14,
+                        TagId = 4
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 14,
+                        TagId = 5
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 14,
+                        TagId = 6
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 15,
+                        TagId = 3
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 15,
+                        TagId = 4
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 15,
+                        TagId = 6
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 16,
+                        TagId = 1
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 16,
+                        TagId = 2
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 16,
+                        TagId = 3
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 17,
+                        TagId = 4
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 17,
+                        TagId = 5
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 17,
+                        TagId = 6
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 18,
+                        TagId = 3
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 18,
+                        TagId = 4
+                    });
+
+                    db.BlogDetailsTagsCollections.Add(new BlogDetailsTagsCollection
+                    {
+                        BlogId = 18,
+                        TagId = 6
+                    });
+
                     db.SaveChanges();
                 }
 

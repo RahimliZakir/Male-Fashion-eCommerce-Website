@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MaleFashion.eCommerce.WebUI.Migrations
 {
     [DbContext(typeof(FashionDbContext))]
-    [Migration("20210830224115_Init")]
+    [Migration("20210831163004_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -209,6 +209,8 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
 
                     b.HasIndex("BlogId");
 
+                    b.HasIndex("TagId");
+
                     b.ToTable("BlogDetailsTagsCollections");
                 });
 
@@ -404,9 +406,6 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("BlogDetailsTagsCollectionId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("CreatedDate")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
@@ -422,8 +421,6 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BlogDetailsTagsCollectionId");
 
                     b.ToTable("Tags");
                 });
@@ -532,8 +529,14 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
             modelBuilder.Entity("MaleFashion.eCommerce.WebUI.Models.Entity.BlogDetailsTagsCollection", b =>
                 {
                     b.HasOne("MaleFashion.eCommerce.WebUI.Models.Entity.Blog", "Blog")
-                        .WithMany()
+                        .WithMany("BlogDetailsTagsCollections")
                         .HasForeignKey("BlogId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MaleFashion.eCommerce.WebUI.Models.Entity.Tag", "Tag")
+                        .WithMany("BlogDetailsTagsCollections")
+                        .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -554,13 +557,6 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("MaleFashion.eCommerce.WebUI.Models.Entity.Tag", b =>
-                {
-                    b.HasOne("MaleFashion.eCommerce.WebUI.Models.Entity.BlogDetailsTagsCollection", null)
-                        .WithMany("Tags")
-                        .HasForeignKey("BlogDetailsTagsCollectionId");
                 });
 
             modelBuilder.Entity("MaleFashion.eCommerce.WebUI.Models.Entity.Team", b =>

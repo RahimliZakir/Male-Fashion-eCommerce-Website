@@ -24,25 +24,22 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
         {
             BlogDetailsViewModel viewModel = new BlogDetailsViewModel();
 
-            Blog blog = db.Blogs
-                       .Include(a => a.Aphorism)
-                       .FirstOrDefault(b => b.Id.Equals(id));
-
-            viewModel.Blog = blog;
-
             viewModel.BlogDetailsTagsCollections = db.BlogDetailsTagsCollections
                                                    .Include(b => b.Blog)
-                                                   .Where(bc => bc.Blog.Id == id)
-                                                   .Include(t => t.Tags)
+                                                   .Include(b => b.Blog.Aphorism)
+                                                   .Include(t => t.Tag)
+                                                   .Where(b => b.Blog.DeletedDate == null)
+                                                   .Where(b => b.Blog.Aphorism.DeletedDate == null)
+                                                   .Where(b => b.Tag.DeletedDate == null)
+                                                   .Where(b => b.Blog.Id.Equals(id))
                                                    .ToList();
 
-            foreach (var item in viewModel.BlogDetailsTagsCollections)
-            {
-                if (db.Tags.Any(t => t.Id == item.TagId))
-                {
-                    item.Tags = db.Tags.Where(t => t.Id == item.TagId).ToList();
-                }
-            }
+            Blog prev = db.Blogs.FirstOrDefault(b => b.Id == (id - 1) && b.DeletedDate == null);
+            Blog next = db.Blogs.FirstOrDefault(b => b.Id == (id + 1) && b.DeletedDate == null);
+
+            viewModel.PrevBlog = prev;
+
+            viewModel.NextBlog = next;
 
             return View(viewModel);
         }
