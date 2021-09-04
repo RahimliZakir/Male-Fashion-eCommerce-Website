@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,5 +21,14 @@ namespace MaleFashion.eCommerce.WebUI.Models.Entity
         public string ContactDescription { get; set; }
 
         public string FooterSiteInfo { get; set; }
+
+        [NotMapped]
+        public string HeaderImgTemp { get; set; }
+
+        [NotMapped]
+        public string FooterImgTemp { get; set; }
+
+        [NotMapped]
+        public string CardImgTemp { get; set; }
     }
 }

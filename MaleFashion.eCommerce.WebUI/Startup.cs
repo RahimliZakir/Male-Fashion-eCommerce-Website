@@ -69,7 +69,7 @@ namespace MaleFashion.eCommerce.WebUI
             // My IP Blocker Middleware
             //app.UseIPBlockerMiddleware();
 
-            app.UseMonitoringMiddleware();
+            //app.UseMonitoringMiddleware();
 
             app.UseSession();
 

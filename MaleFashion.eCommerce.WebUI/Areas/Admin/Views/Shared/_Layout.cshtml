@@ -1,16 +1,21 @@
-﻿<!DOCTYPE html>
+﻿@{
+    ViewBag.Layout = "Admin";
+}
+
+<!DOCTYPE html>
 <html lang="zxx">
 
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>Directory</title>
+    <title>@ViewBag.Title | @ViewBag.Layout</title>
 
     <!-- <link rel="icon" href="admin-assets/img/favicon.png" type="image/png"> -->
     <!-- Bootstrap CSS -->
     <base href="~/" />
     <link rel="stylesheet" href="admin-assets/css/bootstrap.min.css" />
+
     <!-- themefy CSS -->
     <link rel="stylesheet" href="admin-assets/vendors/themefy_icon/themify-icons.css" />
     <!-- swiper slider CSS -->
@@ -40,12 +45,13 @@
     <link rel="stylesheet" href="admin-assets/vendors/morris/morris.css">
     <!-- metarial icon css -->
     <link rel="stylesheet" href="admin-assets/vendors/material_icon/material-icons.css" />
-
     <!-- menu css  -->
     <link rel="stylesheet" href="admin-assets/css/metisMenu.css">
     <!-- style CSS -->
+    @RenderSection("cssplugins", required: false)
     <link rel="stylesheet" href="admin-assets/css/style.css" />
     <link rel="stylesheet" href="admin-assets/css/colors/default.css" id="colorSkinCSS">
+    @RenderSection("css", required: false)
 </head>
 <body class="crm_body_bg">
 
@@ -103,17 +109,17 @@
             </li>
 
             <li class="">
-                <a class="has-arrow" href="#" aria-expanded="false">
+                <a asp-action="Index" asp-controller="AppInfos" aria-expanded="false">
                     <img src="admin-assets/img/menu-icon/4.svg" alt="">
-                    <span>Components</span>
+                    <span>App Infos</span>
                 </a>
-                <ul>
-                    <li><a href="accordion.html">Accordions</a></li>
-                    <li><a href="Scrollable.html">Scrollable</a></li>
-                    <li><a href="notification.html">Notifications</a></li>
-                    <li><a href="carousel.html">Carousel</a></li>
-                    <li><a href="Pagination.html">Pagination</a></li>
-                </ul>
+                @*<ul>
+                        <li><a href="accordion.html">Accordions</a></li>
+                        <li><a href="Scrollable.html">Scrollable</a></li>
+                        <li><a href="notification.html">Notifications</a></li>
+                        <li><a href="carousel.html">Carousel</a></li>
+                        <li><a href="Pagination.html">Pagination</a></li>
+                    </ul>*@
             </li>
 
             <li class="">
@@ -338,7 +344,7 @@
                 </div>
             </div>
         </div>
-   
+
         @RenderBody()
 
         <!-- footer part -->
@@ -474,11 +480,12 @@
     <!--/### CHAT_MESSAGE_BOX  ### -->
     <!-- footer  -->
     <!-- jquery slim -->
-    <script src="admin-assets/js/jquery-3.4.1.min.js"></script>
+    <script src="libs/jquery/jquery.min.js"></script>
     <!-- popper js -->
     <script src="admin-assets/js/popper.min.js"></script>
     <!-- bootstarp js -->
     <script src="admin-assets/js/bootstrap.min.js"></script>
+    @RenderSection("jsplugins", required: false)
     <!-- sidebar menu  -->
     <script src="admin-assets/js/metisMenu.js"></script>
     <!-- waypoints js -->
@@ -523,7 +530,6 @@
     <script src="admin-assets/vendors/apex_chart/apexcharts.js"></script>
     <script src="admin-assets/vendors/apex_chart/apex_realestate.js"></script>
     <!-- <script src="vendors/apex_chart/default.js"></script> -->
-
     <script src="admin-assets/vendors/chart_am/core.js"></script>
     <script src="admin-assets/vendors/chart_am/charts.js"></script>
     <script src="admin-assets/vendors/chart_am/animated.js"></script>
@@ -534,6 +540,7 @@
 
     <script src="admin-assets/vendors/apex_chart/bar_active_1.js"></script>
     <script src="admin-assets/vendors/apex_chart/apex_chart_list.js"></script>
+    @RenderSection("js", required: false)
 </body>
 
 </html>
