@@ -702,3 +702,57 @@ Controller: Products
 Action: Create
 Bitdi: 01:09:2021 15:16:13.074
 
+Başladı: 04:09:2021 11:21:01.926
+Host: localhost:44382
+Path: /
+Method: GET
+QueryString: 
+Controller: Home
+Action: Index
+Bitdi: 04:09:2021 11:21:02.908
+
+Başladı: 04:09:2021 11:21:04.173
+Host: localhost:44382
+Path: /assets/images/index/xcompare.png.pagespeed.ic.UIWeUFOM61.png
+Method: GET
+QueryString: 
+Bitdi: 04:09:2021 11:21:04.178
+
+Başladı: 04:09:2021 11:21:04.180
+Host: localhost:44382
+Path: /assets/images/index/xsearch.png.pagespeed.ic.y-8fLDHdJm.png
+Method: GET
+QueryString: 
+Bitdi: 04:09:2021 11:21:04.181
+
+Başladı: 04:09:2021 11:21:04.179
+Host: localhost:44382
+Path: /assets/images/index/icon/xheart.png.pagespeed.ic.eX6BmaqN_X.png
+Method: GET
+QueryString: 
+Bitdi: 04:09:2021 11:21:04.185
+
+Başladı: 04:09:2021 11:21:04.185
+Host: localhost:44382
+Path: /assets/images/index/icon/xcompare.png.pagespeed.ic.UIWeUFOM61.png
+Method: GET
+QueryString: 
+Bitdi: 04:09:2021 11:21:04.187
+
+Başladı: 04:09:2021 11:21:12.664
+Host: localhost:44382
+Path: /admin
+Method: GET
+QueryString: 
+Area: admin
+Controller: Products
+Action: Index
+Bitdi: 04:09:2021 11:21:12.906
+
+Başladı: 04:09:2021 11:21:14.864
+Host: localhost:44382
+Path: /favicon.ico
+Method: GET
+QueryString: 
+Bitdi: 04:09:2021 11:21:14.865
+
