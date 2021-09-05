@@ -18,7 +18,7 @@ namespace MaleFashion.eCommerce.WebUI.AppCode.Extensions
                 return value;
             }
 
-            return value.Substring(0, max);
+            return $"{value.Substring(0, max)}...";
         }
     }
 }

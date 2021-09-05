@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MaleFashion.eCommerce.WebUI.Models.DataContext;
 using MaleFashion.eCommerce.WebUI.Models.Entity;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
 {
@@ -14,10 +17,12 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
     public class BlogsController : Controller
     {
         private readonly FashionDbContext _context;
+        private readonly IWebHostEnvironment env;
 
-        public BlogsController(FashionDbContext context)
+        public BlogsController(FashionDbContext context, IWebHostEnvironment env)
         {
             _context = context;
+            this.env = env;
         }
 
         // GET: Admin/Blogs
@@ -49,7 +54,7 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
         // GET: Admin/Blogs/Create
         public IActionResult Create()
         {
-            ViewData["AphorismId"] = new SelectList(_context.Aphorisms, "Id", "Id");
+            ViewData["AphorismId"] = new SelectList(_context.Aphorisms, "Id", "Author");
             return View();
         }
 
@@ -58,15 +63,44 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Title,Description,ImagePath,AphorismId,AuthorImagePath,AuthorName,AuthorSurname,Id,CreatedDate,UpdatedDate,DeletedDate")] Blog blog)
+        public async Task<IActionResult> Create([Bind("Title,Description,ImagePath,AphorismId,Id")] Blog blog, IFormFile image)
         {
-            if (ModelState.IsValid)
+            if (image == null)
             {
-                _context.Add(blog);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ModelState.AddModelError("imageSelectError", "Şəkil seçməyibsiniz!");
             }
-            ViewData["AphorismId"] = new SelectList(_context.Aphorisms, "Id", "Id", blog.AphorismId);
+            else
+            {
+                var ext = Path.GetExtension(image.FileName);
+                var fileName = $"blog-{Guid.NewGuid().ToString().Replace("-", "")}{ext}";
+                var fullPath = Path.Combine(env.WebRootPath, "assets", "images", "blog", fileName);
+
+                using (var fs = new FileStream(fullPath, FileMode.Create, FileAccess.Write))
+                {
+                    image.CopyTo(fs);
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        blog.ImagePath = fileName;
+                    }
+                    catch (Exception)
+                    {
+                        if (System.IO.File.Exists(fullPath))
+                        {
+                            System.IO.File.Delete(fullPath);
+                        }
+                    }
+
+                    _context.Add(blog);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                ViewData["AphorismId"] = new SelectList(_context.Aphorisms, "Id", "Author", blog.AphorismId);
+            }
+
             return View(blog);
         }
 
@@ -83,7 +117,7 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["AphorismId"] = new SelectList(_context.Aphorisms, "Id", "Id", blog.AphorismId);
+            ViewData["AphorismId"] = new SelectList(_context.Aphorisms, "Id", "Author", blog.AphorismId);
             return View(blog);
         }
 
@@ -92,7 +126,7 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Title,Description,ImagePath,AphorismId,AuthorImagePath,AuthorName,AuthorSurname,Id,CreatedDate,UpdatedDate,DeletedDate")] Blog blog)
+        public async Task<IActionResult> Edit(int id, [Bind("Title,Description,ImageTemp,AphorismId,Id")] Blog blog, IFormFile image)
         {
             if (id != blog.Id)
             {
@@ -101,13 +135,52 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
+                string fullpath = null;
+                string currentpath = null;
+
+                var entity = await _context.Blogs.AsNoTracking().FirstOrDefaultAsync(b => b.Id == id);
+
+                if (image == null && !string.IsNullOrWhiteSpace(blog.ImageTemp))
+                {
+                    blog.ImagePath = entity.ImagePath;
+                }
+                else if (image == null)
+                {
+                    currentpath = Path.Combine(Path.Combine(env.WebRootPath, "assets", "images", "blog", entity.ImagePath));
+                }
+                else if (image != null)
+                {
+                    var ext = Path.GetExtension(image.FileName);
+                    var fileName = $"blog-{Guid.NewGuid().ToString().Replace("-", "")}{ext}";
+                    fullpath = Path.Combine(env.WebRootPath, "assets", "images", "blog", fileName);
+
+                    using (var fs = new FileStream(fullpath, FileMode.Create, FileAccess.Write))
+                    {
+                        image.CopyTo(fs);
+                    }
+
+                    blog.ImagePath = fileName;
+                }
+
                 try
                 {
                     _context.Update(blog);
+                    blog.UpdatedDate = DateTime.UtcNow.AddHours(4);
                     await _context.SaveChangesAsync();
+
+                    if (System.IO.File.Exists(currentpath) && !string.IsNullOrWhiteSpace(currentpath))
+                    {
+                        System.IO.File.Delete(currentpath);
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
+
+                    if (System.IO.File.Exists(fullpath) && !string.IsNullOrWhiteSpace(fullpath))
+                    {
+                        System.IO.File.Delete(fullpath);
+                    }
+
                     if (!BlogExists(blog.Id))
                     {
                         return NotFound();

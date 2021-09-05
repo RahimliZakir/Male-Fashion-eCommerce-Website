@@ -4,13 +4,17 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+@section cssplugins{
+    <link rel="stylesheet" href="libs/single-image/jquery.image-input.css" />
+}
 
-<h4>Blog</h4>
+<h1 class="text-center">Edit</h1>
+
+<h4 class="text-center">Blog</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
@@ -19,45 +23,21 @@
             </div>
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
+                <textarea asp-for="Description" class="form-control" id="editor"></textarea>
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ImagePath" class="control-label"></label>
-                <input asp-for="ImagePath" class="form-control" />
-                <span asp-validation-for="ImagePath" class="text-danger"></span>
+                @*<label asp-for="ImagePath" class="control-label"></label>
+                    <input asp-for="ImagePath" class="form-control" />
+                    <span asp-validation-for="ImagePath" class="text-danger"></span>*@
+                <image asp-caption="ImagePath" asp-path="/assets/images/blog/@Model.ImagePath" asp-for="image"></image>
             </div>
             <div class="form-group">
                 <label asp-for="AphorismId" class="control-label"></label>
                 <select asp-for="AphorismId" class="form-control" asp-items="ViewBag.AphorismId"></select>
                 <span asp-validation-for="AphorismId" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="AuthorImagePath" class="control-label"></label>
-                <input asp-for="AuthorImagePath" class="form-control" />
-                <span asp-validation-for="AuthorImagePath" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AuthorName" class="control-label"></label>
-                <input asp-for="AuthorName" class="form-control" />
-                <span asp-validation-for="AuthorName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="AuthorSurname" class="control-label"></label>
-                <input asp-for="AuthorSurname" class="form-control" />
-                <span asp-validation-for="AuthorSurname" class="text-danger"></span>
-            </div>
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="UpdatedDate" class="control-label"></label>
-                <input asp-for="UpdatedDate" class="form-control" />
-                <span asp-validation-for="UpdatedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DeletedDate" class="control-label"></label>
-                <input asp-for="DeletedDate" class="form-control" />
-                <span asp-validation-for="DeletedDate" class="text-danger"></span>
-            </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
@@ -65,7 +45,18 @@
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="mb-5 ms-2">
+    <a asp-action="Index" class="btn btn-danger">Back to List</a>
 </div>
 
+@section jsplugins{
+    <script src="libs/single-image/jquery.image-input.js"></script>
+    <script src="libs/ckeditor5/ckeditor.min.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+}

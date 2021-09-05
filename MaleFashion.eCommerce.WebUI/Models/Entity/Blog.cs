@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -24,5 +25,9 @@ namespace MaleFashion.eCommerce.WebUI.Models.Entity
         public virtual Aphorism Aphorism { get; set; }
 
         public virtual ICollection<BlogDetailsTagsCollection> BlogDetailsTagsCollections { get; set; }
+
+        [NotMapped]
+
+        public string ImageTemp { get; set; }
     }
 }
