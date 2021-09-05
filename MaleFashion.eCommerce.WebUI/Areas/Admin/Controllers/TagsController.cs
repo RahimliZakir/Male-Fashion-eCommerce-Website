@@ -99,6 +99,7 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
                 try
                 {
                     _context.Update(tag);
+                    tag.UpdatedDate = DateTime.UtcNow.AddHours(4);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
