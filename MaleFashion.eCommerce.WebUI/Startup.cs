@@ -17,6 +17,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -60,7 +61,7 @@ namespace MaleFashion.eCommerce.WebUI
                 cfg.Filters.Add(new AuthorizeFilter(policy));
             })
             .AddNewtonsoftJson(options =>
-            options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore); ;
+            options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore); ;
 
 
             services.AddDbContext<FashionDbContext>(cfg =>
@@ -105,7 +106,8 @@ namespace MaleFashion.eCommerce.WebUI
             });
 
             services.AddIdentity<AppUser, AppRole>()
-                    .AddEntityFrameworkStores<FashionDbContext>();
+                    .AddEntityFrameworkStores<FashionDbContext>()
+                    .AddDefaultTokenProviders();
 
             services.AddScoped<UserManager<AppUser>>()
                      .AddScoped<RoleManager<AppRole>>()
@@ -154,9 +156,13 @@ namespace MaleFashion.eCommerce.WebUI
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapAreaControllerRoute(name: "adminAra",
-                    areaName: "admin",
-                    pattern: "admin/{controller=Products}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(name: "SignInRoute",
+                    pattern: "signin.html",
+                    defaults: new
+                    {
+                        action = "SignIn",
+                        controller = "Account"
+                    });
 
                 endpoints.MapControllerRoute(name: "RegisterRoute",
                     pattern: "register.html",
@@ -166,21 +172,17 @@ namespace MaleFashion.eCommerce.WebUI
                         controller = "Account"
                     });
 
-                endpoints.MapControllerRoute(name: "SignInRoute",
-                    pattern: "signin.html",
-                    defaults: new
-                    {
-                        action = "SignIn",
-                        controller = "Account"
-                    });
-
                 endpoints.MapControllerRoute(name: "AccessDeniedRoute",
                     pattern: "accessdenied.html",
                     defaults: new
                     {
-                        action = "AccessDeniedRoute",
+                        action = "AccessDenied",
                         controller = "Account"
                     });
+
+                endpoints.MapAreaControllerRoute(name: "adminArea",
+                    areaName: "admin",
+                    pattern: "admin/{controller=Products}/{action=Index}/{id?}");
 
                 endpoints.MapHub<ConversationHub>("/chat");
 
