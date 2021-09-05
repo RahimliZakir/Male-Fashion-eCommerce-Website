@@ -84,15 +84,13 @@
             <li class="">
                 <a class="has-arrow" href="#" aria-expanded="false">
                     <img src="admin-assets/img/menu-icon/2.svg" alt="">
-                    <span>Pages</span>
+                    <span>Blogs Tags Collection</span>
                 </a>
                 <ul>
-                    <li><a href="login.html">Login</a></li>
-                    <li><a href="resister.html">Register</a></li>
-                    <li><a href="error_400.html">Error 404</a></li>
-                    <li><a href="error_500.html">Error 500</a></li>
-                    <li><a href="forgot_pass.html">Forgot Password</a></li>
-                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a asp-action="Index" asp-controller="Blogs">Blogs</a></li>
+                    <li><a asp-action="Index" asp-controller="Aphorisms">Aphorisms</a></li>
+                    <li><a asp-action="Index" asp-controller="Tags">Tags</a></li>
+                    <li><a asp-action="Index" asp-controller="BlogDetailsTagsCollections">Collection</a></li>
                 </ul>
             </li>
 
