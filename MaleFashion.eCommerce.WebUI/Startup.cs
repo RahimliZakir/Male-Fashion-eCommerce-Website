@@ -1,10 +1,16 @@
-using MaleFashion.eCommerce.WebUI.AppCode.BinderProviders;
+﻿using MaleFashion.eCommerce.WebUI.AppCode.BinderProviders;
 using MaleFashion.eCommerce.WebUI.AppCode.Hubs;
 using MaleFashion.eCommerce.WebUI.AppCode.Middlewares;
+using MaleFashion.eCommerce.WebUI.AppCode.Providers;
 using MaleFashion.eCommerce.WebUI.Models.DataContext;
+using MaleFashion.eCommerce.WebUI.Models.Entity.Membership;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.EntityFrameworkCore;
@@ -46,15 +52,74 @@ namespace MaleFashion.eCommerce.WebUI
             services.AddControllersWithViews(cfg =>
             {
                 cfg.ModelBinderProviders.Insert(0, new BooleanBinderProvider());
+
+                var policy = new AuthorizationPolicyBuilder()
+                                 .RequireAuthenticatedUser()
+                                 .Build();
+
+                cfg.Filters.Add(new AuthorizeFilter(policy));
             })
             .AddNewtonsoftJson(options =>
             options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore); ;
 
 
             services.AddDbContext<FashionDbContext>(cfg =>
-        {
-            cfg.UseSqlServer(conf.GetConnectionString("cString"));
-        });
+            {
+                cfg.UseSqlServer(conf.GetConnectionString("cString"));
+            });
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                // şifrə tənzimləmələri.
+                options.Password.RequireDigit = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+                options.Password.RequiredLength = 8;
+                options.Password.RequiredUniqueChars = 1;
+
+                // Kilidləmə tənzimləri.
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(13);
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.AllowedForNewUsers = true;
+
+                // istifadəçi adı tənzimləri.
+                options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@";
+                options.User.RequireUniqueEmail = true;
+            });
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                // Cookie settings
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+
+                options.LoginPath = "/signin.html";
+                options.AccessDeniedPath = "/accessdenied.html";
+                options.SlidingExpiration = true;
+
+                // call cookie
+                options.Cookie.Name = ".MaleFashion.eCommerce.Cookie.Analyisers";
+                // against cross-site attacks (even if user b has the cookie information of user a, user b cannot do anything, because location)
+                options.Cookie.SameSite = SameSiteMode.Strict;
+            });
+
+            services.AddIdentity<AppUser, AppRole>()
+                    .AddEntityFrameworkStores<FashionDbContext>();
+
+            services.AddScoped<UserManager<AppUser>>()
+                     .AddScoped<RoleManager<AppRole>>()
+                     .AddScoped<SignInManager<AppUser>>();
+
+            services.AddScoped<IClaimsTransformation, ClaimsTransformationProvider>();
+
+            //services.AddAuthorization(options =>
+            //{
+            //    options.AddPolicy("", cfg =>
+            //    {
+            //        cfg.RequireClaim("", "1");
+            //    });
+            //});
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -76,6 +141,9 @@ namespace MaleFashion.eCommerce.WebUI
             app.DataSeed();
 
             app.UseRouting();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

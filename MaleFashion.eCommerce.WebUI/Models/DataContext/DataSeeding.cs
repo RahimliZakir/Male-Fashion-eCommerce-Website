@@ -1,5 +1,8 @@
 ﻿using MaleFashion.eCommerce.WebUI.Models.Entity;
+using MaleFashion.eCommerce.WebUI.Models.Entity.Membership;
+using MaleFashion.eCommerce.WebUI.Models.Entity.Membership.Credentials;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -16,8 +19,74 @@ namespace MaleFashion.eCommerce.WebUI.Models.DataContext
             using (IServiceScope scope = app.ApplicationServices.CreateScope())
             {
                 FashionDbContext db = scope.ServiceProvider.GetRequiredService<FashionDbContext>();
+                RoleManager<AppRole> roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<AppRole>>();
+                UserManager<AppUser> userManager = scope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
 
+                // Auto Migrate (Update) Database
                 db.Database.Migrate();
+
+                AppRole roleResult = roleManager.FindByNameAsync("Admin").Result;
+
+                //IDENTITY DB AUTO SEED
+                if (roleResult == null)
+                {
+                    roleResult = new AppRole
+                    {
+                        Name = "Admin"
+                    };
+
+                    IdentityResult roleResponse = roleManager.CreateAsync(roleResult).Result;
+
+                    if (roleResponse.Succeeded)
+                    {
+                        AppUser userResult = userManager.FindByNameAsync("rahimlizakir").Result;
+
+                        if (userResult == null)
+                        {
+                            userResult = new AppUser
+                            {
+                                UserName = "rahimlizakir",
+                                Email = "zakirer@code.edu.az"
+                            };
+
+                            IdentityResult userResponse = userManager.CreateAsync(userResult, AdminCredential.Pick()).Result;
+
+                            if (userResponse.Succeeded)
+                            {
+                                var roleUserResult = userManager.AddToRoleAsync(userResult, userResult.Name).Result;
+                            }
+                        }
+                        else
+                        {
+                            var roleUserResult = userManager.AddToRoleAsync(userResult, userResult.Name).Result;
+                        }
+                    }
+                }
+                else
+                {
+                    AppUser userResult = userManager.FindByNameAsync("rahimlizakir").Result;
+
+                    if (userResult == null)
+                    {
+                        userResult = new AppUser
+                        {
+                            UserName = "rahimlizakir",
+                            Email = "zakirer@code.edu.az"
+                        };
+
+                        IdentityResult userResponse = userManager.CreateAsync(userResult, AdminCredential.Pick()).Result;
+
+                        if (userResponse.Succeeded)
+                        {
+                            var roleUserResult = userManager.AddToRoleAsync(userResult, userResult.Name).Result;
+                        }
+                    }
+                    else
+                    {
+                        var roleUserResult = userManager.AddToRoleAsync(userResult, userResult.Name).Result;
+                    }
+                }
+                //IDENTITY DB AUTO SEED
 
                 if (!db.AppInfos.Any())
                 {
