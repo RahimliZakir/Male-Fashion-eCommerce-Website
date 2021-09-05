@@ -113,13 +113,20 @@ namespace MaleFashion.eCommerce.WebUI
 
             services.AddScoped<IClaimsTransformation, ClaimsTransformationProvider>();
 
-            //services.AddAuthorization(options =>
-            //{
-            //    options.AddPolicy("", cfg =>
-            //    {
-            //        cfg.RequireClaim("", "1");
-            //    });
-            //});
+            services.AddAuthentication();
+            //-------------------------------------------
+            services.AddAuthorization(options =>
+            {
+                string[] principals = Program.principals;
+
+                foreach (string principal in principals)
+                {
+                    options.AddPolicy(principal, cfg =>
+                    {
+                        cfg.RequireClaim(principal, "1");
+                    });
+                }
+            });
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -150,6 +157,30 @@ namespace MaleFashion.eCommerce.WebUI
                 endpoints.MapAreaControllerRoute(name: "adminAra",
                     areaName: "admin",
                     pattern: "admin/{controller=Products}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(name: "RegisterRoute",
+                    pattern: "register.html",
+                    defaults: new
+                    {
+                        action = "Register",
+                        controller = "Account"
+                    });
+
+                endpoints.MapControllerRoute(name: "SignInRoute",
+                    pattern: "signin.html",
+                    defaults: new
+                    {
+                        action = "SignIn",
+                        controller = "Account"
+                    });
+
+                endpoints.MapControllerRoute(name: "AccessDeniedRoute",
+                    pattern: "accessdenied.html",
+                    defaults: new
+                    {
+                        action = "AccessDeniedRoute",
+                        controller = "Account"
+                    });
 
                 endpoints.MapHub<ConversationHub>("/chat");
 

@@ -53,12 +53,12 @@ namespace MaleFashion.eCommerce.WebUI.Models.DataContext
 
                             if (userResponse.Succeeded)
                             {
-                                var roleUserResult = userManager.AddToRoleAsync(userResult, userResult.Name).Result;
+                                var roleUserResult = userManager.AddToRoleAsync(userResult, roleResult.Name).Result;
                             }
                         }
                         else
                         {
-                            var roleUserResult = userManager.AddToRoleAsync(userResult, userResult.Name).Result;
+                            var roleUserResult = userManager.AddToRoleAsync(userResult, roleResult.Name).Result;
                         }
                     }
                 }
@@ -78,12 +78,12 @@ namespace MaleFashion.eCommerce.WebUI.Models.DataContext
 
                         if (userResponse.Succeeded)
                         {
-                            var roleUserResult = userManager.AddToRoleAsync(userResult, userResult.Name).Result;
+                            var roleUserResult = userManager.AddToRoleAsync(userResult, roleResult.Name).Result;
                         }
                     }
                     else
                     {
-                        var roleUserResult = userManager.AddToRoleAsync(userResult, userResult.Name).Result;
+                        var roleUserResult = userManager.AddToRoleAsync(userResult, roleResult.Name).Result;
                     }
                 }
                 //IDENTITY DB AUTO SEED
