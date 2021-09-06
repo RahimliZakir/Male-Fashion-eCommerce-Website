@@ -44,6 +44,25 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
             return View(aphorism);
         }
 
+        [HttpPost]
+        public IActionResult Index(string author, string content)
+        {
+            var query = _context.Aphorisms.AsQueryable();
+
+            if (author != null)
+            {
+                query = query.Where(a => a.Author.Contains(author));
+            }
+            else if (content != null)
+            {
+                query = query.Where(a => a.Content.Contains(content));
+            }
+
+            IEnumerable<Aphorism> data = query.ToList();
+
+            return View(data);
+        }
+
         // GET: Admin/Aphorisms/Create
         public IActionResult Create()
         {
