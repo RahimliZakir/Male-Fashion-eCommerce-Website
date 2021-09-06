@@ -138,7 +138,10 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
 
         // POST: Admin/Tags/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        //--------------------------
+        // For AJAX
+        //--------------------------
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var tag = await _context.Tags.FindAsync(id);
