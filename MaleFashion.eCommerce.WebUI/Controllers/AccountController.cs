@@ -7,7 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 
 namespace MaleFashion.eCommerce.WebUI.Controllers
 {
@@ -15,13 +17,13 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
     {
         private readonly FashionDbContext db;
         private readonly UserManager<AppUser> userManager;
-        private readonly RoleManager<AppRole> roleManager;
+        private readonly SignInManager<AppUser> signInManager;
 
-        public AccountController(FashionDbContext db, UserManager<AppUser> userManager, RoleManager<AppRole> roleManager)
+        public AccountController(FashionDbContext db, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
             this.db = db;
             this.userManager = userManager;
-            this.roleManager = roleManager;
+            this.signInManager = signInManager;
         }
 
         [AllowAnonymous]
@@ -31,13 +33,43 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //[AllowAnonymous]
-        //public IActionResult SignIn(SignInFormModel formModel)
-        //{
+        [HttpPost]
+        [AllowAnonymous]
+        async public Task<IActionResult> SignIn(SignInFormModel formModel)
+        {
+            Regex pattern = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
 
-        //    return View();
-        //}
+            AppUser userResult = null;
+
+            if (pattern.IsMatch(formModel.Username))
+            {
+                userResult = await userManager.FindByEmailAsync(formModel.Username);
+            }
+            else
+            {
+                userResult = await userManager.FindByNameAsync(formModel.Username);
+            }
+
+            if (userResult != null)
+            {
+                SignInResult signInResult = await signInManager.PasswordSignInAsync(userResult, formModel.Password, false, false);
+
+                if (signInResult.Succeeded)
+                {
+                    return RedirectToAction(nameof(Index), "Home");
+                }
+                else
+                {
+                    ModelState.AddModelError("SignError", "İstifadəçi adı və ya şifrə səhvdir.");
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("SignError", "İstifadəçi adı və ya şifrə səhvdir.");
+            }
+
+            return View();
+        }
 
         [AllowAnonymous]
         public IActionResult Register()
@@ -46,13 +78,32 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
             return View();
         }
 
-        //[HttpPost]
-        //[AllowAnonymous]
-        //public IActionResult Register(RegisterFormModel formModel)
-        //{
+        [HttpPost]
+        [AllowAnonymous]
+        async public Task<IActionResult> Register(RegisterFormModel formModel)
+        {
+            var appUser = new AppUser
+            {
+                UserName = formModel.Username,
+                Email = formModel.Email
+            };
 
-        //    return View();
-        //}
+            var appResponse = await userManager.CreateAsync(appUser, formModel.Password);
+
+            if (appResponse.Succeeded)
+            {
+                return Redirect(@"\signin.html");
+            }
+            else
+            {
+                foreach (IdentityError error in appResponse.Errors)
+                {
+                    ModelState.AddModelError("RegisterError", error.Description);
+                }
+            }
+
+            return View();
+        }
 
         [AllowAnonymous]
         public IActionResult AccessDenied()
