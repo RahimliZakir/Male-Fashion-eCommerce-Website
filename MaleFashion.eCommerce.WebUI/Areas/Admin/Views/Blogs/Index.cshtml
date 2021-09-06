@@ -4,6 +4,18 @@
     ViewData["Title"] = "Index";
 }
 
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-4" style="border: 1px solid cadetblue; padding: 35px; border-radius: 5px;">
+            <h3>Search for Blogs (AJAX - Fast Search Without Reloading).</h3>
+            <div class="form-group">
+                <label for="searchText">Search: </label>
+                <input class="form-control" type="text" name="searchText" id="searchText" />
+            </div>
+        </div>
+    </div>
+</div>
+
 <h1 class="text-center">Index</h1>
 
 <p>
@@ -89,3 +101,83 @@
         }
     </tbody>
 </table>
+
+@section js{
+    <script>
+        let searchText = $('#searchText');
+        let tbody = $('tbody');
+
+        $(searchText).keyup((e) => {
+            let searchData = $(e.currentTarget).map((index, item) => {
+                let searchObj = {
+                    name: item.name,
+                    value: $(item).val()
+                }
+
+                return searchObj;
+            }).toArray();
+
+            let obj = {};
+
+            $.each(searchData, function (index, item) {
+                obj[item.name] = item.value;
+            });
+
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Index")',
+                data: obj,
+                success: function (successMsg) {
+                    /* console.log(successMsg);*/
+                    $(tbody).html('');
+
+                    for (let data of successMsg) {
+                        let dataText = `<tr>
+                <td>
+                    ${data.title}
+                </td>
+                <td>
+                    ${data.description.substr(100)}...
+                </td>
+                <td>
+                    <div class="img-div" style="width: 135%;">
+                        <img style="width: 100%;" src="assets/images/blog/${data.imagePath}" />
+                    </div>
+                </td>
+                <td>
+                    <div class="img-div" style="width: 62%;">
+                        <img src="assets/images/author/${data.authorImagePath}" style="width:100%;" />
+                    </div>
+                </td>
+                <td>
+                    ${data.authorName}
+                </td>
+                <td>
+                    ${data.authorSurname}
+                </td>
+                <td>
+                    ${data.aphorism.author}
+                </td>
+                <td>
+                    ${data.createdDate}
+                </td>
+                <td>
+                    ${data.updatedDate == null ? '' : data.updatedDate}
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="${data.id}" class="btn btn-warning" style="width: 100px;">Edit</a>
+                    <a asp-action="Details" asp-route-id="${data.id}" class="btn btn-primary" style="width: 100px;">Details</a>
+                    <a asp-action="Delete" asp-route-id="${data.id}" class="btn btn-danger" style="width: 100px;">Delete</a>
+                </td>
+            </tr>`;
+
+                        $(tbody).append(dataText);
+                    }
+                },
+                error: function (errorMsg) {
+                    console.log(errorMsg);
+                }
+            });
+        });
+    </script>
+}

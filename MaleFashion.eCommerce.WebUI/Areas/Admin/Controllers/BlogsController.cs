@@ -10,6 +10,7 @@ using MaleFashion.eCommerce.WebUI.Models.Entity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using MaleFashion.eCommerce.WebUI.AppCode.Extensions;
 
 namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
 {
@@ -30,6 +31,44 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
         {
             var fashionDbContext = _context.Blogs.Include(b => b.Aphorism);
             return View(await fashionDbContext.ToListAsync());
+        }
+
+        [HttpPost]
+        async public Task<IActionResult> Index(string searchText)
+        {
+            var query = _context.Blogs
+                        .Include(a => a.Aphorism)
+                        .AsQueryable();
+
+            if (searchText != null && await _context.Blogs.AnyAsync(b => b.Title.Contains(searchText)))
+            {
+                query = query.Where(b => b.Title.Contains(searchText));
+            }
+            else if (searchText != null && await _context.Blogs.AnyAsync(b => b.Description.Contains(searchText)))
+            {
+                query = query.Where(b => b.Description.Contains(searchText));
+            }
+            else if (searchText != null && await _context.Blogs.AnyAsync(b => b.AuthorName.Contains(searchText)))
+            {
+                query = query.Where(b => b.AuthorName.Contains(searchText));
+            }
+            else if (searchText != null && await _context.Blogs.AnyAsync(b => b.AuthorSurname.Contains(searchText)))
+            {
+                query = query.Where(b => b.AuthorSurname.Contains(searchText));
+            }
+            else if (searchText != null && await _context.Blogs.AnyAsync(b => b.Aphorism.Author.Contains(searchText)))
+            {
+                query = query.Where(b => b.Aphorism.Author.Contains(searchText));
+            }
+
+            var data = query.ToList();
+
+            if (Request.IsAjaxRequest())
+            {
+                return Json(data);
+            }
+
+            return View(data);
         }
 
         // GET: Admin/Blogs/Details/5
