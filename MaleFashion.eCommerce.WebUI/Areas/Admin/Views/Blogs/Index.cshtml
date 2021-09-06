@@ -123,21 +123,24 @@
                 obj[item.name] = item.value;
             });
 
+            let pattern = new RegExp(/<[^>]*>/gi);
+
             $.ajax({
                 type: 'POST',
                 url: '@Url.Action("Index")',
                 data: obj,
                 success: function (successMsg) {
-                    /* console.log(successMsg);*/
+                     console.log(successMsg);
                     $(tbody).html('');
 
-                    for (let data of successMsg) {
-                        let dataText = `<tr>
+                    if (successMsg!=null) {
+                        for (let data of successMsg) {
+                            let dataText = `<tr>
                 <td>
                     ${data.title}
                 </td>
                 <td>
-                    ${data.description.substr(100)}...
+                    ${data.description.replaceAll(pattern, "").substr(0, 100)}...
                 </td>
                 <td>
                     <div class="img-div" style="width: 135%;">
@@ -165,13 +168,14 @@
                     ${data.updatedDate == null ? '' : data.updatedDate}
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="${data.id}" class="btn btn-warning" style="width: 100px;">Edit</a>
-                    <a asp-action="Details" asp-route-id="${data.id}" class="btn btn-primary" style="width: 100px;">Details</a>
-                    <a asp-action="Delete" asp-route-id="${data.id}" class="btn btn-danger" style="width: 100px;">Delete</a>
+                    <a href="/admin/blogs/edit/${data.id}" class="btn btn-warning" style="width: 100px;">Edit</a>
+                    <a href="/admin/blogs/details/${data.id}" class="btn btn-primary" style="width: 100px;">Details</a>
+                    <a href="/admin/blogs/delete/${data.id}" class="btn btn-danger" style="width: 100px;">Delete</a>
                 </td>
             </tr>`;
 
-                        $(tbody).append(dataText);
+                            $(tbody).append(dataText);
+                        }
                     }
                 },
                 error: function (errorMsg) {
