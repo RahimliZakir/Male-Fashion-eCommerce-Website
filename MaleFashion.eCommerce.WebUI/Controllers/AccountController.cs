@@ -31,13 +31,13 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
             return View();
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-        public IActionResult SignIn(SignInFormModel formModel)
-        {
+        //[HttpPost]
+        //[AllowAnonymous]
+        //public IActionResult SignIn(SignInFormModel formModel)
+        //{
 
-            return View();
-        }
+        //    return View();
+        //}
 
         [AllowAnonymous]
         public IActionResult Register()
@@ -46,13 +46,13 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
             return View();
         }
 
-        [HttpPost]
-        [AllowAnonymous]
-        public IActionResult Register(RegisterFormModel formModel)
-        {
+        //[HttpPost]
+        //[AllowAnonymous]
+        //public IActionResult Register(RegisterFormModel formModel)
+        //{
 
-            return View();
-        }
+        //    return View();
+        //}
 
         [AllowAnonymous]
         public IActionResult AccessDenied()

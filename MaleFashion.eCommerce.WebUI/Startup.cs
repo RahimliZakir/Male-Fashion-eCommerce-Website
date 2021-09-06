@@ -93,7 +93,7 @@ namespace MaleFashion.eCommerce.WebUI
             {
                 // Cookie settings
                 options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(13);
 
                 options.LoginPath = "/signin.html";
                 options.AccessDeniedPath = "/accessdenied.html";
@@ -160,24 +160,24 @@ namespace MaleFashion.eCommerce.WebUI
                     pattern: "signin.html",
                     defaults: new
                     {
-                        action = "SignIn",
-                        controller = "Account"
+                        controller = "Account",
+                        action = "SignIn"
                     });
 
                 endpoints.MapControllerRoute(name: "RegisterRoute",
                     pattern: "register.html",
                     defaults: new
                     {
-                        action = "Register",
-                        controller = "Account"
+                        controller = "Account",
+                        action = "Register"
                     });
 
                 endpoints.MapControllerRoute(name: "AccessDeniedRoute",
                     pattern: "accessdenied.html",
                     defaults: new
                     {
-                        action = "AccessDenied",
-                        controller = "Account"
+                        controller = "Account",
+                        action = "AccessDenied"
                     });
 
                 endpoints.MapAreaControllerRoute(name: "adminArea",
@@ -191,8 +191,8 @@ namespace MaleFashion.eCommerce.WebUI
                     pattern: "blog.html",
                     defaults: new
                     {
-                        action = "Index",
-                        controller = "Blog"
+                        controller = "Blog",
+                        action = "Index"
                     });
 
                 // Route Constraints

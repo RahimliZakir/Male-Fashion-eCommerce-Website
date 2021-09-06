@@ -35,20 +35,27 @@ using MaleFashion.eCommerce.WebUI.Models.ViewModel;
 #nullable disable
 #nullable restore
 #line 4 "C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\Views\_ViewImports.cshtml"
-using MaleFashion.eCommerce.WebUI.AppCode.Extensions;
+using MaleFashion.eCommerce.WebUI.Models.FormModel;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 5 "C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\Views\_ViewImports.cshtml"
+using MaleFashion.eCommerce.WebUI.AppCode.Extensions;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\Views\_ViewImports.cshtml"
 using Resources;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"2005da3975ea4bd7b9a88ad5481129589a6b526b", @"/Views/BlogDetails/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7c1cb8b7b50af213634b35416d88f7f59c905000", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"91f5aa836f8c0ef8267c12c0d2c03cf07ad566bb", @"/Views/_ViewImports.cshtml")]
     public class Views_BlogDetails_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<BlogDetailsViewModel>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Index", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -296,7 +303,7 @@ WriteAttributeValue("", 3907, Model.BlogDetailsTagsCollections.FirstOrDefault().
 #line hidden
 #nullable disable
             WriteLiteral("                                <div class=\"col-lg-6 col-md-6 col-sm-6\" style=\"min-height: 400px;\">\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2005da3975ea4bd7b9a88ad5481129589a6b526b17261", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2005da3975ea4bd7b9a88ad5481129589a6b526b17543", async() => {
                 WriteLiteral("\r\n                                        <p><span class=\"arrow_left\"></span> Previous Pod</p>\r\n                                        <h5>\r\n                                            ");
 #nullable restore
 #line 113 "C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\Views\BlogDetails\Index.cshtml"
@@ -352,7 +359,7 @@ WriteAttributeValue("", 3907, Model.BlogDetailsTagsCollections.FirstOrDefault().
 #line hidden
 #nullable disable
             WriteLiteral("                                <div class=\"col-lg-6 col-md-6 col-sm-6\">\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2005da3975ea4bd7b9a88ad5481129589a6b526b21012", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2005da3975ea4bd7b9a88ad5481129589a6b526b21294", async() => {
                 WriteLiteral("\r\n                                        <p>Next Pod <span class=\"arrow_right\"></span></p>\r\n                                        <h5>");
 #nullable restore
 #line 127 "C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\Views\BlogDetails\Index.cshtml"
@@ -400,7 +407,7 @@ WriteAttributeValue("", 3907, Model.BlogDetailsTagsCollections.FirstOrDefault().
 #line hidden
 #nullable disable
             WriteLiteral("                        </div>\r\n                    </div>\r\n                    <div data-aos=\"fade-up\" class=\"blog__details__comment mb-2\">\r\n                        <h4>Leave A Comment</h4>\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2005da3975ea4bd7b9a88ad5481129589a6b526b24457", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2005da3975ea4bd7b9a88ad5481129589a6b526b24739", async() => {
                 WriteLiteral(@"
                             <div class=""row"">
                                 <!-- <div class=""col-lg-4 col-md-4"">
@@ -457,7 +464,7 @@ WriteAttributeValue("", 3907, Model.BlogDetailsTagsCollections.FirstOrDefault().
                                     </div>
                                     <div class=""reply-side mt-2"">
                                         ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2005da3975ea4bd7b9a88ad5481129589a6b526b28225", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2005da3975ea4bd7b9a88ad5481129589a6b526b28507", async() => {
                 WriteLiteral(@"
                                             <div class=""form-group"">
                                                 <label for=""reply-content"">
@@ -529,7 +536,7 @@ WriteAttributeValue("", 3907, Model.BlogDetailsTagsCollections.FirstOrDefault().
                                     </div>
                                     <div class=""reply-side mt-2"">
                                         ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2005da3975ea4bd7b9a88ad5481129589a6b526b33365", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2005da3975ea4bd7b9a88ad5481129589a6b526b33647", async() => {
                 WriteLiteral(@"
                                             <div class=""form-group"">
                                                 <label for=""reply-content"">
@@ -602,7 +609,7 @@ WriteAttributeValue("", 3907, Model.BlogDetailsTagsCollections.FirstOrDefault().
                                     </div>
                                     <div class=""reply-side mt-2"">
                                         ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2005da3975ea4bd7b9a88ad5481129589a6b526b38585", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2005da3975ea4bd7b9a88ad5481129589a6b526b38867", async() => {
                 WriteLiteral(@"
                                             <div class=""form-group"">
                                                 <label for=""reply-content"">
@@ -678,7 +685,7 @@ WriteAttributeValue("", 3907, Model.BlogDetailsTagsCollections.FirstOrDefault().
                                     </div>
                                     <div class=""reply-side mt-2"">
                                         ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2005da3975ea4bd7b9a88ad5481129589a6b526b44082", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "2005da3975ea4bd7b9a88ad5481129589a6b526b44364", async() => {
                 WriteLiteral(@"
                                             <div class=""form-group"">
                                                 <label for=""reply-content"">
