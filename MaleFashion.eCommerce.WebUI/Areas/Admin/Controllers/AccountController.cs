@@ -51,6 +51,7 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
 
         //----------------RESET-PASSWORD----------------
 
+        [AllowAnonymous]
         public IActionResult ChangeOrForgotPassword()
         {
 
@@ -58,6 +59,7 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         async public Task<IActionResult> ChangeOrForgotPassword(ChangeOrForgotPasswordFormModel formModel)
         {
             string email = formModel.Email;
@@ -101,6 +103,7 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public IActionResult ChangeOrForgotPasswordSent()
         {
 
