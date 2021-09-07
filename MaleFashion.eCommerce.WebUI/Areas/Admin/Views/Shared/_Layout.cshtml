@@ -55,6 +55,11 @@
     <!-- style CSS -->
     @RenderSection("cssplugins", required: false)
     <link rel="stylesheet" href="admin-assets/css/style.css" />
+    <style>
+        .sidebar #sidebar_menu > li.mm-active > a::after {
+            display: none;
+        }
+    </style>
     <link rel="stylesheet" href="admin-assets/css/colors/default.css" id="colorSkinCSS">
     @RenderSection("css", required: false)
 </head>
@@ -74,10 +79,10 @@
         </div>
         <ul id="sidebar_menu">
             <li class="mm-active">
-                <a class="has-arrow" style="cursor: pointer;" aria-expanded="false">
+                <a class="has-arrow" asp-action="Index" asp-controller="PersonalSide" aria-expanded="false">
                     <!-- <i class="fas fa-th"></i> -->
                     <img src="admin-assets/img/menu-icon/dashboard.svg" alt="">
-                    <span>Dashboard</span>
+                    <span>Personal Side</span>
                 </a>
             </li>
             <li class="">
@@ -344,8 +349,7 @@
                                         }
                                     </div>
                                     <div class="profile_info_details">
-                                        <a href="#">My Profile </a>
-                                        <a href="#">Settings</a>
+                                        <a asp-action="Index" asp-controller="PersonalSide">My Profile </a>
                                         <a asp-action="SignOut" asp-controller="Account">Log Out </a>
                                     </div>
                                 </div>

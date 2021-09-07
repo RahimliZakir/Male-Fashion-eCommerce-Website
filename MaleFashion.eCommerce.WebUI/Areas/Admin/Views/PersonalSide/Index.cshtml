@@ -3,5 +3,41 @@
     ViewData["Title"] = "Personal Side";
 }
 
-<h1>Index</h1>
+@section css{
+    <style>
+        li {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+    </style>
+}
+
+<div class="root">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 d-flex flex-column align-items-center">
+                <div class="img-div" style="width: 25%;">
+                    <img src="admin-assets/img/users/default-img/121-1219160_small-facebook-no-profile-picture-girl.png" style="width: 100%;" />
+                </div>
+                <div class="name-surname d-flex">
+                    <h4>Zakir</h4>
+                    <h4 style="margin-left: 7.5px;">Rəhimli</h4>
+                </div>
+                <ul class="text-center">
+                    <li>Id: 1</li>
+                    <li>Username: rahimlizakir</li>
+                    <li>Email: zakirer@code.edu.az</li>
+                    <li>Age: 19</li>
+                    <li>Job Name: Developer</li>
+                    <li>City: Baku, Azerbaijan</li>
+                </ul>
+                <div class="tools-group my-5">
+                    <a class="btn btn-warning">Məlumatları yenilə</a>
+                    <a class="btn btn-success">Maili təsdiqə</a>
+                    <a asp-action="ChangeOrForgotPassword" asp-controller="Account" class="btn btn-info">Şifrəni dəyiş</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
