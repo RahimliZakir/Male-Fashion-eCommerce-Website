@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -33,6 +34,8 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
             this.conf = conf;
         }
 
+        //----------------SIGN-OUT----------------
+
         async public Task<IActionResult> SignOut()
         {
             await signInManager.SignOutAsync();
@@ -42,6 +45,10 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
                 area = ""
             });
         }
+
+        //----------------SIGN-OUT----------------
+
+        //----------------RESET-PASSWORD----------------
 
         public IActionResult ChangeOrForgotPassword()
         {
@@ -152,5 +159,94 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
 
             return View();
         }
+
+        //----------------RESET-PASSWORD----------------
+
+        //----------------CONFIRM-EMAIL----------------
+
+        public IActionResult ConfirmEmail()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        async public Task<IActionResult> ConfirmEmail(ConfirmEmailFormModel formModel)
+        {
+            string email = formModel.Email;
+
+            AppUser user = await userManager.FindByEmailAsync(email);
+
+            if (user != null)
+            {
+                string token = await userManager.GenerateEmailConfirmationTokenAsync(user);
+
+                string confirmEmailLink = Url.Action("SetEmailConfirmed", "Account", new
+                {
+                    email = email,
+                    token = token
+                }, Request.Scheme);
+
+                //using (var sw = new StreamWriter("token.txt"))
+                //{
+                //    sw.WriteLine(confirmEmailLink);
+                //}
+
+                SmtpClient client = new SmtpClient()
+                {
+                    Host = "smtp.mail.ru",
+                    Port = 25,
+                    EnableSsl = true
+                };
+                client.Credentials = new NetworkCredential(conf["SubsSMTP:FromMail"], conf["SubsSMTP:Pwd"]);
+
+                MailMessage message = new MailMessage(conf["SubsSMTP:FromMail"], email);
+                message.Subject = "Email təsdiqləmə linki.";
+                message.Body = $"<a href='{confirmEmailLink}'>Bura</a> klik edərək email təsdiqləmə pəncərəsinə yönələ bilərsiniz.";
+                client.Send(message);
+
+                return RedirectToAction("ConfirmEmailSent", "Account");
+            }
+            else
+            {
+                TempData["ConfirmEmailError"] = "Belə bir istifadəçi yoxdur!";
+            }
+
+            return View();
+        }
+
+        public IActionResult ConfirmEmailSent()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        async public Task<IActionResult> SetEmailConfirmed(string email, string token)
+        {
+            if (email == null || token == null)
+            {
+                ModelState.AddModelError("SetEmailConfirmedError", "Xəta baş verdi!");
+            }
+            else
+            {
+                AppUser user = await userManager.FindByEmailAsync(email);
+                IdentityResult emailConfirmresult = await userManager.ConfirmEmailAsync(user, token);
+
+                if (emailConfirmresult.Succeeded)
+                {
+                    return View();
+                }
+                else
+                {
+                    foreach (IdentityError error in emailConfirmresult.Errors)
+                    {
+                        ModelState.AddModelError("SetEmailConfirmedError", error.Description);
+                    }
+                }
+            }
+
+            return View();
+        }
+
+        //----------------CONFIRM-EMAIL----------------
     }
 }
