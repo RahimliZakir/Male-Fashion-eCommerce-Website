@@ -1,0 +1,4 @@
+09/07/2021 09:26:29 +04:00 Proqram işə düşür.
+09/07/2021 09:26:30 +04:00 No type was specified for the decimal column '"Discount"' on entity type '"Campaign"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+09/07/2021 09:26:30 +04:00 No type was specified for the decimal column '"PriceNew"' on entity type '"ProductMainCollection"'. This will cause values to be silently truncated if they do not fit in the default precision and scale. Explicitly specify the SQL server column type that can accommodate all the values using 'HasColumnType()'.
+09/07/2021 09:26:31 +04:00 User "1" is already in role "Admin".
