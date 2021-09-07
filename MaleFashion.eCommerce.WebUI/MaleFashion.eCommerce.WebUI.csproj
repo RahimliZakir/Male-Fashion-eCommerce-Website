@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\assets\images\author\" />
     <Folder Include="wwwroot\libs\" />
     <Folder Include="wwwroot\multi-lang-imgs\" />
     <Folder Include="wwwroot\admin-assets\" />

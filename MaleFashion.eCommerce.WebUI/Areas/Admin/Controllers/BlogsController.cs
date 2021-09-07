@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using MaleFashion.eCommerce.WebUI.AppCode.Extensions;
+using MaleFashion.eCommerce.WebUI.Models.Entity.Membership;
 
 namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
 {
@@ -133,6 +134,10 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
                         }
                     }
 
+                    AppUser user = await _context.Users.FirstOrDefaultAsync(u => u.Id == User.GetUserId());
+                    blog.AuthorImagePath = user.ImagePath;
+                    blog.AuthorName = user.Name;
+                    blog.AuthorSurname = user.Surname;
                     _context.Add(blog);
                     await _context.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));

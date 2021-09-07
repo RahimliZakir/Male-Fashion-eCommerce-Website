@@ -26,6 +26,11 @@ namespace MaleFashion.eCommerce.WebUI.Models.Entity
 
         public virtual ICollection<BlogDetailsTagsCollection> BlogDetailsTagsCollections { get; set; }
 
+        public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Reply> Replies { get; set; }
+        public virtual ICollection<Like> Likes { get; set; }
+        public virtual ICollection<Unlike> Unlikes { get; set; }
+
         [NotMapped]
 
         public string ImageTemp { get; set; }

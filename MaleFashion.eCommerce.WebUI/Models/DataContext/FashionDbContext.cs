@@ -49,6 +49,12 @@ namespace MaleFashion.eCommerce.WebUI.Models.DataContext
         public DbSet<BlogBanner> BlogBanners { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<BlogDetailsTagsCollection> BlogDetailsTagsCollections { get; set; }
+        //---COMMENT-REPLY-LIKE-UNLIKE---
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Reply> Replies { get; set; }
+        public DbSet<Like> Likes { get; set; }
+        public DbSet<Unlike> Unlikes { get; set; }
+        //---COMMENT-REPLY-LIKE-UNLIKE---
         // ---BLOG---
         // ---CONTACTS---
         public DbSet<Department> Departments { get; set; }
