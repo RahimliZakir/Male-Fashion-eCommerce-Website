@@ -56,10 +56,19 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
 
                 if (signInResult.Succeeded)
                 {
-                    return RedirectToAction(nameof(Index), "PersonalSide", new
+                    string returlUrl = HttpContext.Request.Query["returnUrl"];
+
+                    if (!string.IsNullOrWhiteSpace(returlUrl))
                     {
-                        area = "Admin"
-                    });
+                        return Redirect(returlUrl);
+                    }
+                    else
+                    {
+                        return RedirectToAction(nameof(Index), "PersonalSide", new
+                        {
+                            area = "Admin"
+                        });
+                    }
                 }
                 else
                 {

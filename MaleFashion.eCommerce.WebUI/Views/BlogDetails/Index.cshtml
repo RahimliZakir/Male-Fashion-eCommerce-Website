@@ -28,7 +28,7 @@
                         <!-- ZR -->
                         <li>12 Likes</li>
                         <!-- ZR -->
-                        <li>8 Comments</li>
+                        <li>@Model.BlogDetailsTagsCollections.FirstOrDefault().Blog.Comments.Count() Comments</li>
                     </ul>
                 </div>
             </div>
@@ -130,227 +130,82 @@
                             }
                         </div>
                     </div>
-                    <div data-aos="fade-up" class="blog__details__comment mb-2">
-                        <h4>Leave A Comment</h4>
-                        <form action="#">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div data-aos="fade-up" class="blog__details__comment mb-2">
+                            <h4>Leave A Comment</h4>
+                            <form method="post" id="comment-form">
+                                <div class="row">
+                                    <!-- <div class="col-lg-4 col-md-4">
+                                      <input type="text" placeholder="Name">
+                                    </div>
+                                    <div class="col-lg-4 col-md-4">
+                                      <input type="text" placeholder="Email">
+                                    </div>
+                                    <div class="col-lg-4 col-md-4">
+                                      <input type="text" placeholder="Phone">
+                                    </div> -->
+                                    <div class="col-lg-12 text-center post-side">
+                                        <input type="hidden" name="BlogId" value="@Model.BlogDetailsTagsCollections.FirstOrDefault().Blog.Id" />
+                                        <textarea placeholder="Comment" name="Content"></textarea>
+                                        <button type="submit" class="site-btn">
+                                            Post Comment
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="comment-auth mb-2 d-flex justify-content-center align-items-center py-3" style="border: 1px solid teal;">
+                            <a asp-action="SignIn" asp-controller="Account" asp-route-returnUrl="@Context.Request.Path.ToString()" style="color: teal;">Comment yazmaq üçün sistemə giriş edin.</a>
+                        </div>
+                    }
+                    @foreach (var item in Model.BlogDetailsTagsCollections.FirstOrDefault().Blog.Comments)
+                    {
+                        <div data-aos="fade-up" class="blog-details-comments-div">
                             <div class="row">
-                                <!-- <div class="col-lg-4 col-md-4">
-                                  <input type="text" placeholder="Name">
-                                </div>
-                                <div class="col-lg-4 col-md-4">
-                                  <input type="text" placeholder="Email">
-                                </div>
-                                <div class="col-lg-4 col-md-4">
-                                  <input type="text" placeholder="Phone">
-                                </div> -->
-                                <div class="col-lg-12 text-center post-side">
-                                    <textarea placeholder="Comment"></textarea>
-                                    <button type="submit" class="site-btn">
-                                        Post Comment
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div data-aos="fade-up" class="blog-details-comments-div">
-                        <div class="row">
-                            <div class="col-lg-12 comments">
-                                <div class="comments-author-side col-lg-2">
-                                    <div class="img-div">
-                                        <img src="assets/images/blog-details/author.jfif"
-                                             alt="Author" />
+                                <div class="col-lg-12 comments">
+                                    <div class="comments-author-side col-lg-2">
+                                        <div class="img-div">
+                                            <img src="admin-assets/img/users/@item.AuthorImagePath"
+                                                 alt="Author" />
+                                        </div>
+                                        <a href="#" class="comments-author-name">@item.AuthorName @item.AuthorSurname</a>
                                     </div>
-                                    <a href="#" class="comments-author-name">Zakir Rahimli</a>
-                                </div>
-                                <div class="comments-content-side col-lg-8">
-                                    <p class="comments-content">
-                                        1 Working with Colorlib team is pleasure to me!
-                                    </p>
-                                    <div class="comments-content-tools">
-                                        <a class="content-tools-reply"><i class="fas fa-reply"></i> Cavabla</a>
+                                    <div class="comments-content-side col-lg-8">
+                                        <p class="comments-content">
+                                            @item.Content
+                                        </p>
+                                        <div class="comments-content-tools">
+                                            <a class="content-tools-reply"><i class="fas fa-reply"></i> Cavabla</a>
+                                        </div>
+                                        <div class="reply-side mt-2">
+                                            <form action="#" method="POST">
+                                                <div class="form-group">
+                                                    <label for="reply-content">
+                                                        Write your reply:
+                                                    </label>
+                                                    <input type="text"
+                                                           class="form-control"
+                                                           placeholder="What do you think?" />
+                                                </div>
+                                                <button type="submit" class="btn btn-warning mt-2">
+                                                    Publish
+                                                </button>
+                                            </form>
+                                        </div>
                                     </div>
-                                    <div class="reply-side mt-2">
-                                        <form action="#" method="POST">
-                                            <div class="form-group">
-                                                <label for="reply-content">
-                                                    Write your reply:
-                                                </label>
-                                                <input type="text"
-                                                       class="form-control"
-                                                       placeholder="What do you think?" />
-                                            </div>
-                                            <button type="submit" class="btn btn-warning mt-2">
-                                                Publish
-                                            </button>
-                                        </form>
+                                    <div class="comments-publish-date col-lg-2">
+                                        <p class="publish-date">
+                                            <i class="fas fa-calendar-day"></i> @item.CommentDate.ToString("dd MMMM, yyyy")
+                                        </p>
                                     </div>
-                                </div>
-                                <div class="comments-publish-date col-lg-2">
-                                    <p class="publish-date">
-                                        <i class="fas fa-calendar-day"></i> 13 July, 2021
-                                    </p>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div data-aos="fade-up" class="blog-details-comments-div">
-                        <div class="row">
-                            <div class="col-lg-12 comments">
-                                <div class="comments-author-side col-lg-2">
-                                    <div class="img-div">
-                                        <img src="assets/images/blog-details/author.jfif"
-                                             alt="Author" />
-                                    </div>
-                                    <a href="#" class="comments-author-name">Zakir Rahimli</a>
-                                </div>
-                                <div class="comments-content-side col-lg-8">
-                                    <p class="comments-content">
-                                        Lorem Ipsum is simply dummy text of the printing and
-                                        typesetting industry. Lorem Ipsum has been the
-                                        industry's standard dummy text ever since the 1500s,
-                                        when an unknown printer took a galley of type and
-                                        scrambled it to make a type specimen book. It has
-                                        survived not only five centuries, but also the leap into
-                                        electronic typesetting, remaining essentially unchanged.
-                                        It was popularised in the 1960s with the release of
-                                        Letraset sheets containing Lorem Ipsum passages, and
-                                        more recently with desktop publishing software like
-                                        Aldus PageMaker including versions of Lorem Ipsum.
-                                    </p>
-                                    <div class="comments-content-tools">
-                                        <a class="content-tools-reply"><i class="fas fa-reply"></i> Cavabla</a>
-                                    </div>
-                                    <div class="reply-side mt-2">
-                                        <form action="#" method="POST">
-                                            <div class="form-group">
-                                                <label for="reply-content">
-                                                    Write your reply:
-                                                </label>
-                                                <input type="text"
-                                                       class="form-control"
-                                                       placeholder="What do you think?" />
-                                            </div>
-                                            <button type="submit" class="btn btn-warning mt-2">
-                                                Publish
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="comments-publish-date col-lg-2">
-                                    <p class="publish-date">
-                                        <i class="fas fa-calendar-day"></i> 13 July, 2021
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-aos="fade-up" class="blog-details-comments-div">
-                        <div class="row">
-                            <div class="col-lg-12 comments">
-                                <div class="comments-author-side col-lg-2">
-                                    <div class="img-div">
-                                        <img src="assets/images/blog-details/author.jfif"
-                                             alt="Author" />
-                                    </div>
-                                    <a href="#" class="comments-author-name">Zakir Rahimli</a>
-                                </div>
-                                <div class="comments-content-side col-lg-8">
-                                    <p class="comments-content">
-                                        It is a long established fact that a reader will be
-                                        distracted by the readable content of a page when
-                                        looking at its layout. The point of using Lorem Ipsum is
-                                        that it has a more-or-less normal distribution of
-                                        letters, as opposed to using 'Content here, content
-                                        here', making it look like readable English. Many
-                                        desktop publishing packages and web page editors now use
-                                        Lorem Ipsum as their default model text, and a search
-                                        for 'lorem ipsum' will uncover many web sites still in
-                                        their infancy. Various versions have evolved over the
-                                        years, sometimes by accident, sometimes on purpose
-                                        (injected humour and the like).
-                                    </p>
-                                    <div class="comments-content-tools">
-                                        <a class="content-tools-reply"><i class="fas fa-reply"></i> Cavabla</a>
-                                    </div>
-                                    <div class="reply-side mt-2">
-                                        <form action="#" method="POST">
-                                            <div class="form-group">
-                                                <label for="reply-content">
-                                                    Write your reply:
-                                                </label>
-                                                <input type="text"
-                                                       class="form-control"
-                                                       placeholder="What do you think?" />
-                                            </div>
-                                            <button type="submit" class="btn btn-warning mt-2">
-                                                Publish
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="comments-publish-date col-lg-2">
-                                    <p class="publish-date">
-                                        <i class="fas fa-calendar-day"></i> 13 July, 2021
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div data-aos="fade-up" class="blog-details-comments-div">
-                        <div class="row">
-                            <div class="col-lg-12 comments">
-                                <div class="comments-author-side col-lg-2">
-                                    <div class="img-div">
-                                        <img src="assets/images/blog-details/author.jfif"
-                                             alt="Author" />
-                                    </div>
-                                    <a href="#" class="comments-author-name">Zakir Rahimli</a>
-                                </div>
-                                <div class="comments-content-side col-lg-8">
-                                    <p class="comments-content">
-                                        Contrary to popular belief, Lorem Ipsum is not simply
-                                        random text. It has roots in a piece of classical Latin
-                                        literature from 45 BC, making it over 2000 years old.
-                                        Richard McClintock, a Latin professor at Hampden-Sydney
-                                        College in Virginia, looked up one of the more obscure
-                                        Latin words, consectetur, from a Lorem Ipsum passage,
-                                        and going through the cites of the word in classical
-                                        literature, discovered the undoubtable source. Lorem
-                                        Ipsum comes from sections 1.10.32 and 1.10.33 of "de
-                                        Finibus Bonorum et Malorum" (The Extremes of Good and
-                                        Evil) by Cicero, written in 45 BC. This book is a
-                                        treatise on the theory of ethics, very popular during
-                                        the Renaissance. The first line of Lorem Ipsum, "Lorem
-                                        ipsum dolor sit amet..", comes from a line in section
-                                        1.10.32.
-                                    </p>
-                                    <div class="comments-content-tools">
-                                        <a class="content-tools-reply"><i class="fas fa-reply"></i> Cavabla</a>
-                                    </div>
-                                    <div class="reply-side mt-2">
-                                        <form action="#" method="POST">
-                                            <div class="form-group">
-                                                <label for="reply-content">
-                                                    Write your reply:
-                                                </label>
-                                                <input type="text"
-                                                       class="form-control"
-                                                       placeholder="What do you think?" />
-                                            </div>
-                                            <button type="submit" class="btn btn-warning mt-2">
-                                                Publish
-                                            </button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="comments-publish-date col-lg-2">
-                                    <p class="publish-date">
-                                        <i class="fas fa-calendar-day"></i> 13 July, 2021
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>
@@ -376,5 +231,28 @@
         function LinkedInRedirect() {
             window.location.href = "https://www.linkedin.com";
         }
+
+        let commentForm = $('#comment-form');
+
+        $(commentForm).submit((e) => {
+            e.preventDefault();
+
+            //let blogId = $(e.currentTarget).closest('.blog__details__comment').data('blog-id');
+            //let content = $(e.currentTarget).find('textarea').val();
+
+            let formData = $(commentForm).serialize();
+
+            $.ajax({
+                url: '@Url.Action("Comment", "BlogDetails")',
+                type: "POST",
+                data: formData,
+                success: function (successMsg) {
+                    window.location.reload();
+                },
+                error: function (errorMsg) {
+
+                }
+            });
+        });
     </script>
 }

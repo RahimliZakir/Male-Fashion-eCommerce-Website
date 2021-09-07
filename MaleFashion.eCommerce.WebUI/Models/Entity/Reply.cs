@@ -20,6 +20,12 @@ namespace MaleFashion.eCommerce.WebUI.Models.Entity
 
         public string Content { get; set; }
 
+        public string AuthorImagePath { get; set; }
+
+        public string AuthorName { get; set; }
+
+        public string AuthorSurname { get; set; }
+
         public DateTime ReplyDate { get; set; } = DateTime.UtcNow.AddHours(4);
 
         public virtual Comment Comment { get; set; }
