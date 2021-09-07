@@ -1,5 +1,9 @@
-﻿@{
+﻿@inject FashionDbContext db;
+
+@{
     ViewBag.Layout = "Admin";
+
+    AppUser credential = db.Users.FirstOrDefault(u => u.Id == User.GetUserId());
 }
 
 <!DOCTYPE html>
@@ -48,6 +52,7 @@
     <!-- menu css  -->
     <link rel="stylesheet" href="admin-assets/css/metisMenu.css">
     <!-- style CSS -->
+    <!-- style CSS -->
     @RenderSection("cssplugins", required: false)
     <link rel="stylesheet" href="admin-assets/css/style.css" />
     <link rel="stylesheet" href="admin-assets/css/colors/default.css" id="colorSkinCSS">
@@ -62,24 +67,18 @@
     <!-- sidebar part here -->
     <nav class="sidebar">
         <div class="logo d-flex justify-content-between">
-            <a href="index-2.html"><img src="admin-assets/img/logo.png" alt=""></a>
+            <a asp-action="Index" asp-controller="PersonalSide"><img src="admin-assets/img/logo.png" alt=""></a>
             <div class="sidebar_close_icon d-lg-none">
                 <i class="ti-close"></i>
             </div>
         </div>
         <ul id="sidebar_menu">
             <li class="mm-active">
-                <a class="has-arrow" href="#" aria-expanded="false">
+                <a class="has-arrow" style="cursor: pointer;" aria-expanded="false">
                     <!-- <i class="fas fa-th"></i> -->
                     <img src="admin-assets/img/menu-icon/dashboard.svg" alt="">
                     <span>Dashboard</span>
                 </a>
-                <ul>
-                    <li><a class="active" href="index-2.html">Directory</a></li>
-                    <li><a href="index_2.html">Default</a></li>
-
-                </ul>
-
             </li>
             <li class="">
                 <a class="has-arrow" href="#" aria-expanded="false">
@@ -97,7 +96,7 @@
             <li class="">
                 <a class="has-arrow" href="#" aria-expanded="false">
                     <img src="admin-assets/img/menu-icon/3.svg" alt="">
-                    <span>Applications</span>
+                    <span>Products Main Collection</span>
                 </a>
                 <ul>
                     <li><a href="mail_box.html">Mail Box</a></li>
@@ -227,7 +226,7 @@
                         <div class="sidebar_icon d-lg-none">
                             <i class="ti-menu"></i>
                         </div>
-                        <div class="serach_field-area">
+                        <div class="serach_field-area" style="visibility: hidden; opacity: 0;">
                             <div class="search_inner">
                                 <form action="#">
                                     <div class="search_field">
@@ -324,16 +323,30 @@
                                 </li>
                             </div>
                             <div class="profile_info">
-                                <img src="admin-assets/img/client_img.png" alt="#">
+                                @if (!string.IsNullOrWhiteSpace(credential.ImagePath))
+                                {
+                                    <img src="admin-assets/img/users/@credential.ImagePath" alt="#">
+                                }
+                                else
+                                {
+                                    <img src="admin-assets/img/users/default-img/121-1219160_small-facebook-no-profile-picture-girl.png" alt="#">
+                                }
                                 <div class="profile_info_iner">
                                     <div class="profile_author_name">
-                                        <p>Neurologist </p>
-                                        <h5>Dr. Robar Smith</h5>
+                                        @if (!string.IsNullOrWhiteSpace(credential.JobName))
+                                        {
+                                            <p>@credential.JobName</p>
+                                        }
+
+                                        @if (!string.IsNullOrWhiteSpace(credential.Name) && !string.IsNullOrWhiteSpace(credential.Surname))
+                                        {
+                                            <h5>@credential.Name @credential.Surname</h5>
+                                        }
                                     </div>
                                     <div class="profile_info_details">
                                         <a href="#">My Profile </a>
                                         <a href="#">Settings</a>
-                                        <a href="#">Log Out </a>
+                                        <a asp-action="SignOut" asp-controller="Account">Log Out </a>
                                     </div>
                                 </div>
                             </div>

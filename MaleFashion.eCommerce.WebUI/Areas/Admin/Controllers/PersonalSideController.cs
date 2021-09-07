@@ -1,15 +1,14 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MaleFashion.eCommerce.WebUI.Controllers
+namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
 {
-    public class HomeController : Controller
+    [Area("Admin")]
+    public class PersonalSideController : Controller
     {
-        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();

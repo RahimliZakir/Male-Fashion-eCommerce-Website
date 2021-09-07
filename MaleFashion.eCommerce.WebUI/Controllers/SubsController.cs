@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult Index(string subsMail)
         {
             SmtpClient client = new SmtpClient()

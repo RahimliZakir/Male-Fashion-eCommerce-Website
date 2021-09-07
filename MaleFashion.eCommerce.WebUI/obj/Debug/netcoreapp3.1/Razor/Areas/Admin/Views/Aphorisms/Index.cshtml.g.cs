@@ -28,27 +28,34 @@ using MaleFashion.eCommerce.WebUI.Models.Entity;
 #nullable disable
 #nullable restore
 #line 3 "C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\Areas\Admin\Views\_ViewImports.cshtml"
-using MaleFashion.eCommerce.WebUI.Models.ViewModel;
+using MaleFashion.eCommerce.WebUI.Models.Entity.Membership;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 4 "C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\Areas\Admin\Views\_ViewImports.cshtml"
-using MaleFashion.eCommerce.WebUI.AppCode.Extensions;
+using MaleFashion.eCommerce.WebUI.Models.ViewModel;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
 #line 5 "C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\Areas\Admin\Views\_ViewImports.cshtml"
+using MaleFashion.eCommerce.WebUI.AppCode.Extensions;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 6 "C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\Areas\Admin\Views\_ViewImports.cshtml"
 using Resources;
 
 #line default
 #line hidden
 #nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"3639d76f072d19dd95128914c368f3fb7e1ea024", @"/Areas/Admin/Views/Aphorisms/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7f3bcbf2799a01ebb65d4f65a79c169f827f8a15", @"/Areas/Admin/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8a77723a1e63106541ea51fce74885a4d567fb64", @"/Areas/Admin/Views/_ViewImports.cshtml")]
     public class Areas_Admin_Views_Aphorisms_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<MaleFashion.eCommerce.WebUI.Models.Entity.Aphorism>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("method", "post", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -98,7 +105,7 @@ using Resources;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n<div class=\"search-side\">\r\n    <div class=\"container\">\r\n        <div class=\"row justify-content-center\">\r\n            <div class=\"col-md-4\" style=\"border: 1px solid cadetblue; padding: 35px; border-radius: 5px;\">\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3639d76f072d19dd95128914c368f3fb7e1ea0248850", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3639d76f072d19dd95128914c368f3fb7e1ea0249152", async() => {
                 WriteLiteral(@"
                     <h3>Search for aphorism here.</h3>
                     <div class=""form-group"">
@@ -127,7 +134,7 @@ using Resources;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n<h1 class=\"text-center\">Index</h1>\r\n\r\n<p>\r\n    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3639d76f072d19dd95128914c368f3fb7e1ea02411031", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3639d76f072d19dd95128914c368f3fb7e1ea02411333", async() => {
                 WriteLiteral("<i class=\"fa fa-plus\"></i>");
             }
             );
@@ -226,7 +233,7 @@ using Resources;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n                </td>\r\n                <td>\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3639d76f072d19dd95128914c368f3fb7e1ea02416595", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3639d76f072d19dd95128914c368f3fb7e1ea02416897", async() => {
                 WriteLiteral("Edit");
             }
             );
@@ -259,7 +266,7 @@ using Resources;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3639d76f072d19dd95128914c368f3fb7e1ea02419017", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3639d76f072d19dd95128914c368f3fb7e1ea02419319", async() => {
                 WriteLiteral("Details");
             }
             );
@@ -292,7 +299,7 @@ using Resources;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3639d76f072d19dd95128914c368f3fb7e1ea02421445", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3639d76f072d19dd95128914c368f3fb7e1ea02421747", async() => {
                 WriteLiteral("Delete");
             }
             );

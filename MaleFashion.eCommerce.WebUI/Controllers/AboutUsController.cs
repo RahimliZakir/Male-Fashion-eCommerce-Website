@@ -1,5 +1,6 @@
 ﻿using MaleFashion.eCommerce.WebUI.Models.DataContext;
 using MaleFashion.eCommerce.WebUI.Models.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -18,6 +19,7 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
             this.db = db;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             var viewModel = new AboutUsViewModel();

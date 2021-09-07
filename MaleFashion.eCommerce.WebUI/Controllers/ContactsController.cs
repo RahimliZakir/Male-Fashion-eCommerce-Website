@@ -1,6 +1,7 @@
 ﻿using MaleFashion.eCommerce.WebUI.Models.DataContext;
 using MaleFashion.eCommerce.WebUI.Models.Entity;
 using MaleFashion.eCommerce.WebUI.Models.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -19,6 +20,7 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
             this.db = db;
         }
 
+        [AllowAnonymous]
         async public Task<IActionResult> Index()
         {
             var viewModel = new ContactAndMessageViewModel();
@@ -33,6 +35,7 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         async public Task<IActionResult> SendMessage(ContactAndMessageViewModel viewModel)
         {
             await db.ContactMessages.AddAsync(new ContactMessage

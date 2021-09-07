@@ -264,3 +264,4 @@ C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCom
 C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\bin\Debug\netcoreapp3.1\Serilog.Sinks.MSSqlServer.dll
 C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\bin\Debug\netcoreapp3.1\Serilog.Sinks.PeriodicBatching.dll
 C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\obj\Debug\netcoreapp3.1\MaleFashion.eCommerce.WebUI.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\PersonalSide\Index.cshtml.g.cs

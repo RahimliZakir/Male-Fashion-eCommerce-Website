@@ -56,16 +56,21 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
 
                 if (signInResult.Succeeded)
                 {
-                    return RedirectToAction(nameof(Index), "Home");
+                    return RedirectToAction(nameof(Index), "PersonalSide", new
+                    {
+                        area = "Admin"
+                    });
                 }
                 else
                 {
                     ModelState.AddModelError("SignError", "İstifadəçi adı və ya şifrə səhvdir.");
+                    TempData["SingInError"] = "İstifadəçi adı və ya şifrə səhvdir.";
                 }
             }
             else
             {
                 ModelState.AddModelError("SignError", "İstifadəçi adı və ya şifrə səhvdir.");
+                TempData["SingInError"] = "İstifadəçi adı və ya şifrə səhvdir.";
             }
 
             return View();
