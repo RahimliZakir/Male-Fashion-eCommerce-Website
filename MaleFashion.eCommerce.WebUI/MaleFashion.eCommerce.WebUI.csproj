@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Models\ViewModel\" />
     <Folder Include="Logs\" />
     <Folder Include="wwwroot\assets\images\author\" />
     <Folder Include="wwwroot\libs\" />

@@ -1,5 +1,6 @@
 ﻿using MaleFashion.eCommerce.WebUI.AppCode.Extensions;
 using MaleFashion.eCommerce.WebUI.Areas.Admin.Models.FormModel;
+using MaleFashion.eCommerce.WebUI.Areas.Admin.Models.ViewModel;
 using MaleFashion.eCommerce.WebUI.Models.DataContext;
 using MaleFashion.eCommerce.WebUI.Models.Entity.Membership;
 using Microsoft.AspNetCore.Authorization;
@@ -248,5 +249,111 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
         }
 
         //----------------CONFIRM-EMAIL----------------
+
+        //----------------CLAIMS-VIEW----------------
+
+        public IActionResult ViewUserClaims()
+        {
+            var viewModel = new ViewClaimsViewModel();
+
+            IEnumerable<AppUser> currentUsers = db.Users.ToList();
+
+            viewModel.Users = currentUsers;
+
+            return View(viewModel);
+        }
+
+        //----------------CLAIMS-VIEW----------------
+
+        //----------------CHANGE-REAL-TIME-CLAIM----------------
+
+        [HttpPost]
+        [Authorize(Policy = "admin.setprincipal")]
+        async public Task<IActionResult> SetUserPrincipal(int userId, string principalName, bool applied)
+        {
+            if (userId <= 0)
+            {
+                return Json(new
+                {
+                    error = true,
+                    message = "Istifadechi movcud deyil."
+                });
+            }
+
+            var user = await db.Users.FirstOrDefaultAsync(u => u.Id == userId);
+
+            if (user == null)
+            {
+                return Json(new
+                {
+                    error = true,
+                    message = "Istifadechi movcud deyil."
+                });
+            }
+
+            if (applied == true)
+            {
+                await db.UserClaims.AddAsync(new AppUserClaim
+                {
+                    UserId = userId,
+                    ClaimType = principalName,
+                    ClaimValue = "1"
+                });
+
+                await db.SaveChangesAsync();
+            }
+            else
+            {
+                var currentClaim = await db.UserClaims.AsNoTracking().FirstOrDefaultAsync(uc => uc.UserId == userId && uc.ClaimType == principalName);
+
+                if (currentClaim != null)
+                {
+                    db.UserClaims.Remove(currentClaim);
+
+                    await db.SaveChangesAsync();
+                }
+                else
+                {
+                    return Json(new
+                    {
+                        error = true,
+                        message = "Selahiyyet tapilmadi."
+                    });
+                }
+            }
+
+            return RedirectToAction("GetUserPrincipal", routeValues: new
+            {
+                id = userId
+            });
+        }
+
+        [Authorize(Policy = "admin.getprincipal")]
+        public IActionResult GetUserPrincipal(int id)
+        {
+            var viewModel = new ClaimsPrincipalViewModel();
+
+            var user = db.Users.FirstOrDefault(u => u.Id == id);
+
+            viewModel.User = user;
+
+            var claimsOfUser = db.UserClaims.Where(uc => uc.UserId == id).ToList();
+
+            string[] principals = Program.principals;
+
+            foreach (string principal in principals)
+            {
+                if (claimsOfUser.Any(cou => cou.ClaimType == principal && cou.ClaimValue == "1"))
+                {
+                    viewModel.Principals.Add(principal, true);
+                }
+                else
+                {
+                    viewModel.Principals.Add(principal, false);
+                }
+            }
+
+            return View(viewModel);
+        }
     }
 }
