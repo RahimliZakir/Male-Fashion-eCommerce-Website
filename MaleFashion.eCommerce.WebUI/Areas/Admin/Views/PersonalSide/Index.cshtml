@@ -17,23 +17,32 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 d-flex flex-column align-items-center">
-                <div class="img-div" style="width: 25%;">
-                    <img src="admin-assets/img/users/default-img/121-1219160_small-facebook-no-profile-picture-girl.png" style="width: 100%;" />
-                </div>
+                @if (Model.ImagePath == null)
+                {
+                    <div class="img-div" style="width: 25%;">
+                        <img src="admin-assets/img/users/default-img/121-1219160_small-facebook-no-profile-picture-girl.png" style="width: 100%;" />
+                    </div>
+                }
+                else
+                {
+                    <div class="img-div" style="width: 25%;">
+                        <img src="admin-assets/img/users/@Model.ImagePath" style="width: 100%;" />
+                    </div>
+                }
                 <div class="name-surname d-flex">
-                    <h4>Zakir</h4>
-                    <h4 style="margin-left: 7.5px;">Rəhimli</h4>
+                    <h4> @(Model.Name == null ? "" : Model.Name)</h4>
+                    <h4 style="margin-left: 7.5px;"> @(Model.Surname == null ? "" : Model.Surname)</h4>
                 </div>
                 <ul class="text-center">
-                    <li>Id: 1</li>
-                    <li>Username: rahimlizakir</li>
-                    <li>Email: zakirer@code.edu.az</li>
-                    <li>Age: 19</li>
-                    <li>Job Name: Developer</li>
-                    <li>City: Baku, Azerbaijan</li>
+                    <li>Id: @Model.Id</li>
+                    <li>Username: @(Model.UserName == null ? "" : Model.UserName)</li>
+                    <li>Email: @(Model.Email == null ? "" : Model.Email)</li>
+                    <li>Age: @(Model.Age.ToString() == "0" ? "" : Model.Age.ToString())</li>
+                    <li>Job Name: @(Model.JobName == null ? "" : Model.JobName)</li>
+                    <li>City: @(Model.City == null ? "" : Model.City)</li>
                 </ul>
                 <div class="tools-group my-5">
-                    <a class="btn btn-warning">Məlumatları yenilə</a>
+                    <a asp-action="Edit" asp-controller="AppUsers" asp-route-id="@Model.Id" class="btn btn-warning">Məlumatları yenilə</a>
                     @if (!Model.EmailConfirmed)
                     {
                         <a asp-action="ConfirmEmail" asp-controller="Account" class="btn btn-success">Maili təsdiqə</a>
