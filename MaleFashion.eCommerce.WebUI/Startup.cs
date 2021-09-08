@@ -69,6 +69,16 @@ namespace MaleFashion.eCommerce.WebUI
                 cfg.UseSqlServer(conf.GetConnectionString("cString"));
             });
 
+            services.AddIdentity<AppUser, AppRole>()
+                    .AddEntityFrameworkStores<FashionDbContext>()
+                    .AddDefaultTokenProviders();
+
+            services.AddScoped<UserManager<AppUser>>()
+                     .AddScoped<RoleManager<AppRole>>()
+                     .AddScoped<SignInManager<AppUser>>();
+
+            services.AddScoped<IClaimsTransformation, ClaimsTransformationProvider>();
+
             services.Configure<IdentityOptions>(options =>
             {
                 // şifrə tənzimləmələri.
@@ -104,16 +114,6 @@ namespace MaleFashion.eCommerce.WebUI
                 // against cross-site attacks (even if user b has the cookie information of user a, user b cannot do anything, because location)
                 options.Cookie.SameSite = SameSiteMode.Strict;
             });
-
-            services.AddIdentity<AppUser, AppRole>()
-                    .AddEntityFrameworkStores<FashionDbContext>()
-                    .AddDefaultTokenProviders();
-
-            services.AddScoped<UserManager<AppUser>>()
-                     .AddScoped<RoleManager<AppRole>>()
-                     .AddScoped<SignInManager<AppUser>>();
-
-            services.AddScoped<IClaimsTransformation, ClaimsTransformationProvider>();
 
             services.AddAuthentication();
             //-------------------------------------------
@@ -184,6 +184,7 @@ namespace MaleFashion.eCommerce.WebUI
                     areaName: "admin",
                     pattern: "admin/{controller=Products}/{action=Index}/{id?}");
 
+                // SignalR Configuration To Route
                 endpoints.MapHub<ConversationHub>("/chat");
 
                 // Defaults, Liar Routes
@@ -196,16 +197,16 @@ namespace MaleFashion.eCommerce.WebUI
                     });
 
                 // Route Constraints
-                endpoints.MapControllerRoute(name: "BlogRoute",
-                   pattern: "{controller=Home}/{action=Index}/{id?}",
-                   //pattern: "{controller=Home}/{action=Index}/{id:int:min(1)}",
-                   constraints: new
-                   {
-                       id = new IRouteConstraint[]
-                       {
-                          new MinLengthRouteConstraint(1)
-                       }
-                   });
+                //endpoints.MapControllerRoute(name: "BlogRoute",
+                //   pattern: "{controller=Home}/{action=Index}/{id?}",
+                //   //pattern: "{controller=Home}/{action=Index}/{id:int:min(1)}",
+                //   constraints: new
+                //   {
+                //       id = new IRouteConstraint[]
+                //       {
+                //          new MinLengthRouteConstraint(1)
+                //       }
+                //   });
 
                 endpoints.MapControllerRoute(name: "default",
                                     pattern: "{controller=Home}/{action=Index}/{id?}");

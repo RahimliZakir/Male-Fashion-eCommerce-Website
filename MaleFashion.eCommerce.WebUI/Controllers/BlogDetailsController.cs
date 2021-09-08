@@ -41,6 +41,8 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
 
             viewModel.Comments = db.Comments.Include(c => c.Replies).Where(c => c.BlogId == id).ToList();
 
+            viewModel.Replies = db.Replies.Where(r => r.BlogId == id).ToList();
+
             Blog prev = db.Blogs.FirstOrDefault(b => b.Id == (id - 1) && b.DeletedDate == null);
             Blog next = db.Blogs.FirstOrDefault(b => b.Id == (id + 1) && b.DeletedDate == null);
 

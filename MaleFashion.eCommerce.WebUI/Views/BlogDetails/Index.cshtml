@@ -28,7 +28,23 @@
                         <!-- ZR -->
                         <li>12 Likes</li>
                         <!-- ZR -->
-                        <li>@Model.BlogDetailsTagsCollections.FirstOrDefault().Blog.Comments.Count() Comments</li>
+                        @if (Model.Comments == null)
+                        {
+                            <li>0 Comments</li>
+                        }
+                        else
+                        {
+                            <li>@Model.Comments.Count() Comments</li>
+                        }
+
+                        @if (Model.Comments == null)
+                        {
+                            <li>0 Replies</li>
+                        }
+                        else
+                        {
+                            <li>@Model.Replies.Count() Replies</li>
+                        }
                     </ul>
                 </div>
             </div>
