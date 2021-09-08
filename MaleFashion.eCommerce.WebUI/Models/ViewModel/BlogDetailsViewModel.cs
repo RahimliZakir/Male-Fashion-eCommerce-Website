@@ -10,6 +10,8 @@ namespace MaleFashion.eCommerce.WebUI.Models.ViewModel
     {
         public IEnumerable<BlogDetailsTagsCollection> BlogDetailsTagsCollections { get; set; }
 
+        public IEnumerable<Comment> Comments { get; set; }
+
         public Blog PrevBlog { get; set; }
 
         public Blog NextBlog { get; set; }

@@ -162,7 +162,7 @@
                             <a asp-action="SignIn" asp-controller="Account" asp-route-returnUrl="@Context.Request.Path.ToString()" style="color: teal;">Comment yazmaq üçün sistemə giriş edin.</a>
                         </div>
                     }
-                    @foreach (var item in Model.BlogDetailsTagsCollections.FirstOrDefault().Blog.Comments)
+                    @foreach (var item in Model.Comments)
                     {
                         <div data-aos="fade-up" class="blog-details-comments-div">
                             <div class="row">
@@ -182,19 +182,33 @@
                                             <a class="content-tools-reply"><i class="fas fa-reply"></i> Cavabla</a>
                                         </div>
                                         <div class="reply-side mt-2">
-                                            <form action="#" method="POST">
-                                                <div class="form-group">
-                                                    <label for="reply-content">
-                                                        Write your reply:
-                                                    </label>
-                                                    <input type="text"
-                                                           class="form-control"
-                                                           placeholder="What do you think?" />
+                                            @if (User.Identity.IsAuthenticated)
+                                            {
+                                                <form method="POST" class="reply-form">
+                                                    <div class="form-group">
+                                                        <input type="hidden" name="replyBlogId" value="@item.BlogId" />
+                                                        <input type="hidden" name="replyCommentId" value="@item.Id" />
+                                                        <div class="form-group">
+                                                            <label for="reply-content">
+                                                                Write your reply:
+                                                            </label>
+                                                            <input type="text"
+                                                                   class="form-control"
+                                                                   name="replyContent"
+                                                                   placeholder="What do you think?" />
+                                                        </div>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-warning mt-2">
+                                                        Publish
+                                                    </button>
+                                                </form>
+                                            }
+                                            else
+                                            {
+                                                <div class="reply-auth mb-2 d-flex justify-content-center align-items-center py-3" style="border: 1px solid teal;">
+                                                    <a asp-action="SignIn" asp-controller="Account" asp-route-returnUrl="@Context.Request.Path.ToString()" style="color: teal;">Cavab yazmaq üçün sistemə giriş edin.</a>
                                                 </div>
-                                                <button type="submit" class="btn btn-warning mt-2">
-                                                    Publish
-                                                </button>
-                                            </form>
+                                            }
                                         </div>
                                     </div>
                                     <div class="comments-publish-date col-lg-2">
@@ -202,6 +216,32 @@
                                             <i class="fas fa-calendar-day"></i> @item.CommentDate.ToString("dd MMMM, yyyy")
                                         </p>
                                     </div>
+                                </div>
+                                <div class="mx-auto col-lg-8">
+                                    @foreach (Reply reply in item.Replies)
+                                    {
+                                        <div class="col-lg-12" style="border: 1px solid #000000;">
+                                            <div class="row">
+                                                <div class="comments-author-side col-lg-2">
+                                                    <div class="img-div">
+                                                        <img src="admin-assets/img/users/@reply.AuthorImagePath"
+                                                             alt="Author" />
+                                                    </div>
+                                                    <a href="#" class="comments-author-name">@reply.AuthorName @reply.AuthorSurname</a>
+                                                </div>
+                                                <div class="comments-content-side col-lg-6 d-flex align-items-center">
+                                                    <p class="comments-content">
+                                                        @reply.Content
+                                                    </p>
+                                                </div>
+                                                <div class="comments-publish-date col-lg-4">
+                                                    <p class="publish-date">
+                                                        @reply.ReplyDate.ToString("dd MMMM, yyyy")
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -244,6 +284,26 @@
 
             $.ajax({
                 url: '@Url.Action("Comment", "BlogDetails")',
+                type: "POST",
+                data: formData,
+                success: function (successMsg) {
+                    window.location.reload();
+                },
+                error: function (errorMsg) {
+
+                }
+            });
+        });
+
+        let replyForm = $('.reply-form');
+
+        $(replyForm).submit((e) => {
+            e.preventDefault();
+
+            let formData = $(e.currentTarget).serialize();
+
+            $.ajax({
+                url: '@Url.Action("Reply", "BlogDetails")',
                 type: "POST",
                 data: formData,
                 success: function (successMsg) {

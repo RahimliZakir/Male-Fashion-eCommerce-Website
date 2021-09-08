@@ -83,26 +83,29 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
 
                 AppUser entity = await _context.Users.AsNoTracking().FirstOrDefaultAsync(u => u.Id == id);
 
-                if (image == null && !string.IsNullOrWhiteSpace(appUser.ImageTemp))
+                if (entity.ImagePath != null || (entity.ImagePath == null && image != null))
                 {
-                    appUser.ImagePath = entity.ImagePath;
-                }
-                else if (image == null)
-                {
-                    currentPath = Path.Combine(env.WebRootPath, "admin-assets", "img", "users", entity.ImagePath);
-                }
-                else if (image != null)
-                {
-                    string ext = Path.GetExtension(image.FileName);
-                    string fileName = $"user-{Guid.NewGuid().ToString().Replace("-", "")}{ext}";
-                    fullPath = Path.Combine(env.WebRootPath, "admin-assets", "img", "users", fileName);
-
-                    using (var fs = new FileStream(fullPath, FileMode.Create, FileAccess.Write))
+                    if (image == null && !string.IsNullOrWhiteSpace(appUser.ImageTemp))
                     {
-                        image.CopyTo(fs);
+                        appUser.ImagePath = entity.ImagePath;
                     }
+                    else if (image == null)
+                    {
+                        currentPath = Path.Combine(env.WebRootPath, "admin-assets", "img", "users", entity.ImagePath);
+                    }
+                    else if (image != null)
+                    {
+                        string ext = Path.GetExtension(image.FileName);
+                        string fileName = $"user-{Guid.NewGuid().ToString().Replace("-", "")}{ext}";
+                        fullPath = Path.Combine(env.WebRootPath, "admin-assets", "img", "users", fileName);
 
-                    appUser.ImagePath = fileName;
+                        using (var fs = new FileStream(fullPath, FileMode.Create, FileAccess.Write))
+                        {
+                            image.CopyTo(fs);
+                        }
+
+                        appUser.ImagePath = fileName;
+                    }
                 }
 
                 try

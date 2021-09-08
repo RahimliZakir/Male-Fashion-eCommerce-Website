@@ -33,13 +33,13 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
                                                    .Include(b => b.Blog)
                                                    .Include(b => b.Blog.Aphorism)
                                                    .Include(t => t.Tag)
-                                                   .Include(c => c.Blog.Comments)
-                                                   .Include(c => c.Blog.Replies)
                                                    .Where(b => b.Blog.DeletedDate == null)
                                                    .Where(b => b.Blog.Aphorism.DeletedDate == null)
                                                    .Where(b => b.Tag.DeletedDate == null)
                                                    .Where(b => b.Blog.Id.Equals(id))
                                                    .ToList();
+
+            viewModel.Comments = db.Comments.Include(c => c.Replies).Where(c => c.BlogId == id).ToList();
 
             Blog prev = db.Blogs.FirstOrDefault(b => b.Id == (id - 1) && b.DeletedDate == null);
             Blog next = db.Blogs.FirstOrDefault(b => b.Id == (id + 1) && b.DeletedDate == null);
@@ -71,6 +71,45 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
             try
             {
                 await db.Comments.AddAsync(commentResult);
+                await db.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                return Json(new
+                {
+                    error = true,
+                    message = "Xeta bash verdi, bir-neche deqiqeden sonra yeniden cehd edin!"
+                });
+            }
+
+            return Json(new
+            {
+                error = false,
+                message = ""
+            });
+        }
+
+        [HttpPost]
+        [Authorize]
+        async public Task<IActionResult> Reply(int replyBlogId, int replyCommentId, string replyContent)
+        {
+            AppUser currentUser = await db.Users.FirstOrDefaultAsync(u => u.Id == User.GetUserId());
+            int userId = User.GetUserId();
+
+            Reply replyResult = new Reply
+            {
+                CommentId = replyCommentId,
+                BlogId = replyBlogId,
+                Content = replyContent,
+                AuthorImagePath = currentUser.ImagePath,
+                AuthorName = currentUser.Name,
+                AuthorSurname = currentUser.Surname,
+                UserId = userId
+            };
+
+            try
+            {
+                await db.Replies.AddAsync(replyResult);
                 await db.SaveChangesAsync();
             }
             catch (Exception)
