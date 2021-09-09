@@ -81,6 +81,7 @@
         $(likeBtn).click((e) => {
             let blogId = $(e.currentTarget).data('like-id');
             let likeCount = $(e.currentTarget).next('.like-count');
+            let currentUnlikeCount = $(e.currentTarget).closest('.like-unlike-side').find('.unlike-count');
 
             $.ajax({
                 url: `@Url.Action("Like", "Blog")?blogId=${blogId}`,
@@ -88,6 +89,7 @@
                 success: function (successMsg) {
                     if (successMsg.error == false && successMsg.likeCount) {
                         $(likeCount).text(successMsg.likeCount);
+                        $(currentUnlikeCount).text(successMsg.unlikeCount);
                     }
                 },
                 error: function (errorMsg) {
@@ -110,8 +112,9 @@
     let unlikeBtn = $('.unlike-btn');
 
     $(unlikeBtn).click((e) => {
-         let blogId = $(e.currentTarget).data('unlike-id');
+        let blogId = $(e.currentTarget).data('unlike-id');
         let unlikeCount = $(e.currentTarget).next('.unlike-count');
+        let currentLikeCount = $(e.currentTarget).closest('.like-unlike-side').find('.like-count');
 
         $.ajax({
             url: `@Url.Action("Unlike", "Blog")?blogId=${blogId}`,
@@ -119,6 +122,7 @@
             success: function (successMsg) {
                 if (successMsg.error == false && successMsg.unlikeCount) {
                     $(unlikeCount).text(successMsg.unlikeCount);
+                    $(currentLikeCount).text(successMsg.likeCount);
                 }
             },
             error: function (errorMsg) {

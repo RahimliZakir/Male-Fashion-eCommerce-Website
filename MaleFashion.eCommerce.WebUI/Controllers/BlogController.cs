@@ -40,6 +40,13 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
             AppUser currentUser = await db.Users.FirstOrDefaultAsync(u => u.Id == User.GetUserId());
             int currentUserId = User.GetUserId();
 
+            if (db.Unlikes.Any(u => u.UserId == currentUserId && u.BlogId == blogId))
+            {
+                Unlike currentUnlike = await db.Unlikes.AsNoTracking().FirstOrDefaultAsync(u => u.UserId == currentUserId && u.BlogId == blogId);
+                db.Unlikes.Remove(currentUnlike);
+                await db.SaveChangesAsync();
+            }
+
             if (!db.Likes.Any(l => l.UserId == currentUserId && l.BlogId == blogId))
             {
                 var like = new Like
@@ -66,7 +73,8 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
             return Json(new
             {
                 error = false,
-                likeCount = db.Likes.Count(l => l.BlogId == blogId)
+                likeCount = db.Likes.Count(l => l.BlogId == blogId),
+                unlikeCount = db.Unlikes.Count(l => l.BlogId == blogId)
             });
         }
 
@@ -76,6 +84,13 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
         {
             AppUser currentUser = await db.Users.FirstOrDefaultAsync(u => u.Id == User.GetUserId());
             int currentUserId = User.GetUserId();
+
+            if (db.Likes.Any(u => u.UserId == currentUserId && u.BlogId == blogId))
+            {
+                Like currentLike = await db.Likes.AsNoTracking().FirstOrDefaultAsync(u => u.UserId == currentUserId && u.BlogId == blogId);
+                db.Likes.Remove(currentLike);
+                await db.SaveChangesAsync();
+            }
 
             if (!db.Unlikes.Any(u => u.UserId == currentUserId && u.BlogId == blogId))
             {
@@ -103,7 +118,8 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
             return Json(new
             {
                 error = false,
-                unlikeCount = db.Unlikes.Count(l => l.BlogId == blogId)
+                unlikeCount = db.Unlikes.Count(l => l.BlogId == blogId),
+                likeCount = db.Likes.Count(l => l.BlogId == blogId)
             });
         }
     }
