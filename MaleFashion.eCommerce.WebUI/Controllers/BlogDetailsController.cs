@@ -43,6 +43,10 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
 
             viewModel.Replies = db.Replies.Where(r => r.BlogId == id).ToList();
 
+            viewModel.Likes = db.Likes.Where(l => l.BlogId == id).ToList();
+
+            viewModel.Unlikes = db.Unlikes.Where(u => u.BlogId == id).ToList();
+
             Blog prev = db.Blogs.FirstOrDefault(b => b.Id == (id - 1) && b.DeletedDate == null);
             Blog next = db.Blogs.FirstOrDefault(b => b.Id == (id + 1) && b.DeletedDate == null);
 

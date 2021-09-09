@@ -14,6 +14,10 @@ namespace MaleFashion.eCommerce.WebUI.Models.ViewModel
 
         public IEnumerable<Reply> Replies { get; set; }
 
+        public IEnumerable<Like> Likes { get; set; }
+
+        public IEnumerable<Unlike> Unlikes { get; set; }
+
         public Blog PrevBlog { get; set; }
 
         public Blog NextBlog { get; set; }

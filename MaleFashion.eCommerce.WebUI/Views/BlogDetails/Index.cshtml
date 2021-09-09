@@ -26,7 +26,24 @@
                         <li>By @Model.BlogDetailsTagsCollections.FirstOrDefault().Blog.AuthorName @Model.BlogDetailsTagsCollections.FirstOrDefault().Blog.AuthorSurname</li>
                         <li>@Model.BlogDetailsTagsCollections.FirstOrDefault().Blog.CreatedDate.ToString("MMMM dd, yyyy")</li>
                         <!-- ZR -->
-                        <li>12 Likes</li>
+                        @if (Model.Likes == null)
+                        {
+                            <li>0 Likes</li>
+                        }
+                        else
+                        {
+                            <li>@Model.Likes.Count() Likes</li>
+                        }
+
+
+                        @if (Model.Unlikes == null)
+                        {
+                            <li>0 Unlikes</li>
+                        }
+                        else
+                        {
+                            <li>@Model.Unlikes.Count() Unlikes</li>
+                        }
                         <!-- ZR -->
                         @if (Model.Comments == null)
                         {
