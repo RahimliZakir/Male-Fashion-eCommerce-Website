@@ -17,7 +17,7 @@ namespace MaleFashion.eCommerce.WebUI.Models.Entity
 
         public virtual Brand Brand { get; set; }
 
-        public virtual ICollection<ProductImage> ProductImage { get; set; }
+        public virtual ICollection<ProductImage> ProductImages { get; set; }
 
         public virtual ICollection<StarRating> StarRatings { get; set; }
 

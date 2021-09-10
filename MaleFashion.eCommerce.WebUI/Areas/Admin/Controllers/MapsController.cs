@@ -7,30 +7,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MaleFashion.eCommerce.WebUI.Models.DataContext;
 using MaleFashion.eCommerce.WebUI.Models.Entity;
-using Microsoft.AspNetCore.Hosting;
 
 namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class ProductsController : Controller
+    public class MapsController : Controller
     {
         private readonly FashionDbContext _context;
-        private readonly IWebHostEnvironment env;
 
-        public ProductsController(FashionDbContext context, IWebHostEnvironment env)
+        public MapsController(FashionDbContext context)
         {
             _context = context;
-            this.env = env;
         }
 
-        // GET: Admin/Products
+        // GET: Admin/Maps
         public async Task<IActionResult> Index()
         {
-            var fashionDbContext = _context.Products.Include(p => p.ProductImages).Include(p => p.Brand);
-            return View(await fashionDbContext.ToListAsync());
+            return View(await _context.Maps.ToListAsync());
         }
 
-        // GET: Admin/Products/Details/5
+        // GET: Admin/Maps/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -38,43 +34,39 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Products
-                .Include(p => p.Brand)
-                .Include(p => p.ProductImages)
+            var map = await _context.Maps
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (product == null)
+            if (map == null)
             {
                 return NotFound();
             }
 
-            return View(product);
+            return View(map);
         }
 
-        // GET: Admin/Products/Create
+        // GET: Admin/Maps/Create
         public IActionResult Create()
         {
-            ViewData["BrandId"] = new SelectList(_context.Brands, "Id", "Id");
             return View();
         }
 
-        // POST: Admin/Products/Create
+        // POST: Admin/Maps/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Title,Description,BrandId,Id,CreatedDate,UpdatedDate,DeletedDate")] Product product)
+        public async Task<IActionResult> Create([Bind("Content,Id,CreatedDate,UpdatedDate,DeletedDate")] Map map)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(product);
+                _context.Add(map);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BrandId"] = new SelectList(_context.Brands, "Id", "Id", product.BrandId);
-            return View(product);
+            return View(map);
         }
 
-        // GET: Admin/Products/Edit/5
+        // GET: Admin/Maps/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -82,23 +74,22 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Products.FindAsync(id);
-            if (product == null)
+            var map = await _context.Maps.FindAsync(id);
+            if (map == null)
             {
                 return NotFound();
             }
-            ViewData["BrandId"] = new SelectList(_context.Brands, "Id", "Id", product.BrandId);
-            return View(product);
+            return View(map);
         }
 
-        // POST: Admin/Products/Edit/5
+        // POST: Admin/Maps/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Title,Description,BrandId,Id,CreatedDate,UpdatedDate,DeletedDate")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("Content,Id,CreatedDate,UpdatedDate,DeletedDate")] Map map)
         {
-            if (id != product.Id)
+            if (id != map.Id)
             {
                 return NotFound();
             }
@@ -107,12 +98,12 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(product);
+                    _context.Update(map);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProductExists(product.Id))
+                    if (!MapExists(map.Id))
                     {
                         return NotFound();
                     }
@@ -123,11 +114,10 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BrandId"] = new SelectList(_context.Brands, "Id", "Id", product.BrandId);
-            return View(product);
+            return View(map);
         }
 
-        // GET: Admin/Products/Delete/5
+        // GET: Admin/Maps/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -135,31 +125,30 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Products
-                .Include(p => p.Brand)
+            var map = await _context.Maps
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (product == null)
+            if (map == null)
             {
                 return NotFound();
             }
 
-            return View(product);
+            return View(map);
         }
 
-        // POST: Admin/Products/Delete/5
+        // POST: Admin/Maps/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var product = await _context.Products.FindAsync(id);
-            _context.Products.Remove(product);
+            var map = await _context.Maps.FindAsync(id);
+            _context.Maps.Remove(map);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProductExists(int id)
+        private bool MapExists(int id)
         {
-            return _context.Products.Any(e => e.Id == id);
+            return _context.Maps.Any(e => e.Id == id);
         }
     }
 }
