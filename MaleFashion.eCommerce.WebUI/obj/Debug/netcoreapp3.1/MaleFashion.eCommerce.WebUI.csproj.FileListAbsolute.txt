@@ -276,3 +276,8 @@ C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCom
 C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Account\ViewUserClaims.cshtml.g.cs
 C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\bin\Debug\netcoreapp3.1\Logs\log.json
 C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\AppUsers\Edit.cshtml.g.cs
+C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Maps\Create.cshtml.g.cs
+C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Maps\Delete.cshtml.g.cs
+C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Maps\Details.cshtml.g.cs
+C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Maps\Edit.cshtml.g.cs
+C:\Users\User\Desktop\Male-Fashion-eCommerce-Website (Back-End)\MaleFashion.eCommerce.Solution\MaleFashion.eCommerce.WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Maps\Index.cshtml.g.cs

@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using MaleFashion.eCommerce.WebUI.Models.DataContext;
 using MaleFashion.eCommerce.WebUI.Models.Entity;
 using Microsoft.AspNetCore.Hosting;
+using MaleFashion.eCommerce.WebUI.Models.FormModel;
+using System.IO;
 
 namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
 {
@@ -53,7 +55,7 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
         // GET: Admin/Products/Create
         public IActionResult Create()
         {
-            ViewData["BrandId"] = new SelectList(_context.Brands, "Id", "Id");
+            ViewData["BrandId"] = new SelectList(_context.Brands, "Id", "BrandName");
             return View();
         }
 
@@ -62,8 +64,28 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Title,Description,BrandId,Id,CreatedDate,UpdatedDate,DeletedDate")] Product product)
+        public async Task<IActionResult> Create([Bind("Title,Description,Files,BrandId,Id,CreatedDate,UpdatedDate,DeletedDate")] Product product)
         {
+            product.ProductImages = new List<ProductImage>();
+
+            foreach (ImageItemFormModel item in product.Files)
+            {
+                string ext = Path.GetExtension(item.File.FileName);
+                string filename = $"product-{Guid.NewGuid().ToString().Replace("-", "")}{ext}";
+                string fullpath = Path.Combine(env.WebRootPath, "assets", "images", "shop", filename);
+
+                using (FileStream fs = new FileStream(fullpath, FileMode.Create, FileAccess.Write))
+                {
+                    item.File.CopyTo(fs);
+                }
+
+                product.ProductImages.Add(new ProductImage
+                {
+                    IsMain = item.IsMain,
+                    ImagePath = filename
+                });
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Add(product);
@@ -82,12 +104,12 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context.Products.Include(p => p.ProductImages).FirstOrDefaultAsync(p => p.Id == id);
             if (product == null)
             {
                 return NotFound();
             }
-            ViewData["BrandId"] = new SelectList(_context.Brands, "Id", "Id", product.BrandId);
+            ViewData["BrandId"] = new SelectList(_context.Brands, "Id", "BrandName", product.BrandId);
             return View(product);
         }
 
@@ -96,7 +118,7 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Title,Description,BrandId,Id,CreatedDate,UpdatedDate,DeletedDate")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("Title,Description,Files,BrandId,Id,CreatedDate,UpdatedDate,DeletedDate")] Product product)
         {
             if (id != product.Id)
             {
@@ -105,8 +127,59 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
+                IEnumerable<Product> products = _context.Products.AsNoTracking().Where(p => p.Id == id);
+
+                if (product == null)
+                {
+                    return NotFound();
+                }
+
+                IEnumerable<ProductImage> images = await _context.ProductImages.Where(pi => pi.ProductId == id).ToListAsync();
+
+                foreach (ProductImage item in images)
+                {
+                    if (product.Files.Any(f => f.File == null && string.IsNullOrWhiteSpace(f.TempPath) && f.Id == item.Id))
+                    {
+                        _context.ProductImages.Remove(item);
+
+                        string currentpath = Path.Combine(env.WebRootPath, "assets", "images", "shop", item.ImagePath);
+
+                        if (System.IO.File.Exists(currentpath))
+                        {
+                            System.IO.File.Delete(currentpath);
+                        }
+                    }
+                    else if (product.Files.Any(f => f.IsMain && f.Id == item.Id))
+                    {
+                        item.IsMain = true;
+                    }
+                    else
+                    {
+                        item.IsMain = false;
+                    }
+                }
+
+                foreach (ImageItemFormModel item in product.Files.Where(f => f.File != null))
+                {
+                    string ext = Path.GetExtension(item.File.FileName);
+                    string filename = $"product-{Guid.NewGuid().ToString().Replace("-", "")}{ext}";
+                    string fullpath = Path.Combine(env.WebRootPath, "assets", "images", "shop", filename);
+
+                    using (FileStream fs = new FileStream(fullpath, FileMode.Create, FileAccess.Write))
+                    {
+                        item.File.CopyTo(fs);
+                    }
+
+                    product.ProductImages.Add(new ProductImage
+                    {
+                        IsMain = item.IsMain,
+                        ImagePath = filename
+                    });
+                }
+
                 try
                 {
+                    product.UpdatedDate = DateTime.UtcNow.AddHours(4);
                     _context.Update(product);
                     await _context.SaveChangesAsync();
                 }
@@ -137,6 +210,7 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
 
             var product = await _context.Products
                 .Include(p => p.Brand)
+                .Include(p => p.ProductImages)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
