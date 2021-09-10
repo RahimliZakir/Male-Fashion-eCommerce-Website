@@ -98,6 +98,7 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
             {
                 try
                 {
+                    productTag.UpdatedDate = DateTime.UtcNow.AddHours(4);
                     _context.Update(productTag);
                     await _context.SaveChangesAsync();
                 }
