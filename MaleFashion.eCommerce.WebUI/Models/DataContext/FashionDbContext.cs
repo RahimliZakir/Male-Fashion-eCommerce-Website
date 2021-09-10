@@ -68,6 +68,9 @@ namespace MaleFashion.eCommerce.WebUI.Models.DataContext
         public DbSet<HappyClient> HappyClients { get; set; }
         public DbSet<WhyWe> WhyWes { get; set; }
         // ---ABOUT-US---
+        //---MAPS---
+        public DbSet<Map> Maps { get; set; }
+        //---MAPS---
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -165,6 +168,12 @@ namespace MaleFashion.eCommerce.WebUI.Models.DataContext
            .Property(ap => ap.CreatedDate)
            .HasDefaultValueSql("DATEADD(HOUR, 4, GETUTCDATE())");
             // ---ABOUT-US---
+
+            //---MAP---
+            builder.Entity<Map>()
+            .Property(ap => ap.CreatedDate)
+            .HasDefaultValueSql("DATEADD(HOUR, 4, GETUTCDATE())");
+            //---MAP---
 
             //IDENTITY ToTable
             builder.Entity<AppUser>(e =>
