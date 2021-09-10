@@ -137,7 +137,7 @@
                     ${data.title}
                 </td>
                 <td>
-                    ${data.description.replaceAll(pattern, "").substr(0, 100)}...
+                    ${data.description.replace(pattern, "").substr(0, 100)}...
                 </td>
                 <td>
                     <div class="img-div" style="width: 135%;">
@@ -146,7 +146,7 @@
                 </td>
                 <td>
                     <div class="img-div" style="width: 62%;">
-                        <img src="assets/images/author/${data.authorImagePath}" style="width:100%;" />
+                        <img src="admin-assets/img/users/${data.authorImagePath}" style="width:100%;" />
                     </div>
                 </td>
                 <td>
