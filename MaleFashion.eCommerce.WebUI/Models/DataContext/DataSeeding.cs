@@ -88,6 +88,34 @@ namespace MaleFashion.eCommerce.WebUI.Models.DataContext
                 }
                 //IDENTITY DB AUTO SEED
 
+                //AUTO CLAIM ADDING
+                if (!db.UserClaims.Any())
+                {
+                    db.UserClaims.Add(new AppUserClaim
+                    {
+                        UserId = 1,
+                        ClaimType = "admin.getprincipal",
+                        ClaimValue = "1"
+                    });
+
+                    db.UserClaims.Add(new AppUserClaim
+                    {
+                        UserId = 1,
+                        ClaimType = "admin.setprincipal",
+                        ClaimValue = "1"
+                    });
+
+                    db.UserClaims.Add(new AppUserClaim
+                    {
+                        UserId = 1,
+                        ClaimType = "index.appinfos",
+                        ClaimValue = "1"
+                    });
+
+                    db.SaveChanges();
+                }
+                //AUTO CLAIM ADDING
+
                 if (!db.AppInfos.Any())
                 {
                     db.AppInfos.Add(new AppInfo

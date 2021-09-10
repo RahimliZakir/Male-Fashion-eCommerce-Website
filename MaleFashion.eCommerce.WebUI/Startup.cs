@@ -90,7 +90,7 @@ namespace MaleFashion.eCommerce.WebUI
                 options.Password.RequiredUniqueChars = 1;
 
                 // Kilidləmə tənzimləri.
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(13);
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(60);
                 options.Lockout.MaxFailedAccessAttempts = 5;
                 options.Lockout.AllowedForNewUsers = true;
 

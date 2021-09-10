@@ -10,10 +10,12 @@ using MaleFashion.eCommerce.WebUI.Models.Entity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize("index.appinfos")]
     public class AppInfosController : Controller
     {
         private readonly FashionDbContext _context;
