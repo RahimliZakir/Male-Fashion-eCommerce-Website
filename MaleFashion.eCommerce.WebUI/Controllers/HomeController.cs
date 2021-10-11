@@ -22,9 +22,9 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
 
             CookieOptions options = new CookieOptions();
             options.Expires = new DateTimeOffset(DateTime.Now.AddMinutes(13)); ;
-            HttpContext.Response.Cookies.Append("Welcome - Cookie", "TRUE", options);
+            HttpContext.Response.Cookies.Append("Welcome-Cookie", "TRUE", options);
 
-            HttpContext.Session.SetInt32("Welcome - Session", 13);
+            HttpContext.Session.SetInt32("Welcome-Session", 13);
 
             return View();
         }
