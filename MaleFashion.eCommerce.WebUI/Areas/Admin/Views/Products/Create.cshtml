@@ -31,6 +31,10 @@
                 <div style="width: 600px;" class="imager-container" id="viewer1" name="files"></div>
             </div>
             <div class="form-group">
+                <label asp-for="Price"></label>
+                <input asp-for="Price" class="form-control"/>
+            </div>
+            <div class="form-group">
                 <label asp-for="BrandId" class="control-label">Brand</label>
                 <select asp-for="BrandId" class="form-control" asp-items="ViewBag.BrandId"></select>
             </div>

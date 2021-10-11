@@ -18,5 +18,7 @@ namespace MaleFashion.eCommerce.WebUI.Models.Entity
         public int CampaignId { get; set; }
 
         public virtual Campaign Campaign { get; set; }
+
+        public decimal? PriceNew { get; set; }
     }
 }

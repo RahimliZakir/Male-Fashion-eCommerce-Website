@@ -25,6 +25,9 @@
                 Brand
             </th>
             <th>
+                Price:
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.CreatedDate)
             </th>
             <th>
@@ -50,6 +53,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Brand.BrandName)
+                </td>
+                <td>
+                    @item.Price ₼
                 </td>
                 <td>
                     @item.CreatedDate.ToString("dd.MM.yyyy HH:mm:ss")
