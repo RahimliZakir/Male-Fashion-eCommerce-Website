@@ -12,6 +12,8 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
         [AllowAnonymous]
         public IActionResult Index()
         {
+
+
             return View();
         }
     }

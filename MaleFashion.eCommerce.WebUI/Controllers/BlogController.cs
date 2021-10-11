@@ -80,23 +80,23 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
 
         [HttpPost]
         [Authorize]
-        async public Task<IActionResult> Unlike(int blogId)
+        async public Task<IActionResult> Unlike(int id)
         {
             AppUser currentUser = await db.Users.FirstOrDefaultAsync(u => u.Id == User.GetUserId());
             int currentUserId = User.GetUserId();
 
-            if (db.Likes.Any(u => u.UserId == currentUserId && u.BlogId == blogId))
+            if (db.Likes.Any(u => u.UserId == currentUserId && u.BlogId == id))
             {
-                Like currentLike = await db.Likes.AsNoTracking().FirstOrDefaultAsync(u => u.UserId == currentUserId && u.BlogId == blogId);
+                Like currentLike = await db.Likes.AsNoTracking().FirstOrDefaultAsync(u => u.UserId == currentUserId && u.BlogId == id);
                 db.Likes.Remove(currentLike);
                 await db.SaveChangesAsync();
             }
 
-            if (!db.Unlikes.Any(u => u.UserId == currentUserId && u.BlogId == blogId))
+            if (!db.Unlikes.Any(u => u.UserId == currentUserId && u.BlogId == id))
             {
                 var unlike = new Unlike
                 {
-                    BlogId = blogId,
+                    BlogId = id,
                     UserId = currentUserId
                 };
 
@@ -118,8 +118,8 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
             return Json(new
             {
                 error = false,
-                unlikeCount = db.Unlikes.Count(l => l.BlogId == blogId),
-                likeCount = db.Likes.Count(l => l.BlogId == blogId)
+                unlikeCount = db.Unlikes.Count(l => l.BlogId == id),
+                likeCount = db.Likes.Count(l => l.BlogId == id)
             });
         }
     }

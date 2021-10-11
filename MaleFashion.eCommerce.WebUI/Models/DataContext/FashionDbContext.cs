@@ -40,7 +40,6 @@ namespace MaleFashion.eCommerce.WebUI.Models.DataContext
         public DbSet<Size> Sizes { get; set; }
         public DbSet<Color> Colors { get; set; }
         public DbSet<ProductTag> ProductTags { get; set; }
-        public DbSet<Campaign> Campaigns { get; set; }
         public DbSet<ProductMainCollection> ProductMainCollections { get; set; }
         // ---SHOP---
         // ---BLOG---
@@ -71,6 +70,10 @@ namespace MaleFashion.eCommerce.WebUI.Models.DataContext
         //---MAPS---
         public DbSet<Map> Maps { get; set; }
         //---MAPS---
+        //---DISCOUNT---
+        public DbSet<Campaign> Campaigns { get; set; }
+        public DbSet<ProductCampaignCollection> ProductCampaignCollections { get; set; }
+        //---DISCOUNT---
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

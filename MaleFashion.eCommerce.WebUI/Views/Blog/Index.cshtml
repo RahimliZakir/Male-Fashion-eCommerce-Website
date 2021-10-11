@@ -117,7 +117,7 @@
         let currentLikeCount = $(e.currentTarget).closest('.like-unlike-side').find('.like-count');
 
         $.ajax({
-            url: `@Url.Action("Unlike", "Blog")?blogId=${blogId}`,
+            url: `@Url.Action("Unlike", "Blog")/${blogId}`,
             type: "POST",
             success: function (successMsg) {
                 if (successMsg.error == false && successMsg.unlikeCount) {

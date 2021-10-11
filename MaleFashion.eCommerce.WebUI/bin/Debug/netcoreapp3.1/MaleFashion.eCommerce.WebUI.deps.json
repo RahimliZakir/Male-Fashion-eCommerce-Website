@@ -31,10 +31,11 @@
     ".NETCoreApp,Version=v3.1": {
       "MaleFashion.eCommerce.WebUI/1.0.0": {
         "dependencies": {
-          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "3.1.5",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "3.1.15",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "3.1.15",
           "Microsoft.EntityFrameworkCore": "3.1.15",
           "Microsoft.EntityFrameworkCore.Design": "3.1.15",
+          "Microsoft.EntityFrameworkCore.InMemory": "3.1.15",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.15",
           "Microsoft.EntityFrameworkCore.Tools": "3.1.15",
           "Microsoft.Extensions.Identity.Core": "3.1.15",
@@ -347,15 +348,15 @@
           "System.Text.Encodings.Web": "4.5.0"
         }
       },
-      "Microsoft.AspNetCore.Identity.EntityFrameworkCore/3.1.5": {
+      "Microsoft.AspNetCore.Identity.EntityFrameworkCore/3.1.15": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Relational": "3.1.15",
-          "Microsoft.Extensions.Identity.Stores": "3.1.5"
+          "Microsoft.Extensions.Identity.Stores": "3.1.15"
         },
         "runtime": {
           "lib/netcoreapp3.1/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {
-            "assemblyVersion": "3.1.5.0",
-            "fileVersion": "3.100.520.27105"
+            "assemblyVersion": "3.1.15.0",
+            "fileVersion": "3.100.1521.21512"
           }
         },
         "compile": {
@@ -782,6 +783,20 @@
           }
         }
       },
+      "Microsoft.EntityFrameworkCore.InMemory/3.1.15": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "3.1.15"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.InMemory.dll": {
+            "assemblyVersion": "3.1.15.0",
+            "fileVersion": "3.100.1521.21407"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.EntityFrameworkCore.InMemory.dll": {}
+        }
+      },
       "Microsoft.EntityFrameworkCore.Relational/3.1.15": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "3.1.15"
@@ -975,7 +990,7 @@
           "lib/netcoreapp3.1/Microsoft.Extensions.Identity.Core.dll": {}
         }
       },
-      "Microsoft.Extensions.Identity.Stores/3.1.5": {
+      "Microsoft.Extensions.Identity.Stores/3.1.15": {
         "dependencies": {
           "Microsoft.Extensions.Caching.Abstractions": "3.1.15",
           "Microsoft.Extensions.Identity.Core": "3.1.15",
@@ -983,8 +998,8 @@
         },
         "runtime": {
           "lib/netcoreapp3.1/Microsoft.Extensions.Identity.Stores.dll": {
-            "assemblyVersion": "3.1.5.0",
-            "fileVersion": "3.100.520.27105"
+            "assemblyVersion": "3.1.15.0",
+            "fileVersion": "3.100.1521.21512"
           }
         },
         "compile": {
@@ -4308,12 +4323,12 @@
       "path": "microsoft.aspnetcore.html.abstractions/2.2.0",
       "hashPath": "microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512"
     },
-    "Microsoft.AspNetCore.Identity.EntityFrameworkCore/3.1.5": {
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore/3.1.15": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ZikbOBan8GAvgzJKCuy38hm5vuESzWN7v99BrRvN66wa/dWYanyzNzSX3buw20wV+WdH1kE+YOwjgGBG9TAd9Q==",
-      "path": "microsoft.aspnetcore.identity.entityframeworkcore/3.1.5",
-      "hashPath": "microsoft.aspnetcore.identity.entityframeworkcore.3.1.5.nupkg.sha512"
+      "sha512": "sha512-s6bB80/VGeXiUmEiExEPv1QZXhwk40LkHKIDdVlJd7DKxhib28y38r6KHKJIUFhUaN/WRdupDrqGiPDM31dy1w==",
+      "path": "microsoft.aspnetcore.identity.entityframeworkcore/3.1.15",
+      "hashPath": "microsoft.aspnetcore.identity.entityframeworkcore.3.1.15.nupkg.sha512"
     },
     "Microsoft.AspNetCore.JsonPatch/3.1.15": {
       "type": "package",
@@ -4455,6 +4470,13 @@
       "path": "microsoft.entityframeworkcore.design/3.1.15",
       "hashPath": "microsoft.entityframeworkcore.design.3.1.15.nupkg.sha512"
     },
+    "Microsoft.EntityFrameworkCore.InMemory/3.1.15": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-SqUOsmVVn++re9VQQ4cIZ2LCwXTEtyXXmbsTwPO7C8CxRox2yK3XENDFpK4kTeB49rpG+w/I7Za5I199N3AIYQ==",
+      "path": "microsoft.entityframeworkcore.inmemory/3.1.15",
+      "hashPath": "microsoft.entityframeworkcore.inmemory.3.1.15.nupkg.sha512"
+    },
     "Microsoft.EntityFrameworkCore.Relational/3.1.15": {
       "type": "package",
       "serviceable": true,
@@ -4553,12 +4575,12 @@
       "path": "microsoft.extensions.identity.core/3.1.15",
       "hashPath": "microsoft.extensions.identity.core.3.1.15.nupkg.sha512"
     },
-    "Microsoft.Extensions.Identity.Stores/3.1.5": {
+    "Microsoft.Extensions.Identity.Stores/3.1.15": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-6TvcOR2uMMJznfQNsOG3B0lTWIuJaFDPuJ4b2ustbtengrN/wZg01VGLBSi7BZ5ouRmchAUQ1rJBQFOETkUeLA==",
-      "path": "microsoft.extensions.identity.stores/3.1.5",
-      "hashPath": "microsoft.extensions.identity.stores.3.1.5.nupkg.sha512"
+      "sha512": "sha512-XovWVTNFhbt7F0knwvzLLnCf1LrQ3Drw8MCV4AEJjt/Rc1DKZf5rICfTLrOCTOJyxMWfUjVnt4xe/xyQ3f31LQ==",
+      "path": "microsoft.extensions.identity.stores/3.1.15",
+      "hashPath": "microsoft.extensions.identity.stores.3.1.15.nupkg.sha512"
     },
     "Microsoft.Extensions.Logging/3.1.15": {
       "type": "package",

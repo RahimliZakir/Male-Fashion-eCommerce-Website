@@ -781,6 +781,28 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("MaleFashion.eCommerce.WebUI.Models.Entity.ProductCampaignCollection", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CampaignId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductCollectionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CampaignId");
+
+                    b.HasIndex("ProductCollectionId");
+
+                    b.ToTable("ProductCampaignCollections");
+                });
+
             modelBuilder.Entity("MaleFashion.eCommerce.WebUI.Models.Entity.ProductImage", b =>
                 {
                     b.Property<int>("Id")
@@ -811,17 +833,11 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CampaignId")
-                        .HasColumnType("int");
-
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<int>("ColorId")
                         .HasColumnType("int");
-
-                    b.Property<decimal?>("PriceNew")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
@@ -833,8 +849,6 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CampaignId");
 
                     b.HasIndex("CategoryId");
 
@@ -1234,10 +1248,25 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("MaleFashion.eCommerce.WebUI.Models.Entity.ProductCampaignCollection", b =>
+                {
+                    b.HasOne("MaleFashion.eCommerce.WebUI.Models.Entity.Campaign", "Campaign")
+                        .WithMany("ProductCampaignCollections")
+                        .HasForeignKey("CampaignId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MaleFashion.eCommerce.WebUI.Models.Entity.ProductMainCollection", "ProductCollection")
+                        .WithMany("ProductCampaignCollections")
+                        .HasForeignKey("ProductCollectionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("MaleFashion.eCommerce.WebUI.Models.Entity.ProductImage", b =>
                 {
                     b.HasOne("MaleFashion.eCommerce.WebUI.Models.Entity.Product", "Product")
-                        .WithMany("ProductImage")
+                        .WithMany("ProductImages")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1245,12 +1274,6 @@ namespace MaleFashion.eCommerce.WebUI.Migrations
 
             modelBuilder.Entity("MaleFashion.eCommerce.WebUI.Models.Entity.ProductMainCollection", b =>
                 {
-                    b.HasOne("MaleFashion.eCommerce.WebUI.Models.Entity.Campaign", "Campaign")
-                        .WithMany("ProductMainCollections")
-                        .HasForeignKey("CampaignId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("MaleFashion.eCommerce.WebUI.Models.Entity.Category", "Category")
                         .WithMany("ProductMainCollections")
                         .HasForeignKey("CategoryId")

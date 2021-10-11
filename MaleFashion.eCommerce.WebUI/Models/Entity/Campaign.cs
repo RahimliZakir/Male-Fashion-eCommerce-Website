@@ -17,6 +17,6 @@ namespace MaleFashion.eCommerce.WebUI.Models.Entity
 
         public bool IsApproved { get; set; }
 
-        public virtual ICollection<ProductMainCollection> ProductMainCollections { get; set; }
+        public virtual ICollection<ProductCampaignCollection> ProductCampaignCollections { get; set; }
     }
 }

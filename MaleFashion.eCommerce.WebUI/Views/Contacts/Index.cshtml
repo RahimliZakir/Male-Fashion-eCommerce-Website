@@ -2,7 +2,32 @@
 
 @{
     ViewData["Title"] = "Contacts";
+
+    string serializedData = TempData.Peek("Data") as string;
+
+    List<int> numbers = JsonConvert.DeserializeObject<List<int>>(serializedData);
 }
+
+@section css{
+    <style>
+        .numbers {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+    </style>
+}
+
+@*TempData Object Transfer*@
+<div class="numbers">
+    @foreach (int item in numbers)
+    {
+        <p>
+            @item
+        </p>
+    }
+</div>
+@*TempData Object Transfer*@
 
 <div class="map">
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d49288.475208661024!2d48.51164392065897!3d39.457360569795675!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x403cbb4ccea75261%3A0xeabe549d3a0adf85!2zQmlsyZlzdXZhciwgQXrJmXJiYXljYW4!5e0!3m2!1saz!2s!4v1630332890999!5m2!1saz!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>

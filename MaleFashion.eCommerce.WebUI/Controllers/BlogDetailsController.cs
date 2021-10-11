@@ -31,7 +31,7 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
 
             viewModel.BlogDetailsTagsCollections = db.BlogDetailsTagsCollections
                                                    .Include(b => b.Blog)
-                                                   .Include(b => b.Blog.Aphorism)
+                                                   .Include(a => a.Blog.Aphorism)
                                                    .Include(t => t.Tag)
                                                    .Where(b => b.Blog.DeletedDate == null)
                                                    .Where(b => b.Blog.Aphorism.DeletedDate == null)
