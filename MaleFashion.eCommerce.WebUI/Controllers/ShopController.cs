@@ -21,50 +21,51 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
         }
 
         [AllowAnonymous]
-        async public Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            IEnumerable<ProductMainCollection> productCollecion = await db.ProductMainCollections
-                                                                        .Include(p => p.Product)
-                                                                        .Include(ca => ca.Category)
-                                                                        .Include(co => co.Color)
-                                                                        .Include(s => s.Size)
-                                                                        .Include(pt => pt.ProductTag)
-                                                                        .Include(pt => pt.ProductTag)
-                                                                        .Include(pb => pb.Product.ProductImages)
-                                                                        .ToListAsync();
-            DateTime dt = DateTime.UtcNow.AddHours(4).AddDays(20);
+            //IEnumerable<ProductMainCollection> productCollecion = db.ProductMainCollections
+            //                                                      .Include(p => p.Product)
+            //                                                      .Include(ca => ca.Category)
+            //                                                      .Include(co => co.Color)
+            //                                                      .Include(s => s.Size)
+            //                                                      .Include(pt => pt.ProductTag)
+            //                                                      .Include(pb => pb.Product.Brand)
+            //                                                      .Include(pi => pi.Product.ProductImages);
 
-            IEnumerable<ProductCampaignCollection> campaignCollection = await db.ProductCampaignCollections
-                                                                              .Include(pc => pc.Campaign)
-                                                                              .Where(pc => pc.Campaign.IsApproved && pc.Campaign.ExpiredDate < dt)
-                                                                              .ToListAsync();
+            //DateTime dt = DateTime.UtcNow.AddHours(4).AddDays(20);
 
-            IQueryable<DiscountProductViewModel> query = (from p in productCollecion
-                                                          join cp in campaignCollection on p.Id equals cp.ProductCollectionId
-                                                          into pcp
-                                                          from pcp_item in pcp.DefaultIfEmpty()
-                                                          select new DiscountProductViewModel
-                                                          {
-                                                              Id = p.Id,
-                                                              Title = p.Product.Title,
-                                                              Description = p.Product.Description,
-                                                              Brand = p.Product.Brand.BrandName,
-                                                              Price = p.Product.Price,
-                                                              PriceNew = pcp_item.PriceNew == null ? null : pcp_item.PriceNew,
-                                                              CampaignTitle = pcp_item.Campaign.Title,
-                                                              CampaignDescription = pcp_item.Campaign.Description,
-                                                              Discount = pcp_item.Campaign.Discount != 0 ? null : pcp_item.Campaign.Discount,
-                                                              ProductImages = p.Product.ProductImages,
-                                                              Colors = db.Colors.ToList(),
-                                                              Sizes = db.Sizes.ToList(),
-                                                              Categories = db.Categories.ToList(),
-                                                              ProductTags = db.ProductTags.ToList()
-                                                          })
-                                                          .AsQueryable();
+            //IEnumerable<ProductCampaignCollection> campaignCollection = db.ProductCampaignCollections
+            //                                                            .Include(pc => pc.Campaign)
+            //                                                            .Where(pc => pc.Campaign.IsApproved && pc.Campaign.ExpiredDate > dt);
 
-            IEnumerable<DiscountProductViewModel> data = query.ToList();
+            //IQueryable<DiscountProductViewModel> query = (from p in productCollecion
+            //                                              join cp in campaignCollection on p.Id equals cp.ProductCollectionId
+            //                                              into pcp
+            //                                              from pcp_item in pcp.DefaultIfEmpty()
+            //                                              select new DiscountProductViewModel
+            //                                              {
+            //                                                  Id = p.Id,
+            //                                                  Title = p.Product.Title,
+            //                                                  Description = p.Product.Description,
+            //                                                  Brand = p.Product.Brand.BrandName,
+            //                                                  Price = p.Product.Price,
+            //                                                  PriceNew = pcp_item.PriceNew == null ? null : pcp_item.PriceNew,
+            //                                                  CampaignTitle = pcp_item.Campaign.Title,
+            //                                                  CampaignDescription = pcp_item.Campaign.Description,
+            //                                                  Discount = pcp_item.Campaign.Discount != 0 ? null : pcp_item.Campaign.Discount,
+            //                                                  ProductImages = p.Product.ProductImages,
+            //                                                  Colors = db.Colors.ToList(),
+            //                                                  Sizes = db.Sizes.ToList(),
+            //                                                  Categories = db.Categories.ToList(),
+            //                                                  ProductTags = db.ProductTags.ToList()
+            //                                              })
+            //                                              .AsQueryable();
 
-            return View(data);
+            //IEnumerable<DiscountProductViewModel> data =  query.ToList();
+
+            //return View(data);
+
+            return View();
         }
     }
 }

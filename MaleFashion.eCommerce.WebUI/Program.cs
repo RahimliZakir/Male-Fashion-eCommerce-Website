@@ -19,7 +19,7 @@ namespace MaleFashion.eCommerce.WebUI
 
         public static void Main(string[] args)
         {
-            var types = typeof(Program).Assembly.GetTypes();
+            Type[] types = typeof(Program).Assembly.GetTypes();
 
             principals = types
                          .Where(t => typeof(Controller).IsAssignableFrom(t)
