@@ -23,14 +23,54 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
         }
 
         [AllowAnonymous]
-        public IActionResult Index(int pageIndex = 1, int pageSize = 9)
+        public IActionResult Index(string tagName, int pageIndex = 1, int pageSize = 9)
         {
-            var data = db.Blogs.Include(l => l.Likes).Include(u => u.Unlikes).OrderBy(b => b.Id);
+            BlogViewModel viewModel = new BlogViewModel();
 
-            // Limited Paged ViewModel
-            var pagedViewModel = new PagedViewModel<Blog>(data, pageIndex, pageSize);
+            if (!string.IsNullOrWhiteSpace(tagName))
+            {
+                var collection = db.BlogDetailsTagsCollections
+                                 .Include(t => t.Tag)
+                                 .Include(b => b.Blog)
+                                 .Include(b => b.Blog.Likes)
+                                 .Include(b => b.Blog.Unlikes)
+                                 .Where(b => b.Tag.TagName.Equals(tagName))
+                                 .OrderBy(b => b.BlogId);
 
-            return View(pagedViewModel);
+                //IOrderedQueryable<Blog> data = null;
+
+                //foreach (var item in collection)
+                //{
+                //    data = db.Blogs
+                //           .Include(l => l.Likes)
+                //           .Include(u => u.Unlikes)
+                //           .Where(d => d.Title == item.Blog.Title)
+                //           .OrderBy(b => b.Id);
+                //}
+
+                //int count = data.Count();
+
+                // Limited Paged ViewModel
+                PagedViewModel<BlogDetailsTagsCollection> pagedViewModel = new PagedViewModel<BlogDetailsTagsCollection>(collection, pageIndex, pageSize);
+
+                viewModel.PagedBlogDetailsTagsCollectionViewModel = pagedViewModel;
+
+                return View(viewModel);
+            }
+            else
+            {
+                var data = db.Blogs
+                           .Include(l => l.Likes)
+                           .Include(u => u.Unlikes)
+                           .OrderBy(b => b.Id);
+
+                // Limited Paged ViewModel
+                PagedViewModel<Blog> pagedViewModel = new PagedViewModel<Blog>(data, pageIndex, pageSize);
+
+                viewModel.PagedBlogViewModel = pagedViewModel;
+
+                return View(viewModel);
+            }
         }
 
         [HttpPost]

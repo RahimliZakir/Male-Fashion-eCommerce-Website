@@ -129,7 +129,7 @@
                                 <div class="blog__details__tags">
                                     @foreach (var item in Model.BlogDetailsTagsCollections)
                                     {
-                                        <a href="#">#@item.Tag.TagName</a>
+                                        <a href="/blog/index/?tagName=@item.Tag.TagName">#@item.Tag.TagName</a>
                                     }
                                 </div>
                             </div>

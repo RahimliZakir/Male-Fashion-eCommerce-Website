@@ -1,4 +1,4 @@
-﻿@model PagedViewModel<Blog>;
+﻿@model BlogViewModel;
 
 @{
     ViewData["Title"] = "Blog";
@@ -32,47 +32,94 @@
 
 @await Component.InvokeAsync("BlogBanner")
 
-<section class="blog spad">
-    <div class="container">
-        <div class="row">
-            <div class="pagination-div mb-5">
-                @Model.GetPagenation(Url, "Index")
-            </div>
-            @foreach (Blog item in Model.Items)
-            {
-                <div class="col-lg-4 col-md-6 col-sm-6" id="blog-@item.Id">
-                    <div class="blog__item">
-                        <div class="blog__item__pic set-bg"
-                             data-setbg="assets/images/blog/@item.ImagePath"></div>
-                        <div class="blog__item__text">
-                            <span>
-                                <img src="img/icon/xcalendar.png.pagespeed.ic.GXy2gYWDh7.png"
-                                     alt="" />
-                                @item.CreatedDate.ToString("dd.MM.yyyy")
-                            </span>
-                            <h5>@item.Title</h5>
-                            <div class="like-unlike-side">
-                                <div class="like-side">
-                                    <a class="like-btn" data-like-id="@item.Id">
-                                        <i class="far fa-thumbs-up"></i>
-                                    </a>
-                                    <p class="like-count">@item.Likes.Count()</p>
+@if (Model.PagedBlogViewModel != null)
+{
+    <section class="blog spad">
+        <div class="container">
+            <div class="row">
+                <div class="pagination-div mb-5">
+                    @Model.PagedBlogViewModel.GetPagenation(Url, "Index")
+                </div>
+                @foreach (Blog item in Model.PagedBlogViewModel.Items)
+                {
+                    <div class="col-lg-4 col-md-6 col-sm-6" id="blog-@item.Id">
+                        <div class="blog__item">
+                            <div class="blog__item__pic set-bg"
+                                 data-setbg="assets/images/blog/@item.ImagePath"></div>
+                            <div class="blog__item__text">
+                                <span>
+                                    <img src="img/icon/xcalendar.png.pagespeed.ic.GXy2gYWDh7.png"
+                                         alt="" />
+                                    @item.CreatedDate.ToString("dd.MM.yyyy")
+                                </span>
+                                <h5>@item.Title</h5>
+                                <div class="like-unlike-side">
+                                    <div class="like-side">
+                                        <a class="like-btn" data-like-id="@item.Id">
+                                            <i class="far fa-thumbs-up"></i>
+                                        </a>
+                                        <p class="like-count">@item.Likes.Count()</p>
+                                    </div>
+                                    <div class="unlike-side">
+                                        <a class="unlike-btn" data-unlike-id="@item.Id">
+                                            <i class="far fa-thumbs-down"></i>
+                                        </a>
+                                        <p class="unlike-count">@item.Unlikes.Count()</p>
+                                    </div>
                                 </div>
-                                <div class="unlike-side">
-                                    <a class="unlike-btn" data-unlike-id="@item.Id">
-                                        <i class="far fa-thumbs-down"></i>
-                                    </a>
-                                    <p class="unlike-count">@item.Unlikes.Count()</p>
-                                </div>
+                                <a asp-action="Index" asp-controller="BlogDetails" asp-route-id="@item.Id" asp-route-title="@Url.FriendlyUrlContext(item.Title)">Ətraflı</a>
                             </div>
-                            <a asp-action="Index" asp-controller="BlogDetails" asp-route-id="@item.Id" asp-route-title="@Url.FriendlyUrlContext(item.Title)">Ətraflı</a>
                         </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+}
+else
+{
+    <section class="blog spad">
+        <div class="container">
+            <div class="row">
+                <div class="pagination-div mb-5">
+                    @Model.PagedBlogDetailsTagsCollectionViewModel.GetPagenation(Url, "Index")
+                </div>
+                @foreach (var item in Model.PagedBlogDetailsTagsCollectionViewModel.Items)
+                {
+                    <div class="col-lg-4 col-md-6 col-sm-6" id="blog-@item.Id">
+                        <div class="blog__item">
+                            <div class="blog__item__pic set-bg"
+                                 data-setbg="assets/images/blog/@item.Blog.ImagePath"></div>
+                            <div class="blog__item__text">
+                                <span>
+                                    <img src="img/icon/xcalendar.png.pagespeed.ic.GXy2gYWDh7.png"
+                                         alt="" />
+                                    @item.Blog.CreatedDate.ToString("dd.MM.yyyy")
+                                </span>
+                                <h5>@item.Blog.Title</h5>
+                                <div class="like-unlike-side">
+                                    <div class="like-side">
+                                        <a class="like-btn" data-like-id="@item.Id">
+                                            <i class="far fa-thumbs-up"></i>
+                                        </a>
+                                        <p class="like-count">@item.Blog.Likes.Count()</p>
+                                    </div>
+                                    <div class="unlike-side">
+                                        <a class="unlike-btn" data-unlike-id="@item.Id">
+                                            <i class="far fa-thumbs-down"></i>
+                                        </a>
+                                        <p class="unlike-count">@item.Blog.Unlikes.Count()</p>
+                                    </div>
+                                </div>
+                                <a asp-action="Index" asp-controller="BlogDetails" asp-route-id="@item.BlogId" asp-route-title="@Url.FriendlyUrlContext(item.Blog.Title)">Ətraflı</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}
 
 @section scripts{
     <script>
