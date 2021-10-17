@@ -92,6 +92,7 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
                 MailMessage message = new MailMessage(conf["SubsSMTP:FromMail"], email);
                 message.Subject = "Şifrə yeniləmə linki.";
                 message.Body = $"Bu <a href={url}>linkə</a> click edərək keçid linkinə yollana bilərsiniz!";
+                message.IsBodyHtml = true;
 
                 client.Send(message);
 
@@ -206,6 +207,7 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
                 MailMessage message = new MailMessage(conf["SubsSMTP:FromMail"], email);
                 message.Subject = "Email təsdiqləmə linki.";
                 message.Body = $"<a href='{confirmEmailLink}'>Bura</a> klik edərək email təsdiqləmə pəncərəsinə yönələ bilərsiniz.";
+                message.IsBodyHtml = true;
                 client.Send(message);
 
                 return RedirectToAction("ConfirmEmailSent", "Account");
