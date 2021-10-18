@@ -74,6 +74,9 @@ namespace MaleFashion.eCommerce.WebUI.Models.DataContext
         public DbSet<Campaign> Campaigns { get; set; }
         public DbSet<ProductCampaignCollection> ProductCampaignCollections { get; set; }
         //---DISCOUNT---
+        //---SUBSCRIPTION---
+        public DbSet<Subscription> Subscriptions { get; set; }
+        //---SUBSCRIPTION---
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -19,6 +19,8 @@
             crossorigin="anonymous"></script>
     <base href="~/" />
     <link rel="stylesheet" href="assets/sources/css/aos.min.css" />
+    <link rel="stylesheet" href="libs/limonte-sweetalert2/sweetalert2.min.css" />
+    <link rel="stylesheet" href="libs/toastr.js/toastr.min.css" />
     <link rel="stylesheet" href="assets/sources/css/bootstrap.min.css" />
     @RenderSection("css", required: false)
     <link rel="stylesheet" href="assets/css/style.css" />
@@ -107,7 +109,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-3">
                     <div class="header__logo">
-                        <a href="index.html">
+                        <a asp-action="Index" asp-controller="Home">
                             <img src="assets/images/index/@appInfo.HeaderLogoPath" alt="" />
                         </a>
                     </div>
@@ -158,7 +160,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__logo">
-                            <a href="#">
+                            <a asp-action="Index" asp-controller="Home">
                                 <img src="assets/images/index/@appInfo.FooterLogoPath" alt="" />
                             </a>
                         </div>
@@ -252,6 +254,9 @@
     <script src="assets/sources/js/owl-carousel.min.js"></script>
     <script src="assets/sources/js/aos.min.js"></script>
     <script src="assets/sources/js/main.js"></script>
+    <script src="libs/limonte-sweetalert2/sweetalert2.all.min.js"></script>
+    <script src="libs/toastr.js/toastr.min.js"></script>
+    <script src="libs/toastr.js/toastr.customization.js"></script>
     <script>
         let span = $(".selected-lang-span");
         let ul = $(".multi-lang-ul");
@@ -272,13 +277,29 @@
         let subsForm = $('.subs-form');
 
         $(subsForm).submit((e) => {
+            e.preventDefault();
+
             if ($(subsInput).val().length <= 0) {
                 e.preventDefault();
                 alert("Xanaya mail-inizi daxil edin!");
             }
             else {
-                alert("Abunə olundunuz, mail hesabınıza təsdiq mesajı göndərildi!");
+                $.ajax({
+                    url: "@Url.Action("Index", "Subs")",
+                    type: "POST",
+                    success: function (successMsg) {
+                        if (!successMsg.error) {
+                            Swal.fire(
+                                'Uğurlu!',
+                                '',
+                                'success'
+                            )
+                        }
+                    },
+                    error: function (errorMsg) {
 
+                    }
+                });
             }
         });
     </script>

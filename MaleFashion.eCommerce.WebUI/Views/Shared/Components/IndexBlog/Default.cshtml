@@ -20,11 +20,11 @@
                         <div class="blog__item__text">
                             <span>
                                 @*<img src="assets/images/blog/@item.ImagePath"
-                                     alt="" />*@
+                                    alt="" />*@
                                 @item.CreatedDate.ToString("dd MMMM yyyy")
                             </span>
                             <h5>@item.Title</h5>
-                            <a asp-action="Index" asp-controller="BlogDetails" asp-route-id="@item.Id">Ətraflı</a>
+                            <a asp-action="Index" asp-controller="BlogDetails" asp-route-id="@item.Id" asp-route-title="@Url.FriendlyUrlContext(item.Title)">Ətraflı</a>
                         </div>
                     </div>
                 </div>
