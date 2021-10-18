@@ -28,11 +28,15 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
         [AllowAnonymous]
         async public Task<IActionResult> Index(string subsMail)
         {
-            Subscription subscription = await db.Subscriptions.FirstOrDefaultAsync(s => s.Email.Equals(subsMail));
+            bool subscriptionResult = await db.Subscriptions.AsNoTracking().AnyAsync(s => s.Email.Equals(subsMail));
 
-            if (subscription != null)
+            if (subscriptionResult)
             {
-
+                return Json(new
+                {
+                    error = true,
+                    message = "Siz artıq bizim abunəliyimizə qoşulmusunuz!"
+                });
             }
             else
             {
@@ -49,9 +53,17 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
                 message.Subject = conf.GetValue<string>("SubsSMTP:Title");
                 message.Body = conf.GetValue<string>("SubsSMTP:Description");
 
+                Subscription obj = new Subscription
+                {
+                    Email = subsMail
+                };
+
                 try
                 {
                     client.Send(message);
+
+                    await db.Subscriptions.AddAsync(obj);
+                    await db.SaveChangesAsync();
 
                     return Json(new
                     {
@@ -68,8 +80,6 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
                     });
                 }
             }
-
-            return RedirectToAction(nameof(Index), "Home");
         }
     }
 }

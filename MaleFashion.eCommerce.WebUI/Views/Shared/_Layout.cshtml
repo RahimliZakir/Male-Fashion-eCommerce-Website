@@ -32,6 +32,10 @@
         .selected-lang-span {
             display: flex !important;
         }
+
+        .toast-error {
+            background-color: red !important;
+        }
     </style>
     <link rel="shortcut icon"
           href="assets/icons/favicon.png"
@@ -284,20 +288,29 @@
                 alert("Xanaya mail-inizi daxil edin!");
             }
             else {
+                let formData = new FormData(e.currentTarget);
+
                 $.ajax({
                     url: "@Url.Action("Index", "Subs")",
                     type: "POST",
+                    processData: false,
+                    contentType: false,
+                    data: formData,
                     success: function (successMsg) {
                         if (!successMsg.error) {
                             Swal.fire(
                                 'Uğurlu!',
-                                '',
+                                `${successMsg.message}`,
                                 'success'
                             )
+                            e.currentTarget.reset();
+                            return;
                         }
+
+                        toastr.error(successMsg.message, "Xəta!");
                     },
                     error: function (errorMsg) {
-
+                        console.log(errorMsg);
                     }
                 });
             }
