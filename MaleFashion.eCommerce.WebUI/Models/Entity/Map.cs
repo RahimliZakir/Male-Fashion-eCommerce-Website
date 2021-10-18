@@ -8,5 +8,7 @@ namespace MaleFashion.eCommerce.WebUI.Models.Entity
     public class Map : BaseEntity
     {
         public string Content { get; set; }
+
+        public string Info { get; set; }
     }
 }

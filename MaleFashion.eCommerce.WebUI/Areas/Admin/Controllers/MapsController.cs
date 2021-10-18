@@ -23,7 +23,7 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
         // GET: Admin/Maps
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Maps.ToListAsync());
+            return View(await _context.Maps.Where(m => m.DeletedDate == null).ToListAsync());
         }
 
         // GET: Admin/Maps/Details/5
@@ -35,7 +35,7 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
             }
 
             var map = await _context.Maps
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.Id == id && m.DeletedDate == null);
             if (map == null)
             {
                 return NotFound();
@@ -55,7 +55,7 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Content,Id,CreatedDate,UpdatedDate,DeletedDate")] Map map)
+        public async Task<IActionResult> Create([Bind("Info,Content,Id,CreatedDate,UpdatedDate,DeletedDate")] Map map)
         {
             if (ModelState.IsValid)
             {
@@ -74,7 +74,7 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var map = await _context.Maps.FindAsync(id);
+            var map = await _context.Maps.FirstOrDefaultAsync(m => m.Id == id && m.DeletedDate == null);
             if (map == null)
             {
                 return NotFound();
@@ -87,7 +87,7 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Content,Id,CreatedDate,UpdatedDate,DeletedDate")] Map map)
+        public async Task<IActionResult> Edit(int id, [Bind("Info,Content,Id,CreatedDate,UpdatedDate,DeletedDate")] Map map)
         {
             if (id != map.Id)
             {
@@ -99,6 +99,7 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
                 try
                 {
                     _context.Update(map);
+                    map.UpdatedDate = DateTime.UtcNow.AddHours(4);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -126,7 +127,7 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
             }
 
             var map = await _context.Maps
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.Id == id && m.DeletedDate == null);
             if (map == null)
             {
                 return NotFound();
@@ -140,8 +141,8 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var map = await _context.Maps.FindAsync(id);
-            _context.Maps.Remove(map);
+            var map = await _context.Maps.FirstOrDefaultAsync(m => m.Id == id && m.DeletedDate == null);
+            map.DeletedDate = DateTime.UtcNow.AddHours(4);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
