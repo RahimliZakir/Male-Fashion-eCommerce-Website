@@ -21,8 +21,10 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
         }
 
         [AllowAnonymous]
-        public IActionResult Index()
+        async public Task<IActionResult> Index()
         {
+            ShopViewModel viewModel = new ShopViewModel();
+
             IEnumerable<ProductMainCollection> productCollecion = db.ProductMainCollections
                                                                   .Include(p => p.Product)
                                                                   .Include(ca => ca.Category)
@@ -48,22 +50,25 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
                                                               Title = p.Product.Title,
                                                               Description = p.Product.Description,
                                                               Brand = p.Product.Brand.BrandName,
-                                                              //Price = p.Product.Price,
+                                                              Price = p.Price,
                                                               PriceNew = pcp_item?.PriceNew == null ? null : pcp_item?.PriceNew,
                                                               CampaignTitle = pcp_item?.Campaign?.Title,
                                                               CampaignDescription = pcp_item?.Campaign?.Description,
                                                               Discount = pcp_item?.Campaign?.Discount != 0 ? null : pcp_item?.Campaign?.Discount,
-                                                              ProductImages = p.Product.ProductImages,
-                                                              Colors = db.Colors.ToList(),
-                                                              Sizes = db.Sizes.ToList(),
-                                                              Categories = db.Categories.ToList(),
-                                                              ProductTags = db.ProductTags.ToList()
+                                                              ProductImages = p.Product.ProductImages
                                                           })
                                                           .AsQueryable();
 
             IEnumerable<DiscountProductViewModel> data = query.ToList();
 
-            return View(data);
+            viewModel.DiscountProductViewModel = data;
+            viewModel.Colors = await db.Colors.ToListAsync();
+            viewModel.Sizes = await db.Sizes.ToListAsync();
+            viewModel.Categories = await db.Categories.ToListAsync();
+            viewModel.ProductTags = await db.ProductTags.ToListAsync();
+            viewModel.Brands = await db.Brands.ToListAsync();
+
+            return View(viewModel);
 
             //return View();
         }

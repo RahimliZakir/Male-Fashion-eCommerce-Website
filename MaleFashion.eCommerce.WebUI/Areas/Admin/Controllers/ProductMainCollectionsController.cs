@@ -66,7 +66,7 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CategoryId,ProductId,ColorId,ProductTagId,SizeId")] ProductMainCollection productMainCollection)
+        public async Task<IActionResult> Create([Bind("Id,Price,CategoryId,ProductId,ColorId,ProductTagId,SizeId")] ProductMainCollection productMainCollection)
         {
             if (ModelState.IsValid)
             {
@@ -108,7 +108,7 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CategoryId,ProductId,ColorId,ProductTagId,SizeId")] ProductMainCollection productMainCollection)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Price,CategoryId,ProductId,ColorId,ProductTagId,SizeId")] ProductMainCollection productMainCollection)
         {
             if (id != productMainCollection.Id)
             {
