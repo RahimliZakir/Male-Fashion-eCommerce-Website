@@ -50,6 +50,7 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
                                                               Title = p.Product.Title,
                                                               Description = p.Product.Description,
                                                               Brand = p.Product.Brand.BrandName,
+                                                              BrandId = p.Product.BrandId,
                                                               Price = p.Price,
                                                               PriceNew = pcp_item?.PriceNew == null ? null : pcp_item?.PriceNew,
                                                               CampaignTitle = pcp_item?.Campaign?.Title,

@@ -5,7 +5,9 @@
 
     var brands = Model.DiscountProductViewModel.Select(b => new
     {
-        brandName = b.Brand
+        // BrandId
+        Id = b.BrandId,
+        BrandName = b.Brand
     })
     .Distinct();
 }
@@ -120,7 +122,7 @@
                     <li class="active" data-filter="*">All</li>
                     @foreach (var item in brands)
                     {
-                        <li data-filter=".@item.brandName.ToLower()">@item.brandName</li>
+                        <li data-filter=".brand-@item.Id">@item.BrandName</li>
                     }
                 </ul>
             </div>
@@ -128,7 +130,7 @@
         <div class="row product__filter">
             @foreach (DiscountProductViewModel item in Model.DiscountProductViewModel)
             {
-                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix @item.Brand.ToLower()">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix brand-@item.BrandId">
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="assets/images/shop/@item.ProductImages.FirstOrDefault(pi => pi.IsMain).ImagePath">
                             @if (item.CampaignTitle != null)

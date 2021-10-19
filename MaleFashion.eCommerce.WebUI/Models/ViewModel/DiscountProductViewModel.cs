@@ -18,6 +18,8 @@ namespace MaleFashion.eCommerce.WebUI.Models.ViewModel
 
         public string Brand { get; set; }
 
+        public int BrandId { get; set; }
+
         public decimal Price { get; set; }
 
         public decimal? PriceNew { get; set; }

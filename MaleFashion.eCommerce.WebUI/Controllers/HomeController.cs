@@ -23,7 +23,7 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
         }
 
         [AllowAnonymous]
-      async  public Task<IActionResult> Index()
+        async public Task<IActionResult> Index()
         {
             // TempData Data Transfer To Contact Controller's Index Action
             List<int> numbers = new List<int>() { 13, 23, 77, 93 };
@@ -64,6 +64,7 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
                                                               Title = p.Product.Title,
                                                               Description = p.Product.Description,
                                                               Brand = p.Product.Brand.BrandName,
+                                                              BrandId = p.Product.BrandId,
                                                               Price = p.Price,
                                                               PriceNew = pcp_item?.PriceNew == null ? null : pcp_item?.PriceNew,
                                                               CampaignTitle = pcp_item?.Campaign?.Title,

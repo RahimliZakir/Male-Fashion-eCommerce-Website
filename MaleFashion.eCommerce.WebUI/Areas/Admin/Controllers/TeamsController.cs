@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using MaleFashion.eCommerce.WebUI.Models.DataContext;
 using MaleFashion.eCommerce.WebUI.Models.Entity;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using System.IO;
 
 namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
 {
@@ -52,7 +54,7 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
         // GET: Admin/Teams/Create
         public IActionResult Create()
         {
-            ViewData["TeamJobId"] = new SelectList(_context.TeamJobs, "Id", "Id");
+            ViewData["TeamJobId"] = new SelectList(_context.TeamJobs, "Id", "JobName");
             return View();
         }
 
@@ -61,15 +63,44 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ImagePath,Name,Surname,TeamJobId,Id,CreatedDate,UpdatedDate,DeletedDate")] Team team)
+        public async Task<IActionResult> Create([Bind("ImagePath,Name,Surname,TeamJobId,Id,CreatedDate,UpdatedDate,DeletedDate")] Team team, IFormFile file)
         {
-            if (ModelState.IsValid)
+            if (file == null)
             {
-                _context.Add(team);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ModelState.AddModelError("imageSelectError", "Şəkil seçməyibsiniz!");
             }
-            ViewData["TeamJobId"] = new SelectList(_context.TeamJobs, "Id", "Id", team.TeamJobId);
+            else
+            {
+                string ext = Path.GetExtension(file.FileName);
+                string fileName = $"team-{Guid.NewGuid().ToString().Replace("-", "")}{ext}";
+                string fullPath = Path.Combine(env.WebRootPath, "assets", "images", "about-us", fileName);
+
+                using (FileStream fs = new FileStream(fullPath, FileMode.Create, FileAccess.Write))
+                {
+                    file.CopyTo(fs);
+                }
+
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        team.ImagePath = fileName;
+                    }
+                    catch (Exception)
+                    {
+                        if (System.IO.File.Exists(fullPath))
+                        {
+                            System.IO.File.Delete(fullPath);
+                        }
+                    }
+
+                    _context.Add(team);
+                    await _context.SaveChangesAsync();
+                    return RedirectToAction(nameof(Index));
+                }
+                ViewData["TeamJobId"] = new SelectList(_context.TeamJobs, "Id", "Id", team.TeamJobId);
+            }
+
             return View(team);
         }
 
@@ -86,7 +117,7 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            ViewData["TeamJobId"] = new SelectList(_context.TeamJobs, "Id", "Id", team.TeamJobId);
+            ViewData["TeamJobId"] = new SelectList(_context.TeamJobs, "Id", "JobName", team.TeamJobId);
             return View(team);
         }
 
@@ -95,7 +126,7 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ImagePath,Name,Surname,TeamJobId,Id,CreatedDate,UpdatedDate,DeletedDate")] Team team)
+        public async Task<IActionResult> Edit(int id, [Bind("FileTemp,Name,Surname,TeamJobId,Id,CreatedDate,UpdatedDate,DeletedDate")] Team team, IFormFile file)
         {
             if (id != team.Id)
             {
@@ -104,13 +135,50 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
 
             if (ModelState.IsValid)
             {
+                var entity = _context.Teams.AsNoTracking().FirstOrDefault(i => i.Id == id);
+                string fullPath = null;
+                string currentPath = null;
+
+                if (file == null && !string.IsNullOrWhiteSpace(team.FileTemp))
+                {
+                    team.ImagePath = entity.ImagePath;
+                }
+                else if (file == null)
+                {
+                    currentPath = Path.Combine(env.WebRootPath, "uploads", "assets", "images", "about-us", entity.ImagePath);
+                }
+                else if (file != null)
+                {
+                    string ext = Path.GetExtension(file.FileName);
+                    string fileName = $"team-{Guid.NewGuid().ToString().Replace("-", "")}{ext}";
+                    fullPath = Path.Combine(env.WebRootPath, "assets", "images", "about-us", fileName);
+
+                    using (var fs = new FileStream(fullPath, FileMode.Create, FileAccess.Write))
+                    {
+                        file.CopyTo(fs);
+                    }
+
+                    team.ImagePath = fileName;
+                }
+
                 try
                 {
+                    team.UpdatedDate = DateTime.UtcNow.AddHours(4);
                     _context.Update(team);
                     await _context.SaveChangesAsync();
+
+                    if (System.IO.File.Exists(currentPath) && !string.IsNullOrWhiteSpace(currentPath))
+                    {
+                        System.IO.File.Delete(currentPath);
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
+                    if (System.IO.File.Exists(fullPath) && !string.IsNullOrWhiteSpace(fullPath))
+                    {
+                        System.IO.File.Delete(fullPath);
+                    }
+
                     if (!TeamExists(team.Id))
                     {
                         return NotFound();

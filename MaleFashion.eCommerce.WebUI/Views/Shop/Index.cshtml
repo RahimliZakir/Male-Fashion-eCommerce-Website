@@ -159,17 +159,10 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="shop__product__option__left">
-                                <p>Showing 1–12 of 126 results</p>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="shop__product__option__right">
-                                <p>Sort by Price:</p>
-                                <select>
-                                    <option value="">Low To High</option>
-                                    <option value="">$0 - $55</option>
-                                    <option value="">$55 - $100</option>
-                                </select>
                             </div>
                         </div>
                     </div>
@@ -199,10 +192,12 @@
                                     {
                                         <h5 style="text-decoration: line-through; color: grey;">$@item.Price</h5>
                                         <h5>$@item.PriceNew</h5>
+                                        <a style="position: static; visibility: visible; opacity: 1;" asp-action="Index" asp-controller="ShopDetails" asp-route-id="@item.Id" class="badge bg-warning text-dark">Ətraflı</a>
                                     }
                                     else
                                     {
                                         <h5>$@item.Price</h5>
+                                        <a style="position: static; visibility: visible; opacity: 1;" asp-action="Index" asp-controller="ShopDetails" asp-route-id="@item.Id" class="badge bg-warning text-dark">Ətraflı</a>
                                     }
                                 </div>
                             </div>

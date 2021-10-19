@@ -4,19 +4,24 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+@section css{
+    <link rel="stylesheet" href="libs/single-image/jquery.image-input.css" />
+}
 
-<h4>Team</h4>
+<h1 class="text-center">Edit</h1>
+
+<h4 class="text-center">Team</h4>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <form asp-action="Edit" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="ImagePath" class="control-label"></label>
-                <input asp-for="ImagePath" class="form-control" />
-                <span asp-validation-for="ImagePath" class="text-danger"></span>
-            </div>
+            @*<div class="form-group">
+                    <label asp-for="ImagePath" class="control-label"></label>
+                    <input asp-for="ImagePath" class="form-control" />
+                    <span asp-validation-for="ImagePath" class="text-danger"></span>
+                </div>*@
+            <image asp-caption="Team Image" asp-for="file" asp-path="/assets/images/about-us/@Model.ImagePath"></image>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -34,23 +39,17 @@
             </div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
-                <label asp-for="UpdatedDate" class="control-label"></label>
-                <input asp-for="UpdatedDate" class="form-control" />
-                <span asp-validation-for="UpdatedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DeletedDate" class="control-label"></label>
-                <input asp-for="DeletedDate" class="form-control" />
-                <span asp-validation-for="DeletedDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+<div class="mb-5 ms-2">
+    <a asp-action="Index" class="btn btn-danger">Back to List</a>
 </div>
+
+@section js{
+    <script src="libs/single-image/jquery.image-input.js"></script>
+}
 
