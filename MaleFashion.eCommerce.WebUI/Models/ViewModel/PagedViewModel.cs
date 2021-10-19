@@ -42,6 +42,7 @@ namespace MaleFashion.eCommerce.WebUI.Models.ViewModel
             if (TotalCount <= PageSize)
                 return HtmlString.Empty;
 
+            // Max 5 dənə düymə göstər
             int pageCount = 5;
             int start = 1, end = MaxPageCount;
 
