@@ -47,7 +47,7 @@
                                             <ul class="nice-scroll">
                                                 @foreach (Category item in Model.Categories)
                                                 {
-                                                    <li><a href="#">@item.Name</a></li>
+                                                    <li><a asp-action="Index" asp-controller="Shop" asp-route-category="@item.Name">@item.Name</a></li>
                                                 }
                                             </ul>
                                         </div>
@@ -66,7 +66,7 @@
                                             <ul>
                                                 @foreach (Brand item in Model.Brands)
                                                 {
-                                                    <li><a href="#">@item.BrandName</a></li>
+                                                    <li><a asp-action="Index" asp-controller="Shop" asp-route-brandName="@item.BrandName">@item.BrandName</a></li>
                                                 }
                                             </ul>
                                         </div>
@@ -144,7 +144,7 @@
                                         <div class="shop__sidebar__tags">
                                             @foreach (ProductTag item in Model.ProductTags)
                                             {
-                                                <a href="#">@item.ProductTagName</a>
+                                                <a asp-action="Index" asp-controller="Shop" asp-route-productTag="@item.ProductTagName">@item.ProductTagName</a>
                                             }
                                         </div>
                                     </div>
