@@ -20,6 +20,10 @@ namespace MaleFashion.eCommerce.WebUI.Models.Entity
         [Required(ErrorMessage = "Bu xana doldurulmalıdır!")]
         public string Content { get; set; }
 
+        public string Reply { get; set; }
+
+        public DateTime? AnswerDate { get; set; }
+
         public DateTime SendDate { get; set; } = DateTime.UtcNow.AddHours(4);
     }
 }
