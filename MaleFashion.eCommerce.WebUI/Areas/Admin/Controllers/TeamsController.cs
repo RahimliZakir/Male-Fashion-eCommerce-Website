@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MaleFashion.eCommerce.WebUI.Models.DataContext;
 using MaleFashion.eCommerce.WebUI.Models.Entity;
+using Microsoft.AspNetCore.Hosting;
 
 namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
 {
@@ -14,10 +15,12 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
     public class TeamsController : Controller
     {
         private readonly FashionDbContext _context;
+        private readonly IWebHostEnvironment env;
 
-        public TeamsController(FashionDbContext context)
+        public TeamsController(FashionDbContext context, IWebHostEnvironment env)
         {
             _context = context;
+            this.env = env;
         }
 
         // GET: Admin/Teams

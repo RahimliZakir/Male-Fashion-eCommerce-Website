@@ -31,6 +31,8 @@ namespace MaleFashion.eCommerce.WebUI.Models.Entity
 
         public virtual Size Size { get; set; }
 
+        public decimal Price { get; set; }
+
         public virtual ICollection<ProductCampaignCollection> ProductCampaignCollections { get; set; }
     }
 }

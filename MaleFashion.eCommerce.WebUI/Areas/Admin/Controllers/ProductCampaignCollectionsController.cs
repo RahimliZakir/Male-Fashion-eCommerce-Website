@@ -60,12 +60,11 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> Create([Bind("Id,ProductCollectionId,CampaignId")] ProductCampaignCollection productCampaignCollection)
         {
             ProductMainCollection productMain = await _context.ProductMainCollections.FirstOrDefaultAsync(p => p.Id == productCampaignCollection.ProductCollectionId);
-            Product product = await _context.Products.FirstOrDefaultAsync(p => p.Id == productMain.ProductId);
             Campaign campaign = await _context.Campaigns.FindAsync(productCampaignCollection.CampaignId);
 
-            decimal discount = product.Price * campaign.Discount / 100;
+            decimal discount = productMain.Price * campaign.Discount / 100;
 
-            productCampaignCollection.PriceNew = Math.Round(product.Price - discount, 2);
+            productCampaignCollection.PriceNew = Math.Round(productMain.Price - discount, 2);
 
             if (ModelState.IsValid)
             {
@@ -109,12 +108,11 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 ProductMainCollection productMain = await _context.ProductMainCollections.FirstOrDefaultAsync(p => p.Id == productCampaignCollection.ProductCollectionId);
-                Product product = await _context.Products.FirstOrDefaultAsync(p => p.Id == productMain.ProductId);
                 Campaign campaign = await _context.Campaigns.FindAsync(productCampaignCollection.CampaignId);
 
-                decimal discount = product.Price * campaign.Discount / 100;
+                decimal discount = productMain.Price * campaign.Discount / 100;
 
-                productCampaignCollection.PriceNew = Math.Round(product.Price - discount, 2);
+                productCampaignCollection.PriceNew = Math.Round(productMain.Price - discount, 2);
 
                 try
                 {

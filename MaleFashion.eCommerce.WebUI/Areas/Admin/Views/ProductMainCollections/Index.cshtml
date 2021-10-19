@@ -28,6 +28,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Size)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -49,6 +52,9 @@
                 </td>
                 <td>
                     @item.Size.SizeName
+                </td>
+                <td>
+                    @item.Price
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
