@@ -28,6 +28,14 @@ namespace MaleFashion.eCommerce.WebUI.Models.ViewModel
 
         public string CampaignDescription { get; set; }
 
+        public string ColorName { get; set; }
+
+        public string SizeName { get; set; }
+
+        public string ProductTagName { get; set; }
+
+        public string CategoryName { get; set; }
+
         public decimal? Discount { get; set; }
 
         public IEnumerable<ProductImage> ProductImages { get; set; }

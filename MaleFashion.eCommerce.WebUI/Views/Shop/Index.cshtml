@@ -82,14 +82,10 @@
                                      data-parent="#accordionExample">
                                     <div class="card-body">
                                         <div class="shop__sidebar__price">
-                                            <ul>
-                                                <li><a href="#">$0.00 - $50.00</a></li>
-                                                <li><a href="#">$50.00 - $100.00</a></li>
-                                                <li><a href="#">$100.00 - $150.00</a></li>
-                                                <li><a href="#">$150.00 - $200.00</a></li>
-                                                <li><a href="#">$200.00 - $250.00</a></li>
-                                                <li><a href="#">250.00+</a></li>
-                                            </ul>
+                                            <form asp-action="Index">
+                                                <input class="d-inline-block w-100" min="0" max="150" type="range" name="max" id="sop-range" />
+                                                <label class="d-flex align-content-center justify-content-between" for="sop-range">0 <strong>-</strong> <span></span></label>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -103,13 +99,15 @@
                                      data-parent="#accordionExample">
                                     <div class="card-body">
                                         <div class="shop__sidebar__size">
-                                            @foreach (Size item in Model.Sizes)
-                                            {
-                                                <label for="@item.SizeName">
-                                                    @item.SizeName
-                                                    <input type="radio" id="@item.SizeName" />
-                                                </label>
-                                            }
+                                            <form asp-action="Index" asp-controller="Shop">
+                                                @foreach (Size item in Model.Sizes)
+                                                {
+                                                    <label class="size-namew">
+                                                        @item.SizeName
+                                                        <input type="radio" name="size" class="size-radio" value="@item.SizeName">
+                                                    </label>
+                                                }
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -123,12 +121,14 @@
                                      data-parent="#accordionExample">
                                     <div class="card-body">
                                         <div class="shop__sidebar__color">
-                                            @foreach (Color item in Model.Colors)
-                                            {
-                                                <label class="c-1" style="background-color: @item.ColorName;">
-                                                    <input type="radio" id="sp-1" />
-                                                </label>
-                                            }
+                                            <form asp-action="Index" asp-controller="Shop">
+                                                @foreach (Color item in Model.Colors)
+                                                {
+                                                    <label class="c-1" style="background-color: @item.ColorName;">
+                                                        <input type="radio" name="color" class="color-radio" value="@item.ColorName" />
+                                                    </label>
+                                                }
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -142,10 +142,12 @@
                                      data-parent="#accordionExample">
                                     <div class="card-body">
                                         <div class="shop__sidebar__tags">
-                                            @foreach (ProductTag item in Model.ProductTags)
-                                            {
-                                                <a asp-action="Index" asp-controller="Shop" asp-route-productTag="@item.ProductTagName">@item.ProductTagName</a>
-                                            }
+                                            <form asp-action="Index" asp-controller="Shop">
+                                                @foreach (ProductTag item in Model.ProductTags)
+                                                {
+                                                    <a asp-action="Index" asp-controller="Shop" asp-route-productTag="@item.ProductTagName">@item.ProductTagName</a>
+                                                }
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -173,9 +175,9 @@
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="assets/images/shop/@item.ProductImages.FirstOrDefault(pi => pi.IsMain).ImagePath">
-                                    @if (item.CampaignTitle != null)
+                                    @if (item.CampaignTitle != null && item.Discount != null)
                                     {
-                                        <span class="label" style="background-color: red;">@item.CampaignTitle</span>
+                                        <span class="label" style="background-color: red;">@((int)item.Discount)% @item.CampaignTitle</span>
                                     }
                                 </div>
                                 <div class="product__item__text">
@@ -204,19 +206,31 @@
                         </div>
                     }
                 </div>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="product__pagination">
-                            <a class="active" href="#">1</a>
-                            <a href="#">2</a>
-                            <a href="#">3</a>
-                            <span>...</span>
-                            <a href="#">21</a>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 </section>
 
+@section scripts{
+    <script>
+        let value = $('#sop-range').val();
+        $('#sop-range').next('label').find('span').text(value);
+        $('#sop-range').on('input', (e) => {
+            let value = $(e.currentTarget).val();
+            $(e.currentTarget).next('label').find('span').text(value);
+        });
+
+        $('#sop-range').change((e) => {
+            $(e.currentTarget).closest('form').trigger('submit');
+        });
+
+        $('.color-radio').change(function () {
+            $(this).parent().parent().submit();
+        });
+
+        $('.size-namew').click(function () {
+            $(this).find('input').trigger("change");
+            $(this).parent().submit();
+        });
+    </script>
+}

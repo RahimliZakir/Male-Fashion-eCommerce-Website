@@ -148,20 +148,15 @@
             }
 
             <li class="">
-                <a class="has-arrow" asp-action="Index" asp-controller="Campaigns" aria-expanded="false">
-                    <img src="admin-assets/img/menu-icon/7.svg" alt="">
-                    <span>Discount Campaign</span>
-                </a>
-            </li>
-
-            <li class="">
-                <a class="has-arrow" asp-action="Index" asp-controller="ProductCampaignCollections" aria-expanded="false">
+                <a class="has-arrow" href="#" aria-expanded="false">
                     <img src="admin-assets/img/menu-icon/7.svg" alt="">
                     <span>Discount Campaign - Product Collection</span>
                 </a>
+                <ul>
+                    <li><a asp-action="Index" asp-controller="Campaigns">Campaigns</a></li>
+                    <li><a asp-action="Index" asp-controller="ProductCampaignCollections">Collection</a></li>
+                </ul>
             </li>
-
-
 
             <li class="">
                 <a asp-action="Index" asp-controller="ReplyContactMessage" class="has-arrow" aria-expanded="false">

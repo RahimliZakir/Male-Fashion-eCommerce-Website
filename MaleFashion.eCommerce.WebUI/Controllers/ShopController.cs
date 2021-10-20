@@ -21,7 +21,7 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
         }
 
         [AllowAnonymous]
-        async public Task<IActionResult> Index()
+        async public Task<IActionResult> Index(string color, string productTag, string brandName, string category, string size, int max, int min = 0)
         {
             ShopViewModel viewModel = new ShopViewModel();
 
@@ -53,14 +53,47 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
                                                               BrandId = p.Product.BrandId,
                                                               Price = p.Price,
                                                               PriceNew = pcp_item?.PriceNew == null ? null : pcp_item?.PriceNew,
+                                                              ColorName = p.Color.ColorName,
+                                                              SizeName = p.Size.SizeName,
+                                                              CategoryName = p.Category.Name,
+                                                              ProductTagName = p.ProductTag.ProductTagName,
                                                               CampaignTitle = pcp_item?.Campaign?.Title,
                                                               CampaignDescription = pcp_item?.Campaign?.Description,
-                                                              Discount = pcp_item?.Campaign?.Discount != 0 ? null : pcp_item?.Campaign?.Discount,
+                                                              Discount = pcp_item?.Campaign?.Discount == null ? null : pcp_item?.Campaign?.Discount,
                                                               ProductImages = p.Product.ProductImages
                                                           })
                                                           .AsQueryable();
 
-            IEnumerable<DiscountProductViewModel> data = query.ToList();
+            IEnumerable<DiscountProductViewModel> data = null;
+
+            if (max != 0)
+            {
+                data = query.Where(q => q.PriceNew != null ? q.PriceNew > min && q.PriceNew < max : q.Price > min && q.Price < max).ToList();
+            }
+            else if (!string.IsNullOrWhiteSpace(color))
+            {
+                data = query.Where(q => q.ColorName.Equals(color)).ToList();
+            }
+            else if (!string.IsNullOrWhiteSpace(productTag))
+            {
+                data = query.Where(q => q.ProductTagName.Equals(productTag)).ToList();
+            }
+            else if (!string.IsNullOrWhiteSpace(brandName))
+            {
+                data = query.Where(q => q.Brand.Equals(brandName)).ToList();
+            }
+            else if (!string.IsNullOrWhiteSpace(category))
+            {
+                data = query.Where(q => q.CategoryName.Equals(category)).ToList();
+            }
+            else if (!string.IsNullOrWhiteSpace(size))
+            {
+                data = query.Where(q => q.SizeName.Equals(size)).ToList();
+            }
+            else
+            {
+                data = query.ToList();
+            }
 
             viewModel.DiscountProductViewModel = data;
             viewModel.Colors = await db.Colors.ToListAsync();

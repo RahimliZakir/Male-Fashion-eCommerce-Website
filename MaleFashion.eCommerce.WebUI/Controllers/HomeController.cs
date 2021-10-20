@@ -69,7 +69,7 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
                                                               PriceNew = pcp_item?.PriceNew == null ? null : pcp_item?.PriceNew,
                                                               CampaignTitle = pcp_item?.Campaign?.Title,
                                                               CampaignDescription = pcp_item?.Campaign?.Description,
-                                                              Discount = pcp_item?.Campaign?.Discount != 0 ? null : pcp_item?.Campaign?.Discount,
+                                                              Discount = pcp_item?.Campaign?.Discount == null ? null : pcp_item?.Campaign?.Discount,
                                                               ProductImages = p.Product.ProductImages
                                                           })
                                                           .AsQueryable();
