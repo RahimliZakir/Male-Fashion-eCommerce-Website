@@ -145,6 +145,15 @@ namespace MaleFashion.eCommerce.WebUI
 
             //app.UseMonitoringMiddleware();
 
+            app.UseRequestLocalization(cfg =>
+            {
+                cfg.AddSupportedCultures("en", "az", "ru");
+                cfg.AddSupportedUICultures("en", "az", "ru");
+                cfg.RequestCultureProviders.Clear(); // Clears all the default culture providers from the list
+                cfg.RequestCultureProviders.Add(new AppCultureProvider());
+            });
+
+
             app.UseSession();
 
             app.DataSeed();

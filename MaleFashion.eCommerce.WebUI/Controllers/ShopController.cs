@@ -21,7 +21,7 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
         }
 
         [AllowAnonymous]
-        async public Task<IActionResult> Index(string color, string productTag, string brandName, string category, string size, int max, int min = 0)
+        async public Task<IActionResult> Index(string searchShop, string color, string productTag, string brandName, string category, string size, int max, int min = 0)
         {
             ShopViewModel viewModel = new ShopViewModel();
 
@@ -66,7 +66,11 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
 
             IEnumerable<DiscountProductViewModel> data = null;
 
-            if (max != 0)
+            if (!string.IsNullOrWhiteSpace(searchShop))
+            {
+                data = query.Where(q => q.Title.Contains(searchShop, StringComparison.OrdinalIgnoreCase));
+            }
+            else if (max != 0)
             {
                 data = query.Where(q => q.PriceNew != null ? q.PriceNew > min && q.PriceNew < max : q.Price > min && q.Price < max).ToList();
             }

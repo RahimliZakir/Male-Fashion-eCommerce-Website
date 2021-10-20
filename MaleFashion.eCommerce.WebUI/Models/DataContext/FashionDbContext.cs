@@ -34,7 +34,6 @@ namespace MaleFashion.eCommerce.WebUI.Models.DataContext
         // ---SHOP---
         public DbSet<Category> Categories { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
-        public DbSet<StarRating> StarRatings { get; set; }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Size> Sizes { get; set; }
@@ -95,10 +94,6 @@ namespace MaleFashion.eCommerce.WebUI.Models.DataContext
             builder.Entity<Category>()
                    .Property(ap => ap.CreatedDate)
                    .HasDefaultValueSql("DATEADD(HOUR, 4, GETUTCDATE())");
-
-            builder.Entity<StarRating>()
-                  .Property(ap => ap.CreatedDate)
-                  .HasDefaultValueSql("DATEADD(HOUR, 4, GETUTCDATE())");
 
             builder.Entity<Brand>()
                    .Property(ap => ap.CreatedDate)

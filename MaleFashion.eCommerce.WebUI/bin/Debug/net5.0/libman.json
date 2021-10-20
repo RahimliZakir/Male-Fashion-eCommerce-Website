@@ -16,10 +16,6 @@
       "destination": "wwwroot/libs/bootstrap/"
     },
     {
-      "library": "jquery-cookie@1.4.1",
-      "destination": "wwwroot/libs/jquery-cookie/"
-    },
-    {
       "library": "microsoft-signalr@5.0.9",
       "destination": "wwwroot/libs/microsoft-signalr/"
     },
@@ -38,6 +34,10 @@
     {
       "library": "limonte-sweetalert2@11.1.9",
       "destination": "wwwroot/libs/limonte-sweetalert2/"
+    },
+    {
+      "library": "jquery-cookie@1.4.1",
+      "destination": "wwwroot/libs/jquery-cookie/"
     }
   ]
 }

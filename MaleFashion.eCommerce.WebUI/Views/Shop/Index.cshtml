@@ -26,8 +26,8 @@
             <div class="col-lg-3">
                 <div class="shop__sidebar">
                     <div class="shop__sidebar__search">
-                        <form action="#">
-                            <input type="text" placeholder="Search..." />
+                        <form asp-action="Index" asp-controller="Shop">
+                            <input type="text" name="searchShop" placeholder="Search..." />
                             <button type="submit">
                                 <span class="icon_search"></span>
                             </button>
@@ -182,23 +182,16 @@
                                 </div>
                                 <div class="product__item__text">
                                     <h6>@item.Title.EllipseText(50)</h6>
-                                    <a href="#" class="add-cart">+ Add To Cart</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
+                                    <a style="cursor: pointer;" class="add-cart" data-id="@item.Id">+ Add To Cart</a>
                                     @if (item.PriceNew != null)
                                     {
-                                        <h5 style="text-decoration: line-through; color: grey;">$@item.Price</h5>
-                                        <h5>$@item.PriceNew</h5>
+                                        <h5 class="price-product" style="text-decoration: line-through; color: grey;">$@item.Price</h5>
+                                        <h5 class="pricenew-product">$@item.PriceNew</h5>
                                         <a style="position: static; visibility: visible; opacity: 1;" asp-action="Index" asp-controller="ShopDetails" asp-route-id="@item.Id" class="badge bg-warning text-dark">Ətraflı</a>
                                     }
                                     else
                                     {
-                                        <h5>$@item.Price</h5>
+                                        <h5 class="price-product">$@item.Price</h5>
                                         <a style="position: static; visibility: visible; opacity: 1;" asp-action="Index" asp-controller="ShopDetails" asp-route-id="@item.Id" class="badge bg-warning text-dark">Ətraflı</a>
                                     }
                                 </div>
@@ -212,6 +205,7 @@
 </section>
 
 @section scripts{
+    <script src="libs/jquery-cookie/jquery.cookie.min.js"></script>
     <script>
         let value = $('#sop-range').val();
         $('#sop-range').next('label').find('span').text(value);
@@ -231,6 +225,58 @@
         $('.size-namew').click(function () {
             $(this).find('input').trigger("change");
             $(this).parent().submit();
+        });
+
+        //Basket Logic
+        //if (sessionStorage.getItem('bag').split(',').length <= 9) {
+        //    $('.header__nav__option span').text(sessionStorage.getItem('bag').split(',').length);
+        //} else {
+        //    $('.header__nav__option span').text('9+');
+        //}
+
+        $('.add-cart').click(function (e) {
+            let basket = $('.header__nav__option span');
+            let price = $('.price');
+
+            let data = $(e.currentTarget).data('id');
+
+            let bags = sessionStorage.getItem('bag');
+
+            if (bags == null) {
+                bags = [];
+            }
+            else {
+                bags = bags.split(',').map(v => parseInt(v));
+            }
+
+            //if (bags.find((item) => item == data) != null) {
+            //    alert("Bu məhsul artıq səbətdə var!");
+            //}
+            //else {
+            bags.push(data);
+            //}
+
+            sessionStorage.setItem('bag', bags.toString());
+
+            if (bags.length <= 9) {
+                $(basket).text(bags.length);
+            } else {
+                $(basket).text('9+');
+            }
+
+            let priceNewProduct = $('.pricenew-product');
+            let priceProduct = $('.price-product');
+
+            let parsedPriceBoxVal = parseFloat($(price).text().replace("$", ""));
+
+            if (priceNewProduct != null) {
+                let value = $(priceNewProduct).text().replace("$", "");
+                $(price).text(parsedPriceBoxVal + parseFloat(value));
+            }
+            else {
+                let value = $(priceProduct).text().replace("$", "");
+                $(price).text(parsedPriceBoxVal + parseFloat(value));
+            }
         });
     </script>
 }
