@@ -16,6 +16,9 @@
                 Id:
             </th>
             <th>
+                Product:
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Campaign)
             </th>
             <th>
@@ -28,8 +31,9 @@
         @foreach (var item in Model)
         {
             <tr>
+                <td>@item.Id</td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ProductCollection.Id)
+                    @item.ProductCollection.Product.Title
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Campaign.Title)

@@ -23,8 +23,13 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
         // GET: Admin/ProductCampaignCollections
         public async Task<IActionResult> Index()
         {
-            var fashionDbContext = _context.ProductCampaignCollections.Include(p => p.Campaign).Include(p => p.ProductCollection);
-            return View(await fashionDbContext.ToListAsync());
+            IEnumerable<ProductCampaignCollection> data = await _context.ProductCampaignCollections
+                                                                .Include(p => p.Campaign)
+                                                                .Include(p => p.ProductCollection)
+                                                                .Include(p => p.ProductCollection.Product)
+                                                                .ToListAsync();
+
+            return View(data);
         }
 
         // GET: Admin/ProductCampaignCollections/Details/5
@@ -36,9 +41,11 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
             }
 
             var productCampaignCollection = await _context.ProductCampaignCollections
-                .Include(p => p.Campaign)
-                .Include(p => p.ProductCollection)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                                                  .Include(p => p.Campaign)
+                                                  .Include(p => p.ProductCollection)
+                                                  .Include(p => p.ProductCollection.Product)
+                                                  .FirstOrDefaultAsync(m => m.Id == id);
+
             if (productCampaignCollection == null)
             {
                 return NotFound();

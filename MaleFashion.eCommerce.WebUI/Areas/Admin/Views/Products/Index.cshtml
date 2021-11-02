@@ -58,9 +58,9 @@
                     @item.UpdatedDate?.ToString("dd.MM.yyyy HH:mm:ss")
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning"><i class="fas fa-pen"></i></a>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary"><i class="fas fa-info"></i></a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" style="width: 50px;" class="btn btn-warning"><i class="fas fa-pen"></i></a>
+                    <a asp-action="Details" asp-route-id="@item.Id" style="width: 50px;" class="btn btn-primary"><i class="fas fa-info"></i></a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" style="width: 50px;" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
                 </td>
             </tr>
         }

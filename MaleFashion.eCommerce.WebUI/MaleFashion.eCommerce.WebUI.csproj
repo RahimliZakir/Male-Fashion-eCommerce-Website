@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\assets\images\flags\" />
     <Folder Include="wwwroot\multi-lang-imgs\" />
     <Folder Include="wwwroot\admin-assets\" />
     <Folder Include="wwwroot\login-assets\" />

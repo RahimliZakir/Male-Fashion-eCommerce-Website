@@ -13,11 +13,15 @@
 <table class="table">
     <thead>
         <tr>
+            <th>Id: </th>
             <th>
                 @Html.DisplayNameFor(model => model.Category)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Product)
+            </th>
+            <th>
+                Product Image:
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Color)
@@ -39,10 +43,18 @@
         {
             <tr>
                 <td>
+                    @item.Id
+                </td>
+                <td>
                     @item.Category.Name
                 </td>
                 <td>
                     @item.Product.Title.EllipseText(50)
+                </td>
+                <td>
+                    <div class="img-div" style="width: 100%;">
+                        <img src="assets/images/shop/@item.Product.ProductImages?.FirstOrDefault(pi => pi.IsMain)?.ImagePath" style="width: 100%; height: 300px; object-fit: cover;" />
+                    </div>
                 </td>
                 <td>
                     @item.Color.ColorName
@@ -56,10 +68,10 @@
                 <td>
                     @item.Price
                 </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                <td class="d-flex flex-column">
+                    <a asp-action="Edit" style="width: 150px;" asp-route-id="@item.Id" class="btn btn-warning">Edit</a>
+                    <a asp-action="Details" style="width: 150px; margin-top: 5px;" asp-route-id="@item.Id" class="btn btn-primary">Details</a>
+                    <a asp-action="Delete" style="width: 150px; margin-top: 5px;" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         }

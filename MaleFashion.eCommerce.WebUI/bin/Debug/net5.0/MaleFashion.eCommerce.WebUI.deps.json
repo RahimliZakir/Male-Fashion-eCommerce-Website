@@ -330,6 +330,14 @@
         "runtime": {
           "MaleFashion.eCommerce.WebUI.dll": {}
         },
+        "resources": {
+          "en/MaleFashion.eCommerce.WebUI.resources.dll": {
+            "locale": "en"
+          },
+          "ru/MaleFashion.eCommerce.WebUI.resources.dll": {
+            "locale": "ru"
+          }
+        },
         "compile": {
           "MaleFashion.eCommerce.WebUI.dll": {}
         }

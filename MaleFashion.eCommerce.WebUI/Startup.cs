@@ -1,6 +1,5 @@
 ﻿using MaleFashion.eCommerce.WebUI.AppCode.BinderProviders;
 using MaleFashion.eCommerce.WebUI.AppCode.Hubs;
-using MaleFashion.eCommerce.WebUI.AppCode.Middlewares;
 using MaleFashion.eCommerce.WebUI.AppCode.Providers;
 using MaleFashion.eCommerce.WebUI.Models.DataContext;
 using MaleFashion.eCommerce.WebUI.Models.Entity.Membership;
@@ -11,17 +10,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
-using Microsoft.AspNetCore.Routing;
-using Microsoft.AspNetCore.Routing.Constraints;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MaleFashion.eCommerce.WebUI
 {
@@ -218,7 +212,11 @@ namespace MaleFashion.eCommerce.WebUI
                 //   });
 
                 endpoints.MapControllerRoute(name: "default",
-                                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                                    pattern: "{lang=temp}/{controller=Home}/{action=Index}/{id?}",
+                                    constraints: new
+                                    {
+                                        lang = "az|en|ru|temp"
+                                    });
             });
         }
     }

@@ -55,11 +55,34 @@
             </div>
             <div class="offcanvas__top__hover">
                 <span class="selected-lang-span">Usd <i class="arrow_carrot-down"></i></span>
-                <ul class="multi-lang-ul">
-                    <li><a href="#"><img src="multi-lang-imgs/az-flag.png" /></a></li>
-                    <li><a href="#"><img src="multi-lang-imgs/ru-flag.png" /></a></li>
-                    <li class="selected"><a href="#"><img src="multi-lang-imgs/us-flag.png" /></a></li>
-                </ul>
+                @*<ul class="multi-lang-ul">
+                        <li><a href="#"><img src="multi-lang-imgs/az-flag.png" /></a></li>
+                        <li><a href="#"><img src="multi-lang-imgs/ru-flag.png" /></a></li>
+                        <li class="selected"><a href="#"><img src="multi-lang-imgs/us-flag.png" /></a></li>
+                    </ul>*@
+                <div class="lang header-top-right-language">
+                    <img style="max-width: 8% !important;" class="lang-flag" src="/assets/images/flags/AZERBAIJAN-FLAG.jpg" alt="APIAjax" />
+                    <div class="lang-text" style="color: white;">Azərbaycan</div>
+                    <span class="arrow_carrot-down"></span>
+                    <ul>
+                        <li>
+                            <a asp-route-lang="az" data-flag="/assets/images/flags/AZERBAIJAN-FLAG.jpg" style="color: black !important;">
+                                Azərbaycan
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-route-lang="en" data-flag="/assets/images/flags/us-flag.jpg" style="color: black !important;">
+                                English
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-route-lang="ru" data-flag="/assets/images/flags/ru-flag.jpg" style="color: black !important;">
+                                Русский
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
             </div>
         </div>
         <div class="offcanvas__nav__option">
@@ -91,18 +114,40 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-5">
-                        <div class="header__top__right">
+                        <div class="header__top__right d-flex align-items-center justify-content-around">
                             <div class="header__top__links">
                                 <a asp-action="SignIn" asp-controller="Account">Sign in</a>
                                 <a asp-action="Register" asp-controller="Account">Register</a>
                             </div>
                             <div class="header__top__hover">
-                                <span class="selected-lang-span"></span>
-                                <ul class="multi-lang-ul">
-                                    <li><a href="#"><img src="multi-lang-imgs/az-flag.png" /></a></li>
-                                    <li><a href="#"><img src="multi-lang-imgs/ru-flag.png" /></a></li>
-                                    <li class="selected"><a href="#"><img src="multi-lang-imgs/us-flag.png" /></a></li>
-                                </ul>
+                                @*<span class="selected-lang-span"></span>*@
+                                @*<ul class="multi-lang-ul">
+                                        <li><a href="#"><img src="multi-lang-imgs/az-flag.png" /></a></li>
+                                        <li><a href="#"><img src="multi-lang-imgs/ru-flag.png" /></a></li>
+                                        <li class="selected"><a href="#"><img src="multi-lang-imgs/us-flag.png" /></a></li>
+                                    </ul>*@
+                                <div class="lang header-top-right-language d-flex align-items-center">
+                                    <img class="lang-flag" src="/assets/images/flags/AZERBAIJAN-FLAG.jpg" />
+                                    <div class="lang-text" style="color: white;">Azərbaycan</div>
+                                    <span class="arrow_carrot-down"></span>
+                                    <ul>
+                                        <li>
+                                            <a asp-route-lang="az" data-flag="/assets/images/flags/AZERBAIJAN-FLAG.jpg" style="color: black !important;">
+                                                Azərbaycan
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a asp-route-lang="en" data-flag="/assets/images/flags/us-flag.jpg" style="color: black !important;">
+                                                English
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a asp-route-lang="ru" data-flag="/assets/images/flags/ru-flag.jpg" style="color: black !important;">
+                                                Русский
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -120,18 +165,18 @@
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <nav class="header__menu mobile-menu">
-                        <ul>
-                            <li class="active"><a asp-action="Index" asp-controller="Home">Home</a></li>
-                            <li><a asp-action="Index" asp-controller="Shop">Shop</a></li>
+                        <ul class="d-flex align-content-center">
+                            <li class="active"><a asp-action="Index" asp-controller="Home">@LayoutResource.Home</a></li>
+                            <li><a asp-action="Index" asp-controller="Shop">@LayoutResource.Shop</a></li>
                             <li>
-                                <a href="#">Pages</a>
+                                <a href="#">@LayoutResource.Pages</a>
                                 <ul class="dropdown">
-                                    <li><a asp-action="Index" asp-controller="AboutUs">About Us</a></li>
-                                    <li><a asp-action="Index" asp-controller="ShoppingCart">Shopping Cart</a></li>
+                                    <li><a asp-action="Index" asp-controller="AboutUs">@LayoutResource.About_Us</a></li>
+                                    <li><a asp-action="Index" asp-controller="ShoppingCart">@LayoutResource.Shopping_Cart</a></li>
                                 </ul>
                             </li>
-                            <li><a asp-action="Index" asp-controller="Blog">Blog</a></li>
-                            <li><a asp-action="Index" asp-controller="Contacts">Contacts</a></li>
+                            <li><a asp-action="Index" asp-controller="Blog">@LayoutResource.Blog</a></li>
+                            <li><a asp-action="Index" asp-controller="Contacts">@LayoutResource.Contacts</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -255,19 +300,20 @@
     <script src="libs/toastr.js/toastr.min.js"></script>
     <script src="libs/toastr.js/toastr.customization.js"></script>
     <script>
-        let span = $(".selected-lang-span");
-        let ul = $(".multi-lang-ul");
-        let mUl = $(".multi-lang-ul>li");
+        $(document).ready(function () {
+        //    let span = $(".selected-lang-span");
+        //let ul = $(".multi-lang-ul");
+        //let mUl = $(".multi-lang-ul>li");
 
-        $(span).html(
-            `${$(ul).find("li.selected").html()} <i class="arrow_carrot-down"></i>`
-        );
+        //$(span).html(
+        //    `${$(ul).find("li.selected").html()} <i class="arrow_carrot-down"></i>`
+        //);
 
-        $(mUl).on("click", function () {
-            $(mUl).removeClass("selected");
-            $(this).addClass("selected");
-            $(span).html(`${$(this).html()} <i class="arrow_carrot-down"></i>`);
-        });
+        //$(mUl).on("click", function () {
+        //    $(mUl).removeClass("selected");
+        //    $(this).addClass("selected");
+        //    $(span).html(`${$(this).html()} <i class="arrow_carrot-down"></i>`);
+        //});
 
         let subsBtn = $('.subs-btn');
         let subsInput = $('.subs-input');
@@ -307,6 +353,16 @@
                     }
                 });
             }
+        });
+
+            //Multi Language
+            let url = window.location.pathname;
+
+            var el = $(`.lang [href='${url}']`).eq(0);
+
+            $('.lang-flag').attr('src', $(el).data('flag'));
+            $('.lang-text').html($(el).text());
+            //Multi Language
         });
     </script>
     @RenderSection("scripts", required: false)

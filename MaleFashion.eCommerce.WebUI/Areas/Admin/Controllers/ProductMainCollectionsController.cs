@@ -21,10 +21,20 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
         }
 
         // GET: Admin/ProductMainCollections
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var fashionDbContext = _context.ProductMainCollections.Include(p => p.Category).Include(p => p.Color).Include(p => p.Product).Include(p => p.ProductTag).Include(p => p.Size);
-            return View(await fashionDbContext.ToListAsync());
+            IQueryable<ProductMainCollection> query = _context.ProductMainCollections
+                                                              .Include(p => p.Category)
+                                                              .Include(p => p.Color)
+                                                              .Include(p => p.Product)
+                                                              .Include(p => p.Product.ProductImages)
+                                                              .Include(p => p.ProductTag)
+                                                              .Include(p => p.Size)
+                                                              .AsQueryable();
+
+            IEnumerable<ProductMainCollection> data = query.ToList();
+
+            return View(data);
         }
 
         // GET: Admin/ProductMainCollections/Details/5
@@ -36,12 +46,14 @@ namespace MaleFashion.eCommerce.WebUI.Areas.Admin.Controllers
             }
 
             var productMainCollection = await _context.ProductMainCollections
-                .Include(p => p.Category)
-                .Include(p => p.Color)
-                .Include(p => p.Product)
-                .Include(p => p.ProductTag)
-                .Include(p => p.Size)
-                .FirstOrDefaultAsync(m => m.Id == id);
+                                              .Include(p => p.Category)
+                                              .Include(p => p.Color)
+                                              .Include(p => p.Product)
+                                              .Include(p => p.Product.ProductImages)
+                                              .Include(p => p.ProductTag)
+                                              .Include(p => p.Size)
+                                              .FirstOrDefaultAsync(m => m.Id == id);
+
             if (productMainCollection == null)
             {
                 return NotFound();
