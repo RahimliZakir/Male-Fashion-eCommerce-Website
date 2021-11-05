@@ -1,4 +1,4 @@
-﻿@model DiscountProductViewModel
+﻿@model IEnumerable<DiscountProductViewModel>
 
 @{
     ViewData["Title"] = "Shop Details";
@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-3">
                     <ul class="nav nav-tabs" role="tablist">
-                        @foreach (ProductImage item in Model.ProductImages.Where(pi => pi.IsMain == false))
+                        @foreach (ProductImage item in Model.FirstOrDefault()?.ProductImages.Where(pi => pi.IsMain == false))
                         {
                             <li class="nav-item">
                                 <a class="nav-link active"
@@ -37,7 +37,7 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="tabs-1" role="tabpanel">
                             <div class="product__details__pic__item">
-                                <img src="assets/images/shop/@Model.ProductImages.FirstOrDefault(pi=>pi.IsMain).ImagePath"
+                                <img src="assets/images/shop/@Model.FirstOrDefault()?.ProductImages.FirstOrDefault(pi=>pi.IsMain)?.ImagePath"
                                      alt="" />
                             </div>
                         </div>
@@ -63,32 +63,35 @@
             <div class="row d-flex justify-content-center">
                 <div class="col-lg-8">
                     <div class="product__details__text">
-                        <h4>@Model.Title</h4>
-                        @if (Model.PriceNew != null)
+                        <h4>@Model.FirstOrDefault()?.Title</h4>
+                        @if (Model.FirstOrDefault()?.PriceNew != null)
                         {
-                            <h3>$@Model.PriceNew <span>@Model.Price</span></h3>
+                            <h3>$@Model.FirstOrDefault()?.PriceNew <span>@Model.FirstOrDefault()?.Price</span></h3>
                         }
                         else
                         {
-                            <h3>$@Model.Price</h3>
+                            <h3>$@Model.FirstOrDefault()?.Price</h3>
                         }
                         <div class="product__details__option">
                             <div class="product__details__option__size">
                                 <span>Size:</span>
-                                <label for="x @Model.SizeName">
-                                    @Model.SizeName
-                                    <input type="radio" id=" @Model.SizeName" />
-                                </label>
+                                @foreach (DiscountProductViewModel item in Model.OrderBy(m => m.SizeName))
+                                {
+                                    <label for="x @item.SizeName">
+                                        @item.SizeName
+                                        <input type="radio" id=" @item.SizeName" />
+                                    </label>
+                                }
                             </div>
                             <div class="product__details__option__color">
                                 <span>Color:</span>
-                                <label class="c-1" for="sp-1" style="background-color: @Model.ColorName;">
+                                <label class="c-1" for="sp-1" style="background-color: @Model.FirstOrDefault()?.ColorName;">
                                     <input type="radio" id="sp-1" />
                                 </label>
                             </div>
                         </div>
                         <div class="product__details__cart__option">
-                            <a class="primary-btn add-cart" style="cursor: pointer;color: white;" data-id="@Model.Id">add to cart</a>
+                            <a class="primary-btn add-cart" style="cursor: pointer;color: white;" data-id="@Model.FirstOrDefault()?.Id">add to cart</a>
                             <a asp-action="Index" asp-controller="Shop" class="primary-btn" style="background-color: crimson;">Back To Shop</a>
                         </div>
                         <div class="product__details__last__option">
@@ -96,8 +99,8 @@
                             <img src="assets/images/shop-details/details-payment.png"
                                  alt="" />
                             <ul>
-                                <li><span>Categories:</span> @Model.CategoryName</li>
-                                <li><span>Tag:</span> @Model.ProductTagName</li>
+                                <li><span>Categories:</span> @Model.FirstOrDefault()?.CategoryName</li>
+                                <li><span>Tag:</span> @Model.FirstOrDefault()?.ProductTagName</li>
                             </ul>
                         </div>
                     </div>
@@ -120,7 +123,7 @@
                                     <div class="product__details__tab__content__item">
                                         <h5>Products Infomation</h5>
                                         <p>
-                                            @Model.Description
+                                            @Model.FirstOrDefault()?.Description
                                         </p>
                                     </div>
                                 </div>

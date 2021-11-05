@@ -12,6 +12,8 @@ namespace MaleFashion.eCommerce.WebUI.Models.ViewModel
         [Key]
         public int Id { get; set; }
 
+        public int ProductId { get; set; }
+
         public string Title { get; set; }
 
         public string Description { get; set; }

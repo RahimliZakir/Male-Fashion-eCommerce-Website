@@ -4,6 +4,14 @@
     ViewData["Title"] = "Shop";
 }
 
+@section css{
+    <style>
+        .toast-success {
+            background-color: #78e08f !important;
+        }
+    </style>
+}
+
 <section class="breadcrumb-option">
     <div class="container">
         <div class="row">
@@ -182,7 +190,7 @@
                                 </div>
                                 <div class="product__item__text">
                                     <h6>@item.Title.EllipseText(50)</h6>
-                                    <a style="cursor: pointer;" class="add-cart" data-id="@item.Id">+ Add To Cart</a>
+                                    <a style="cursor: pointer;" class="add-cart" data-id="@item.ProductId">+ Add To Cart</a>
                                     @if (item.PriceNew != null)
                                     {
                                         <h5 class="price-product" style="text-decoration: line-through; color: grey;">$@item.Price</h5>
@@ -228,19 +236,15 @@
         });
 
         //Basket Logic
-        //if (sessionStorage.getItem('bag').split(',').length <= 9) {
-        //    $('.header__nav__option span').text(sessionStorage.getItem('bag').split(',').length);
-        //} else {
-        //    $('.header__nav__option span').text('9+');
-        //}
+        let priceEl = $('.price');
+        let priceVal = parseFloat($('.price').text().replace("$", ""));
 
         $('.add-cart').click(function (e) {
             let basket = $('.header__nav__option span');
-            let price = $('.price');
 
             let data = $(e.currentTarget).data('id');
 
-            let bags = sessionStorage.getItem('bag');
+            let bags = $.cookie('bag');
 
             if (bags == null) {
                 bags = [];
@@ -249,33 +253,36 @@
                 bags = bags.split(',').map(v => parseInt(v));
             }
 
-            //if (bags.find((item) => item == data) != null) {
-            //    alert("Bu məhsul artıq səbətdə var!");
-            //}
-            //else {
-            bags.push(data);
-            //}
-
-            sessionStorage.setItem('bag', bags.toString());
-
-            if (bags.length <= 9) {
-                $(basket).text(bags.length);
-            } else {
-                $(basket).text('9+');
-            }
-
-            let priceNewProduct = $('.pricenew-product');
-            let priceProduct = $('.price-product');
-
-            let parsedPriceBoxVal = parseFloat($(price).text().replace("$", ""));
-
-            if (priceNewProduct != null) {
-                let value = $(priceNewProduct).text().replace("$", "");
-                $(price).text(parsedPriceBoxVal + parseFloat(value));
+            if (bags.indexOf(data) != -1) {
+                toastr.error("Bu məhsul artıq səbətdə var!", "Diqqət!");
             }
             else {
-                let value = $(priceProduct).text().replace("$", "");
-                $(price).text(parsedPriceBoxVal + parseFloat(value));
+                bags.push(data);
+                toastr.success("Məhsul uğurla səbətə əlavə olundu!", "Uğurlu!");
+
+                $.cookie('bag', bags.toString(), { expires: 365 });
+
+                if (bags.length <= 9) {
+                    $(basket).text(bags.length);
+                } else {
+                    $(basket).text('9+');
+                }
+
+                let priceProduct = $(this).next('.price-product');
+                let priceNewProduct = $(this).parent().find('.pricenew-product');
+
+                priceProduct = parseFloat($(priceProduct).text().replace("$", "").replace(",", "."));
+                priceNewProduct = parseFloat($(priceNewProduct).text().replace("$", "").replace(",", "."));
+
+
+                if (!isNaN(priceNewProduct)) {
+                    priceVal = priceVal + priceNewProduct;
+                    $(priceEl).text(priceVal.toFixed(2));
+                }
+                else {
+                    priceVal = priceVal + priceProduct;
+                    $(priceEl).text(priceVal.toFixed(2));
+                }
             }
         });
     </script>

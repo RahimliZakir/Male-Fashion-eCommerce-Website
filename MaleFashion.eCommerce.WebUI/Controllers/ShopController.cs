@@ -26,6 +26,7 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
             ShopViewModel viewModel = new ShopViewModel();
 
             IEnumerable<ProductMainCollection> productCollecion = db.ProductMainCollections
+                                                                  .Distinct()
                                                                   .Include(p => p.Product)
                                                                   .Include(ca => ca.Category)
                                                                   .Include(co => co.Color)
@@ -47,6 +48,7 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
                                                           select new DiscountProductViewModel
                                                           {
                                                               Id = p.Id,
+                                                              ProductId = p.ProductId,
                                                               Title = p.Product.Title,
                                                               Description = p.Product.Description,
                                                               Brand = p.Product.Brand.BrandName,
