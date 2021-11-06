@@ -25,9 +25,6 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
         {
             ShopViewModel viewModel = new ShopViewModel();
 
-            ProductMainCollection selected = db.ProductMainCollections.FirstOrDefault(p => p.Id == id);
-            int? selectedId = selected?.ProductId;
-
             IEnumerable<ProductMainCollection> productCollecion = db.ProductMainCollections
                                                                   .Include(p => p.Product)
                                                                   .Include(ca => ca.Category)
@@ -69,7 +66,7 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
                                                           .AsQueryable();
 
             IEnumerable<DiscountProductViewModel> data = query
-                                                         .Where(q => q.ProductId.Equals(selectedId))
+                                                         .Where(q => q.ProductId.Equals(id))
                                                          .ToList();
 
             return View(data);

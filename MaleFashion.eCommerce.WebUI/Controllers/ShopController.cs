@@ -26,20 +26,19 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
             ShopViewModel viewModel = new ShopViewModel();
 
             IEnumerable<ProductMainCollection> productCollecion = db.ProductMainCollections
-                                                                  .Distinct()
-                                                                  .Include(p => p.Product)
-                                                                  .Include(ca => ca.Category)
-                                                                  .Include(co => co.Color)
-                                                                  .Include(s => s.Size)
-                                                                  .Include(pt => pt.ProductTag)
-                                                                  .Include(pb => pb.Product.Brand)
-                                                                  .Include(pi => pi.Product.ProductImages);
+                                                                    .Include(p => p.Product)
+                                                                    .Include(ca => ca.Category)
+                                                                    .Include(co => co.Color)
+                                                                    .Include(s => s.Size)
+                                                                    .Include(pt => pt.ProductTag)
+                                                                    .Include(pb => pb.Product.Brand)
+                                                                    .Include(pi => pi.Product.ProductImages);
 
             DateTime dt = DateTime.UtcNow.AddHours(4);
 
             IEnumerable<ProductCampaignCollection> campaignCollection = db.ProductCampaignCollections
-                                                                        .Include(pc => pc.Campaign)
-                                                                        .Where(pc => pc.Campaign.IsApproved && pc.Campaign.ExpiredDate > dt);
+                                                                          .Include(pc => pc.Campaign)
+                                                                          .Where(pc => pc.Campaign.IsApproved && pc.Campaign.ExpiredDate > dt);
 
             IQueryable<DiscountProductViewModel> query = (from p in productCollecion
                                                           join cp in campaignCollection on p.Id equals cp.ProductCollectionId

@@ -112,19 +112,32 @@
         let incBtn = $('.inc');
 
         let total = $('.cart__total span');
+        let totalVal = parseFloat($('.cart__total span').text().replace("$", ""));
 
         let allProductPrices = $('.cart__price');
-        let sum = 0;
-        console.log(allProductPrices);
 
         $(decBtn).click((e) => {
             let inp = $(e.currentTarget).next('input');
+            let inpParsedVal = parseInt($(inp).val()) + 1;
+
+            let productPrice = $(e.currentTarget).closest('tr').find('.product__cart__item__text>h5');
+            let productTotal = $(e.currentTarget).closest('tr').find('.cart__price');
+
+            productPrice = parseFloat($(productPrice).text().replace("$", "").replace(",", "."));
+
+            $(productTotal).text(`$${productPrice * inpParsedVal}`);
+        });
+
+        $(incBtn).click((e) => {
+            let inp = $(e.currentTarget).prev('input');
             let inpParsedVal = parseInt($(inp).val());
 
             let productPrice = $(e.currentTarget).closest('tr').find('.product__cart__item__text>h5');
             let productTotal = $(e.currentTarget).closest('tr').find('.cart__price');
 
             productPrice = parseFloat($(productPrice).text().replace("$", "").replace(",", "."));
+
+            $(productTotal).text(`$${productPrice * inpParsedVal}0`);
         });
     </script>
 }
