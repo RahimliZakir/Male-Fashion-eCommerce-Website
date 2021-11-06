@@ -2,6 +2,9 @@
 
 @{
     ViewData["Title"] = "Shopping Cart";
+
+    // Projection
+    var filteredDiffProducts = Model.Select(d => new { d.ProductId, d.Price, d.PriceNew, d.CampaignTitle, d.Title, d.Discount, d.ProductImages }).Distinct();
 }
 
 <section class="breadcrumb-option">
@@ -44,7 +47,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (DiscountProductViewModel item in Model)
+                                @foreach (var item in filteredDiffProducts)
                                 {
                                     <tr>
                                         <td class="product__cart__item d-flex align-items-center">
