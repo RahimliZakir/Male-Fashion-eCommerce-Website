@@ -184,7 +184,7 @@
                 <div class="row">
                     @foreach (var item in filteredDiffProducts)
                     {
-                        <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="col-lg-4 col-md-6 col-sm-6 product-col">
                             <div class="product__item">
                                 <div class="product__item__pic set-bg" data-setbg="assets/images/shop/@item.ProductImages.FirstOrDefault(pi => pi.IsMain).ImagePath">
                                     @if (item.CampaignTitle != null && item.Discount != null)
@@ -242,10 +242,20 @@
         //Basket Logic
         let priceEl = $('.price');
         let priceVal = parseFloat($('.price').text().replace("$", ""));
+        let basket = $('.header__nav__option span');
+
+        //Get Items' Price
+        let bagTotal = $.cookie("bagTotal");
+        let bagFromCookie = $.cookie("bag");
+
+        if (bagTotal != undefined && bagFromCookie != undefined) {
+            $(priceEl).text(`$${bagTotal}`);
+            priceVal = parseFloat($('.price').text().replace("$", ""));
+            let bagTotalArr = bagFromCookie.split(',');
+            $(basket).text(bagTotalArr.length);
+        }
 
         $('.add-cart').click(function (e) {
-            let basket = $('.header__nav__option span');
-
             let data = $(e.currentTarget).data('id');
 
             let bags = $.cookie('bag');
@@ -281,11 +291,13 @@
 
                 if (!isNaN(priceNewProduct)) {
                     priceVal = priceVal + priceNewProduct;
-                    $(priceEl).text(priceVal.toFixed(2));
+                    $(priceEl).text(`$${priceVal.toFixed(2)}`);
+                    $.cookie("bagTotal", $(priceEl).text().split('$')[1], { expires: 365 });
                 }
                 else {
                     priceVal = priceVal + priceProduct;
-                    $(priceEl).text(priceVal.toFixed(2));
+                    $(priceEl).text(`$${priceVal.toFixed(2)}`);
+                    $.cookie("bagTotal", $(priceEl).text().split('$')[1], { expires: 365 });
                 }
             }
         });

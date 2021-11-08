@@ -65,42 +65,36 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
                                                           })
                                                           .AsQueryable();
 
-            IEnumerable<DiscountProductViewModel> data = null;
-
             if (!string.IsNullOrWhiteSpace(searchShop))
             {
-                data = query.Where(q => q.Title.Contains(searchShop, StringComparison.OrdinalIgnoreCase));
+                query = query.Where(q => q.Title.Contains(searchShop, StringComparison.OrdinalIgnoreCase));
             }
             else if (max != 0)
             {
-                data = query.Where(q => q.PriceNew != null ? q.PriceNew > min && q.PriceNew < max : q.Price > min && q.Price < max).ToList();
+                query = query.Where(q => q.PriceNew != null ? q.PriceNew > min && q.PriceNew < max : q.Price > min && q.Price < max);
             }
             else if (!string.IsNullOrWhiteSpace(color))
             {
-                data = query.Where(q => q.ColorName.Equals(color)).ToList();
+                query = query.Where(q => q.ColorName.Equals(color));
             }
             else if (!string.IsNullOrWhiteSpace(productTag))
             {
-                data = query.Where(q => q.ProductTagName.Equals(productTag)).ToList();
+                query = query.Where(q => q.ProductTagName.Equals(productTag));
             }
             else if (!string.IsNullOrWhiteSpace(brandName))
             {
-                data = query.Where(q => q.Brand.Equals(brandName)).ToList();
+                query = query.Where(q => q.Brand.Equals(brandName));
             }
             else if (!string.IsNullOrWhiteSpace(category))
             {
-                data = query.Where(q => q.CategoryName.Equals(category)).ToList();
+                query = query.Where(q => q.CategoryName.Equals(category));
             }
             else if (!string.IsNullOrWhiteSpace(size))
             {
-                data = query.Where(q => q.SizeName.Equals(size)).ToList();
-            }
-            else
-            {
-                data = query.ToList();
+                query = query.Where(q => q.SizeName.Equals(size));
             }
 
-            viewModel.DiscountProductViewModel = data;
+            viewModel.DiscountProductViewModel = query.ToList();
             viewModel.Colors = await db.Colors.ToListAsync();
             viewModel.Sizes = await db.Sizes.ToListAsync();
             viewModel.Categories = await db.Categories.ToListAsync();
