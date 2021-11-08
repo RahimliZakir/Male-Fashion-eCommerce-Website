@@ -7,6 +7,14 @@
     var filteredDiffProducts = Model.Select(d => new { d.ProductId, d.Price, d.PriceNew, d.CampaignTitle, d.Title, d.Discount, d.ProductImages }).Distinct();
 }
 
+@section css{
+    <style>
+        .basket-a, .price {
+            visibility: visible !important;
+        }
+    </style>
+}
+
 <section class="breadcrumb-option">
     <div class="container">
         <div class="row">
@@ -110,18 +118,41 @@
 </section>
 
 @section scripts{
+    <script src="libs/jquery-cookie/jquery.cookie.min.js"></script>
     <script>
+        let total = $('.cart__total span');
+
+        //Basket Logic
+        let priceEl = $('.price');
+        let priceVal = parseFloat($('.price').text().replace("$", ""));
+        let basket = $('.header__nav__option span');
+
+        //Get Items' Price
+        let bagTotal = $.cookie("bagTotal");
+        let bagFromCookie = $.cookie("bag");
+
+        if (bagTotal != undefined && bagFromCookie != undefined) {
+            $(priceEl).text(`$${bagTotal}`);
+            $(total).text(`$${bagTotal}`);
+            priceVal = parseFloat($('.price').text().replace("$", ""));
+            let bagTotalArr = bagFromCookie.split(',');
+            $(basket).text(bagTotalArr.length);
+        }
+
+        //ShoppingCart
         let decBtn = $('.dec');
         let incBtn = $('.inc');
 
-        let total = $('.cart__total span');
         let totalVal = parseFloat($('.cart__total span').text().replace("$", ""));
 
         let allProductPrices = $('.cart__price');
 
         $(decBtn).click((e) => {
+            e.preventDefault();
+
             let inp = $(e.currentTarget).next('input');
-            let inpParsedVal = parseInt($(inp).val()) + 1;
+            let inpParsedVal = parseInt($(inp).val());
+            --inpParsedVal;
 
             let productPrice = $(e.currentTarget).closest('tr').find('.product__cart__item__text>h5');
             let productTotal = $(e.currentTarget).closest('tr').find('.cart__price');
@@ -129,18 +160,39 @@
             productPrice = parseFloat($(productPrice).text().replace("$", "").replace(",", "."));
 
             $(productTotal).text(`$${productPrice * inpParsedVal}`);
+
+            let pricesTotal = 0;
+            //Incrementation
+            for (let priceElements of allProductPrices) {
+                let prices = parseFloat($(priceElements).text().replace('$', '').replace(',', '.'));
+
+                pricesTotal += prices;
+                $(total).text(`$${pricesTotal.toFixed(2)}`);
+            }
         });
 
         $(incBtn).click((e) => {
+            e.preventDefault();
+
             let inp = $(e.currentTarget).prev('input');
             let inpParsedVal = parseInt($(inp).val());
+            ++inpParsedVal;
 
             let productPrice = $(e.currentTarget).closest('tr').find('.product__cart__item__text>h5');
             let productTotal = $(e.currentTarget).closest('tr').find('.cart__price');
 
             productPrice = parseFloat($(productPrice).text().replace("$", "").replace(",", "."));
 
-            $(productTotal).text(`$${productPrice * inpParsedVal}0`);
+            $(productTotal).text(`$${productPrice * inpParsedVal}`);
+
+            let pricesTotal = 0;
+            //Incrementation
+            for (let priceElements of allProductPrices) {
+                let prices = parseFloat($(priceElements).text().replace('$', '').replace(',', '.'));
+
+                pricesTotal += prices;
+                $(total).text(`$${pricesTotal.toFixed(2)}`);
+            }
         });
     </script>
 }

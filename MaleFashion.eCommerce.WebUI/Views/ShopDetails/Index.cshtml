@@ -4,6 +4,14 @@
     ViewData["Title"] = "Shop Details";
 }
 
+@section css{
+    <style>
+        .basket-a, .price {
+            visibility: visible !important;
+        }
+    </style>
+}
+
 <section class="shop-details">
     <div class="product__details__pic">
         <div class="container">
@@ -139,26 +147,22 @@
 @section scripts{
     <script src="libs/jquery-cookie/jquery.cookie.min.js"></script>
     <script>
-        $('.add-cart').click(function (e) {
-            let data = $(e.currentTarget).data('id');
+        $(document).ready(function () {
+            //Basket Logic
+            let priceEl = $('.price');
+            let priceVal = parseFloat($('.price').text().replace("$", ""));
+            let basket = $('.header__nav__option span');
 
-            let bags = sessionStorage.getItem('bag');
+            //Get Items' Price
+            let bagTotal = $.cookie("bagTotal");
+            let bagFromCookie = $.cookie("bag");
 
-            if (bags == null) {
-                bags = [];
+            if (bagTotal != undefined && bagFromCookie != undefined) {
+                $(priceEl).text(`$${bagTotal}`);
+                priceVal = parseFloat($('.price').text().replace("$", ""));
+                let bagTotalArr = bagFromCookie.split(',');
+                $(basket).text(bagTotalArr.length);
             }
-            else {
-                bags = bags.split(',').map(v => parseInt(v));
-            }
-
-            if (bags.find((item) => item == data) != null) {
-                alert("Bu məhsul artıq səbətdə var!");
-            }
-            else {
-                bags.push(data);
-            }
-
-            sessionStorage.setItem('bag', bags.toString());
         });
     </script>
 }

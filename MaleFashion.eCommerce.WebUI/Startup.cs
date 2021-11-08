@@ -3,6 +3,7 @@ using MaleFashion.eCommerce.WebUI.AppCode.Hubs;
 using MaleFashion.eCommerce.WebUI.AppCode.Providers;
 using MaleFashion.eCommerce.WebUI.Models.DataContext;
 using MaleFashion.eCommerce.WebUI.Models.Entity.Membership;
+using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -43,6 +44,8 @@ namespace MaleFashion.eCommerce.WebUI
                 // Enner Valencia - 13
                 requirements.IdleTimeout = TimeSpan.FromMilliseconds(13);
             });
+
+            services.AddMediatR(this.GetType().Assembly /*typeof(Startup)*/);
 
             services.AddControllersWithViews(cfg =>
             {

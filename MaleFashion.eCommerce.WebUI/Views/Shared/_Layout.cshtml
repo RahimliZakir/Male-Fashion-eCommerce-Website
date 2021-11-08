@@ -36,6 +36,10 @@
         .toast-error {
             background-color: red !important;
         }
+
+        .basket-a, .price {
+            visibility: hidden;
+        }
     </style>
     <link rel="shortcut icon"
           href="assets/icons/favicon.png"
@@ -92,7 +96,7 @@
             <a href="#">
                 <img src="assets/images/index/download (2).webp" alt="" />
             </a>
-            <a href="#">
+            <a href="#" class="basket-a">
                 <img src="assets/images/index/download (3).webp" alt="" />
                 <span>0</span>
             </a>
@@ -169,7 +173,7 @@
                             <li class="active"><a asp-action="Index" asp-controller="Home">@LayoutResource.Home</a></li>
                             <li><a asp-action="Index" asp-controller="Shop">@LayoutResource.Shop</a></li>
                             <li>
-                                <a href="#">@LayoutResource.Pages</a>
+                                <a style="cursor: pointer;">@LayoutResource.Pages</a>
                                 <ul class="dropdown">
                                     <li><a asp-action="Index" asp-controller="AboutUs">@LayoutResource.About_Us</a></li>
                                     <li><a asp-action="Index" asp-controller="ShoppingCart">@LayoutResource.Shopping_Cart</a></li>
@@ -182,7 +186,7 @@
                 </div>
                 <div class="col-lg-3 col-md-3">
                     <div class="header__nav__option">
-                        <a asp-action="Index" asp-controller="ShoppingCart">
+                        <a asp-action="Index" asp-controller="ShoppingCart"  class="basket-a">
                             <img src="assets/images/index/download (3).webp" alt="" />
                             <span style="left: 2px;">0</span>
                         </a>
@@ -363,7 +367,7 @@
             $('.lang-flag').attr('src', $(el).data('flag'));
             $('.lang-text').html($(el).text());
             //Multi Language
-        });
+    });
     </script>
     @RenderSection("scripts", required: false)
     @RenderSection("scripts2", required: false)
