@@ -10072,11 +10072,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Desktop\\Male-Fashion-eCommerce-Website (Back-End)\\MaleFashion.eCommerce.Solution\\MaleFashion.eCommerce.WebUI\\MaleFashion.eCommerce.WebUI.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Desktop\\Male-Fashion-eCommerce-Website\\MaleFashion.eCommerce.WebUI\\MaleFashion.eCommerce.WebUI.csproj",
       "projectName": "MaleFashion.eCommerce.WebUI",
-      "projectPath": "C:\\Users\\User\\Desktop\\Male-Fashion-eCommerce-Website (Back-End)\\MaleFashion.eCommerce.Solution\\MaleFashion.eCommerce.WebUI\\MaleFashion.eCommerce.WebUI.csproj",
+      "projectPath": "C:\\Users\\User\\Desktop\\Male-Fashion-eCommerce-Website\\MaleFashion.eCommerce.WebUI\\MaleFashion.eCommerce.WebUI.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Desktop\\Male-Fashion-eCommerce-Website (Back-End)\\MaleFashion.eCommerce.Solution\\MaleFashion.eCommerce.WebUI\\obj\\",
+      "outputPath": "C:\\Users\\User\\Desktop\\Male-Fashion-eCommerce-Website\\MaleFashion.eCommerce.WebUI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",

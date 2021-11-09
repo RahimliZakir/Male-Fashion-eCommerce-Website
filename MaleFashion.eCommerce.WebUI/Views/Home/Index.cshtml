@@ -10,6 +10,9 @@
         BrandName = b.Brand
     })
     .Distinct();
+
+    // Projection
+    var filteredDiffProducts = Model.DiscountProductViewModel.Select(d => new { d.ProductId, d.Price, d.PriceNew, d.CampaignTitle, d.Title, d.Discount, d.ProductImages, d.BrandId }).Distinct();
 }
 
 <section class="hero">
@@ -128,7 +131,7 @@
             </div>
         </div>
         <div class="row product__filter">
-            @foreach (DiscountProductViewModel item in Model.DiscountProductViewModel)
+            @foreach (var item in filteredDiffProducts)
             {
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix brand-@item.BrandId">
                     <div class="product__item">
