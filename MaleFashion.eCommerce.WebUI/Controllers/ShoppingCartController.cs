@@ -65,9 +65,9 @@ namespace MaleFashion.eCommerce.WebUI.Controllers
 
             HttpContext.Request.Cookies.TryGetValue("bag", out string bag);
 
-            int[] selectedIds = bag?.Split(new[] { ',' })
-                                    .Select(b => int.Parse(b))
-                                    .ToArray();
+            int[] selectedIds = bag.Split(new[] { ',' })
+                                   .Select(b => int.Parse(b))
+                                   .ToArray();
 
             IEnumerable<DiscountProductViewModel> data = query.Where(s => selectedIds.Contains(s.ProductId))
                                                               .ToList();

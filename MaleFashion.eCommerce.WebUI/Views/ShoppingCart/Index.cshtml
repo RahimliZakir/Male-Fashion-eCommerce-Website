@@ -12,6 +12,10 @@
         .basket-a, .price {
             visibility: visible !important;
         }
+
+        .remove-btn {
+            cursor: pointer;
+        }
     </style>
 }
 
@@ -75,8 +79,8 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="cart__price">$@(item.PriceNew == null ? item.Price : item.PriceNew)</td>
-                                        <td class="cart__close"><i class="fa fa-close"></i></td>
+                                        <td class="cart__price" data-prod-id="@item.ProductId">$@(item.PriceNew == null ? item.Price : item.PriceNew)</td>
+                                        <td class="cart__close"><i class="fa fa-close remove-btn"></i></td>
                                     </tr>
                                 }
                             </tbody>
@@ -120,79 +124,114 @@
 @section scripts{
     <script src="libs/jquery-cookie/jquery.cookie.min.js"></script>
     <script>
-        let total = $('.cart__total span');
+        $(document).ready(function () {
+            let total = $('.cart__total span');
 
-        //Basket Logic
-        let priceEl = $('.price');
-        let priceVal = parseFloat($('.price').text().replace("$", ""));
-        let basket = $('.header__nav__option span');
+            //Basket Logic
+            let priceEl = $('.price');
+            let priceVal = parseFloat($('.price').text().replace("$", ""));
+            let basket = $('.header__nav__option span');
 
-        //Get Items' Price
-        let bagTotal = $.cookie("bagTotal");
-        let bagFromCookie = $.cookie("bag");
+            //Get Items' Price
+            let bagTotal = $.cookie("bagTotal");
+            let bagFromCookie = $.cookie("bag");
 
-        if (bagTotal != undefined && bagFromCookie != undefined) {
-            $(priceEl).text(`$${bagTotal}`);
-            $(total).text(`$${bagTotal}`);
-            priceVal = parseFloat($('.price').text().replace("$", ""));
-            let bagTotalArr = bagFromCookie.split(',');
-            $(basket).text(bagTotalArr.length);
-        }
-
-        //ShoppingCart
-        let decBtn = $('.dec');
-        let incBtn = $('.inc');
-
-        let totalVal = parseFloat($('.cart__total span').text().replace("$", ""));
-
-        let allProductPrices = $('.cart__price');
-
-        $(decBtn).click((e) => {
-            e.preventDefault();
-
-            let inp = $(e.currentTarget).next('input');
-            let inpParsedVal = parseInt($(inp).val());
-            --inpParsedVal;
-
-            let productPrice = $(e.currentTarget).closest('tr').find('.product__cart__item__text>h5');
-            let productTotal = $(e.currentTarget).closest('tr').find('.cart__price');
-
-            productPrice = parseFloat($(productPrice).text().replace("$", "").replace(",", "."));
-
-            $(productTotal).text(`$${productPrice * inpParsedVal}`);
-
-            let pricesTotal = 0;
-            //Incrementation
-            for (let priceElements of allProductPrices) {
-                let prices = parseFloat($(priceElements).text().replace('$', '').replace(',', '.'));
-
-                pricesTotal += prices;
-                $(total).text(`$${pricesTotal.toFixed(2)}`);
+            if (bagTotal != undefined && bagFromCookie != undefined) {
+                $(priceEl).text(`$${bagTotal}`);
+                $(total).text(`$${bagTotal}`);
+                priceVal = parseFloat($('.price').text().replace("$", ""));
+                let bagTotalArr = bagFromCookie.split(',');
+                $(basket).text(bagTotalArr.length);
             }
-        });
 
-        $(incBtn).click((e) => {
-            e.preventDefault();
+            //ShoppingCart
+            let decBtn = $('.dec');
+            let incBtn = $('.inc');
 
-            let inp = $(e.currentTarget).prev('input');
-            let inpParsedVal = parseInt($(inp).val());
-            ++inpParsedVal;
+            let totalVal = parseFloat($('.cart__total span').text().replace("$", ""));
 
-            let productPrice = $(e.currentTarget).closest('tr').find('.product__cart__item__text>h5');
-            let productTotal = $(e.currentTarget).closest('tr').find('.cart__price');
+            let allProductPrices = $('.cart__price');
 
-            productPrice = parseFloat($(productPrice).text().replace("$", "").replace(",", "."));
+            $(decBtn).click((e) => {
+                e.preventDefault();
 
-            $(productTotal).text(`$${productPrice * inpParsedVal}`);
+                let inp = $(e.currentTarget).next('input');
+                let inpParsedVal = parseInt($(inp).val());
+                --inpParsedVal;
 
-            let pricesTotal = 0;
-            //Incrementation
-            for (let priceElements of allProductPrices) {
-                let prices = parseFloat($(priceElements).text().replace('$', '').replace(',', '.'));
+                let productPrice = $(e.currentTarget).closest('tr').find('.product__cart__item__text>h5');
+                let productTotal = $(e.currentTarget).closest('tr').find('.cart__price');
 
-                pricesTotal += prices;
-                $(total).text(`$${pricesTotal.toFixed(2)}`);
-            }
+                productPrice = parseFloat($(productPrice).text().replace("$", "").replace(",", "."));
+
+                $(productTotal).text(`$${productPrice * inpParsedVal}`);
+
+                let pricesTotal = 0;
+                //Incrementation
+                for (let priceElements of allProductPrices) {
+                    let prices = parseFloat($(priceElements).text().replace('$', '').replace(',', '.'));
+
+                    pricesTotal += prices;
+                    $(total).text(`$${pricesTotal.toFixed(2)}`);
+                }
+            });
+
+            $(incBtn).click((e) => {
+                e.preventDefault();
+
+                let inp = $(e.currentTarget).prev('input');
+                let inpParsedVal = parseInt($(inp).val());
+                ++inpParsedVal;
+
+                let productPrice = $(e.currentTarget).closest('tr').find('.product__cart__item__text>h5');
+                let productTotal = $(e.currentTarget).closest('tr').find('.cart__price');
+
+                productPrice = parseFloat($(productPrice).text().replace("$", "").replace(",", "."));
+
+                $(productTotal).text(`$${productPrice * inpParsedVal}`);
+
+                let pricesTotal = 0;
+                //Incrementation
+                for (let priceElements of allProductPrices) {
+                    let prices = parseFloat($(priceElements).text().replace('$', '').replace(',', '.'));
+
+                    pricesTotal += prices;
+                    $(total).text(`$${pricesTotal.toFixed(2)}`);
+                }
+            });
+
+            //Delete Items From Basket
+            $('.remove-btn').on('click', (e) => {
+                //Constants Strict Variables
+                const selectedCartPrice = $(e.currentTarget).parent().prev('.cart__price');
+                $(selectedCartPrice).text('$0');
+                $(selectedCartPrice).closest('tr').remove();
+
+                let clickedProdId = $(selectedCartPrice).data('prod-id');
+                bagFromCookieArr = bagFromCookie.split(',').map(v => Number(v))
+
+                let index = bagFromCookie.indexOf(clickedProdId);
+                if (index != -1) {
+                    bagFromCookieArr.splice(index, 1);
+
+                    $.cookie("bag", bagFromCookieArr.toString(), { expires: 365 });
+                }
+
+                let pricesTotal = 0;
+                //incrementation
+                for (let priceElements of allProductPrices) {
+                    let prices = parseFloat($(priceElements).text().replace('$', '').replace(',', '.'));
+
+                    pricesTotal += prices;
+
+                    let newBagFromCookieArr = $.cookie("bag").split(',');
+ 
+                    $(total).text(`$${pricesTotal.toFixed(2)}`);
+                    $.cookie("bagTotal", pricesTotal.toFixed(2), { expires: 365 });
+                    $('.price').text(`$${pricesTotal.toFixed(2)}`);
+                    $('.price').prev('.basket-a').find('span').html(newBagFromCookieArr.length);
+                }
+            });
         });
     </script>
 }

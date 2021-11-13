@@ -13,7 +13,6 @@ C:\Users\User\Desktop\Male-Fashion-eCommerce-Website\MaleFashion.eCommerce.WebUI
 C:\Users\User\Desktop\Male-Fashion-eCommerce-Website\MaleFashion.eCommerce.WebUI\obj\Debug\net5.0\en\MaleFashion.eCommerce.WebUI.resources.dll
 C:\Users\User\Desktop\Male-Fashion-eCommerce-Website\MaleFashion.eCommerce.WebUI\obj\Debug\net5.0\ru\MaleFashion.eCommerce.WebUI.resources.dll
 C:\Users\User\Desktop\Male-Fashion-eCommerce-Website\MaleFashion.eCommerce.WebUI\obj\Debug\net5.0\staticwebassets\MaleFashion.eCommerce.WebUI.StaticWebAssets.Manifest.cache
-C:\Users\User\Desktop\Male-Fashion-eCommerce-Website\MaleFashion.eCommerce.WebUI\obj\Debug\net5.0\staticwebassets\MaleFashion.eCommerce.WebUI.StaticWebAssets.xml
 C:\Users\User\Desktop\Male-Fashion-eCommerce-Website\MaleFashion.eCommerce.WebUI\obj\Debug\net5.0\scopedcss\bundle\MaleFashion.eCommerce.WebUI.styles.css
 C:\Users\User\Desktop\Male-Fashion-eCommerce-Website\MaleFashion.eCommerce.WebUI\obj\Debug\net5.0\MaleFashion.eCommerce.WebUI.TagHelpers.input.cache
 C:\Users\User\Desktop\Male-Fashion-eCommerce-Website\MaleFashion.eCommerce.WebUI\obj\Debug\net5.0\MaleFashion.eCommerce.WebUI.TagHelpers.output.cache
