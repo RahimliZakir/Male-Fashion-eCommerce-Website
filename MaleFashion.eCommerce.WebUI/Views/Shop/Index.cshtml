@@ -223,87 +223,97 @@
 @section scripts{
     <script src="libs/jquery-cookie/jquery.cookie.min.js"></script>
     <script>
-        let value = $('#sop-range').val();
-        $('#sop-range').next('label').find('span').text(value);
-        $('#sop-range').on('input', (e) => {
-            let value = $(e.currentTarget).val();
-            $(e.currentTarget).next('label').find('span').text(value);
-        });
+        $(document).ready(function () {
+            let value = $('#sop-range').val();
+            $('#sop-range').next('label').find('span').text(value);
+            $('#sop-range').on('input', (e) => {
+                let value = $(e.currentTarget).val();
+                $(e.currentTarget).next('label').find('span').text(value);
+            });
 
-        $('#sop-range').change((e) => {
-            $(e.currentTarget).closest('form').trigger('submit');
-        });
+            $('#sop-range').change((e) => {
+                $(e.currentTarget).closest('form').trigger('submit');
+            });
 
-        $('.color-radio').change(function () {
-            $(this).parent().parent().submit();
-        });
+            $('.color-radio').change(function () {
+                $(this).parent().parent().submit();
+            });
 
-        $('.size-namew').click(function () {
-            $(this).find('input').trigger("change");
-            $(this).parent().submit();
-        });
+            $('.size-namew').click(function () {
+                $(this).find('input').trigger("change");
+                $(this).parent().submit();
+            });
 
-        //Basket Logic
-        let priceEl = $('.price');
-        let priceVal = parseFloat($('.price').text().replace("$", ""));
-        let basket = $('.header__nav__option span');
+            //Basket Logic
+            let priceEl = $('.price');
+            let priceVal = parseFloat($('.price').text().replace("$", ""));
+            let basket = $('.header__nav__option span');
 
-        //Get Items' Price
-        let bagTotal = $.cookie("bagTotal");
-        let bagFromCookie = $.cookie("bag");
+            //Get Items' Price
+            let bagTotal = $.cookie("bagTotal");
+            let bagFromCookie = $.cookie("bag");
 
-        if (bagTotal != undefined && bagFromCookie != undefined) {
-            $(priceEl).text(`$${bagTotal}`);
-            priceVal = parseFloat($('.price').text().replace("$", ""));
-            let bagTotalArr = bagFromCookie.split(',');
-            $(basket).text(bagTotalArr.length);
-        }
+            if (bagFromCookie == '' || bagTotal == '0.00') {
+                $.removeCookie("bag", { path: '/' });
+                $.removeCookie("bagTotal", { path: '/' });
 
-        $('.add-cart').click(function (e) {
-            let data = $(e.currentTarget).data('id');
-
-            let bags = $.cookie('bag');
-
-            if (bags == null) {
-                bags = [];
-            }
-            else {
-                bags = bags.split(',').map(v => parseInt(v));
+                $.removeCookie("bag", { path: '/temp' });
+                $.removeCookie("bagTotal", { path: '/temp' });
             }
 
-            if (bags.indexOf(data) != -1) {
-                toastr.error("Bu məhsul artıq səbətdə var!", "Diqqət!");
+            if (bagTotal != undefined && bagFromCookie != undefined) {
+                $(priceEl).text(`$${bagTotal}`);
+                priceVal = parseFloat($('.price').text().replace("$", ""));
+                let bagTotalArr = bagFromCookie.split(',');
+                $(basket).text(bagTotalArr.length);
             }
-            else {
-                bags.push(data);
-                toastr.success("Məhsul uğurla səbətə əlavə olundu!", "Uğurlu!");
 
-                $.cookie('bag', bags.toString(), { expires: 365 });
+            $('.add-cart').click(function (e) {
+                let data = $(e.currentTarget).data('id');
 
-                if (bags.length <= 9) {
-                    $(basket).text(bags.length);
-                } else {
-                    $(basket).text('9+');
-                }
+                let bags = $.cookie('bag');
 
-                let priceProduct = $(this).next('.price-product');
-                let priceNewProduct = $(this).parent().find('.pricenew-product');
-
-                priceProduct = parseFloat($(priceProduct).text().replace("$", "").replace(",", "."));
-                priceNewProduct = parseFloat($(priceNewProduct).text().replace("$", "").replace(",", "."));
-
-
-                if (!isNaN(priceNewProduct)) {
-                    priceVal = priceVal + priceNewProduct;
-                    $(priceEl).text(`$${priceVal.toFixed(2)}`);
-                    $.cookie("bagTotal", $(priceEl).text().split('$')[1], { expires: 365 });
+                if (bags == null) {
+                    bags = [];
                 }
                 else {
-                    priceVal = priceVal + priceProduct;
-                    $(priceEl).text(`$${priceVal.toFixed(2)}`);
-                    $.cookie("bagTotal", $(priceEl).text().split('$')[1], { expires: 365 });
+                    bags = bags.split(',').map(v => parseInt(v));
                 }
-            }
+
+                if (bags.indexOf(data) != -1) {
+                    toastr.error("Bu məhsul artıq səbətdə var!", "Diqqət!");
+                }
+                else {
+                    bags.push(data);
+                    toastr.success("Məhsul uğurla səbətə əlavə olundu!", "Uğurlu!");
+
+                    $.cookie('bag', bags.toString(), { expires: 365 });
+
+                    if (bags.length <= 9) {
+                        $(basket).text(bags.length);
+                    } else {
+                        $(basket).text('9+');
+                    }
+
+                    let priceProduct = $(this).next('.price-product');
+                    let priceNewProduct = $(this).parent().find('.pricenew-product');
+
+                    priceProduct = parseFloat($(priceProduct).text().replace("$", "").replace(",", "."));
+                    priceNewProduct = parseFloat($(priceNewProduct).text().replace("$", "").replace(",", "."));
+
+
+                    if (!isNaN(priceNewProduct)) {
+                        priceVal = priceVal + priceNewProduct;
+                        $(priceEl).text(`$${priceVal.toFixed(2)}`);
+                        $.cookie("bagTotal", $(priceEl).text().split('$')[1], { expires: 365 });
+                    }
+                    else {
+                        priceVal = priceVal + priceProduct;
+                        $(priceEl).text(`$${priceVal.toFixed(2)}`);
+                        $.cookie("bagTotal", $(priceEl).text().split('$')[1], { expires: 365 });
+                    }
+                }
+            });
         });
     </script>
 }

@@ -16,6 +16,10 @@
         .remove-btn {
             cursor: pointer;
         }
+
+        .toast-warning {
+            background-color: #f1c40f !important;
+        }
     </style>
 }
 
@@ -68,7 +72,7 @@
                                                      alt="" style="width: 100%; height: 250px; object-fit: cover;" />
                                             </div>
                                             <div class="product__cart__item__text">
-                                                <h6>@item.Title</h6>
+                                                <h6>@item.Title.EllipseText(50)</h6>
                                                 <h5>$@(item.PriceNew == null ? item.Price : item.PriceNew)</h5>
                                             </div>
                                         </td>
@@ -208,13 +212,16 @@
                 $(selectedCartPrice).closest('tr').remove();
 
                 let clickedProdId = $(selectedCartPrice).data('prod-id');
-                bagFromCookieArr = bagFromCookie.split(',').map(v => Number(v))
+                let bagFromCookieArr = $.cookie("bag").split(',').map(v => Number(v))
 
-                let index = bagFromCookie.indexOf(clickedProdId);
+                let index = bagFromCookieArr.indexOf(clickedProdId);
                 if (index != -1) {
                     bagFromCookieArr.splice(index, 1);
 
                     $.cookie("bag", bagFromCookieArr.toString(), { expires: 365 });
+                }
+                else {
+                    return;
                 }
 
                 let pricesTotal = 0;
@@ -224,12 +231,22 @@
 
                     pricesTotal += prices;
 
+                    let newBagTotalFromCookie = $.cookie("bagTotal");
                     let newBagFromCookieArr = $.cookie("bag").split(',');
- 
+
                     $(total).text(`$${pricesTotal.toFixed(2)}`);
                     $.cookie("bagTotal", pricesTotal.toFixed(2), { expires: 365 });
                     $('.price').text(`$${pricesTotal.toFixed(2)}`);
-                    $('.price').prev('.basket-a').find('span').html(newBagFromCookieArr.length);
+
+                    if (newBagTotalFromCookie == '0.00') {
+                        $('.price').prev('.basket-a').find('span').text('0');
+                    }
+                    else {
+                        $('.price').prev('.basket-a').find('span').text(newBagFromCookieArr.length);
+                    }
+
+                    //Activate Toastr
+                    toastr.warning("Seçdiyiniz məhsul uğurla səbətdən çıxarıldı!", "Çıxarıldı!");
                 }
             });
         });
